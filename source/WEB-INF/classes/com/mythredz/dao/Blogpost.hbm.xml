@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 17, 2006 3:45:28 PM by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="com.mythredz.dao.Blogpost" table="blogpost">
+        <cache usage="transactional"/>
+        <id name="blogpostid" type="int">
+            <column name="blogpostid" />
+            <generator class="native" />
+        </id>
+        <set name="blogpostcomments" inverse="true" order-by="blogpostcommentid asc" cascade="all-delete-orphan">
+            <cache usage="transactional"/>
+            <key column="blogpostid"></key>
+            <one-to-many class="com.mythredz.dao.Blogpostcomment" not-found="ignore"></one-to-many>
+        </set>
+        <property name="date" type="timestamp">
+            <column name="date" not-null="true" />
+        </property>
+        <property name="author" type="string">
+            <column name="author" not-null="true" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" not-null="true" />
+        </property>
+        <property name="body" type="text">
+            <column name="body" not-null="true" />
+        </property>
+        <property name="categories" type="string">
+            <column name="categories" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

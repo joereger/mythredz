@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 17, 2006 3:45:28 PM by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="com.mythredz.dao.User" table="user">
+        <cache usage="transactional"/>
+        <id name="userid" type="int">
+            <column name="userid" />
+            <generator class="native" />
+        </id>
+
+        <set name="userroles" inverse="true" cascade="all-delete-orphan">
+            <cache usage="transactional"/>
+            <key column="userid"></key>
+            <one-to-many class="com.mythredz.dao.Userrole" not-found="ignore"></one-to-many>
+        </set>
+
+        <set name="usereulas" inverse="true" cascade="all-delete-orphan">
+            <cache usage="transactional"/>
+            <key column="userid"></key>
+            <one-to-many class="com.mythredz.dao.Usereula" not-found="ignore"></one-to-many>
+        </set>
+
+
+
+        <property name="isenabled" type="boolean">
+            <column name="isenabled" />
+        </property>
+
+        <property name="email" type="string">
+            <column name="email" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" not-null="true" />
+        </property>
+        <property name="firstname" type="string">
+            <column name="firstname" not-null="true" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" not-null="true" />
+        </property>
+        <property name="isactivatedbyemail" type="boolean">
+            <column name="isactivatedbyemail" />
+        </property>
+        <property name="emailactivationkey" type="string">
+            <column name="emailactivationkey" not-null="true" />
+        </property>
+        <property name="emailactivationlastsent" type="timestamp">
+            <column name="emailactivationlastsent" not-null="true" />
+        </property>
+        <property name="createdate" type="timestamp">
+            <column name="createdate" not-null="true" />
+        </property>
+        <property name="chargemethod" type="int">
+            <column name="chargemethod" not-null="true" />
+        </property>
+        <property name="chargemethodcreditcardid" type="int">
+            <column name="chargemethodcreditcardid" not-null="true" />
+        </property>
+        <property name="facebookuserid" type="int">
+            <column name="facebookuserid" not-null="true" />
+        </property>
+        <property name="isfacebookappremoved" type="boolean">
+            <column name="isfacebookappremoved" />
+        </property>
+        <property name="facebookappremoveddate" type="timestamp">
+            <column name="facebookappremoveddate" not-null="true" />
+        </property>
+        <property name="exerciseeveryxminutes" type="int">
+            <column name="exerciseeveryxminutes" not-null="true" />
+        </property>
+        <property name="nextexercisetime" type="timestamp">
+            <column name="nextexercisetime" not-null="true" />
+        </property>
+        <property name="upcomingexercises" type="string">
+            <column name="upcomingexercises" not-null="true" />
+        </property>
+        <property name="exercisechooserid" type="int">
+            <column name="exercisechooserid" not-null="true" />
+        </property>
+        <property name="exerciselistid" type="int">
+            <column name="exerciselistid" not-null="true" />
+        </property>
+        <property name="currentexercisenum" type="int">
+            <column name="currentexercisenum" not-null="true" />
+        </property>
+
+    </class>
+</hibernate-mapping>

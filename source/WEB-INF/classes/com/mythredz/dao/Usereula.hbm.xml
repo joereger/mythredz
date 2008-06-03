@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 17, 2006 3:45:28 PM by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="com.mythredz.dao.Usereula" table="usereula">
+        <cache usage="transactional"/>
+        <id name="usereulaid" type="int">
+            <column name="usereulaid" />
+            <generator class="native" />
+        </id>
+        <property name="userid" type="int">
+            <column name="userid" not-null="true" />
+        </property>
+        <property name="eulaid" type="int">
+            <column name="eulaid" not-null="true" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" not-null="true" />
+        </property>
+        <property name="ip" type="string">
+            <column name="ip" not-null="true" />
+        </property>
+
+
+    </class>
+</hibernate-mapping>

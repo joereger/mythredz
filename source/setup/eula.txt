@@ -1,0 +1,101 @@
+DNEERO END USER LICENSE AGREEMENT AND PRIVACY STATEMENT
+
+dNeero provides online survey hosting and other survey services.
+
+There are two primary roles within the dNeero system: 1) Blogger and 2) Researcher.  Each dNeero account can be used in either role or both roles.
+
+BLOGGERS
+
+Bloggers take surveys and post them to their blogs.
+
+Bloggers must claim their blog in the account section prior to posting surveys they've taken to it.  Survey impressions will not begin to accrue until after any particular blog has been claimed.
+
+Bloggers may only claim blogs that they have the legal right to claim.
+
+Blogs must contain original content and can not exist for the sole purpose of taking surveys.
+
+Blogs must in general be active.  This is defined as having at least one post per week.
+
+Bloggers may not use software to automatically create blog posts to fulfill blog requirements.
+
+Bloggers may not use the blogger invitation tools for outbound communications not related to surveys.
+
+Bloggers acknowledge that from time to time dNeero must update the manner in which it embeds surveys into blogs.  At times this will involve changing the way that surveys look or act when embedded inside a blog.
+
+Bloggers must embed a survey into their blogs using the unedited code provided by dNeero for the purpose of embedding.
+
+Blogger agrees that all survey response data collected is owned by dNeero, who provides it to the Researcher for unlimited, non-exclusive use.  Transmission of survey response data will include information in the blogger's blogger profile (demographic information).  It will not include passwords or PayPal addresses.
+
+In order to compensate bloggers for the amount of traffic to their blogs dNeero will collect blog traffic data.  This data is visible to the researchers of surveys that the blogger takes.
+
+dNeero may engage in secondary sales of data collected from survey responses, blogger profiles, blog traffic data, login data and any other data collected in the due course of business.  Secondary data sales do not include the core business model of taking surveys and posting them to blogs.  Secondary sales may include aggregated depersonalized data or personally identifiable data.  dNeero commits to the following, in order to put bloggers in control of their data:
+
+1) dNeero will give bloggers notice before including their data in any secondary data sale.  Notification may be via email and/or the blogger's private dNeero account section.  So that the blogger may make an informed decision notification must include: who is purchasing the data and how the data will be used.
+
+2) dNeero will give bloggers an easy way to opt out of any secondary data sale during that 24 hour period.  dNeero will remove individual blogger data from the final data package sent to secondary data purchasers for any blogger who opts out.  Lack of notification will be interpreted as consent to include blogger data in the secondary data sale.
+
+3) Any time dNeero sells data to a secondary purchaser it will share some of the money with the bloggers who created that data.  The amount may be small or large but must be disclosed in the 24 hour notification.
+
+In addition to these commitments which ensure that the blogger has control of their data, dNeero commits to only working with companies that it deems to be of a high quality and unlikely to damage bloggers.  However, once the 24 hour notification period has passed and the data is transmitted to the secondary data purchaser dNeero assumes no liability for improper usage of the data.
+
+As of April 20th, 2007 dNeero has no plans to sell secondary data and will focus entirely on its core business for the foreseeable future.
+
+RESEARCHERS
+
+Researchers create surveys for bloggers to take.
+
+Researchers may not use the survey invitation tools for outbound communications not related surveys.
+
+Once a survey is launched it can not be edited, modified or ended until the pre-defined ending date as defined by the researcher.
+
+Launching a survey implies willingness to pay for activity generated.
+
+Researchers acknowledge that surveys will be published publicly.  
+
+Researchers acknowledge that survey results will be published publicly.
+
+Researchers agree to pay for services in advance. Researchers agree that submission of credit card information to dNeero constitutes authorization to bill the specified credit card for all fees owed by researcher to dNeero.  If such credit card charges are not accepted by the credit card processor, dNeero will place the researcher's account on hold. An ‘On-Hold’ status results in suspension of all dNeero services including survey services.
+
+ALL USERS
+
+You acknowledge that dNeero does not regulate or take any responsibility for the content of information, files, images, or other communication transmitted to or by dNeero.
+
+You warrant that you have all rights necessary to lawfully submit any information or materials that are uploaded to dNeero, including all intellectual property rights. 
+
+You agree not to publish or transmit any unlawful, harmful, threatening, abusive, harassing, defamatory, or racially or ethnically derogatory content, or any content expressing hate towards any person or groups of persons due to race, religion, color, creed, national origin or sexual orientation.
+
+You, the Customer, agree to indemnify dNeero against actions brought by a third party as a result of such material or information, or as a result of Customer's use in any way of the Services provided by dNeero.
+
+Automated creation of accounts using software is prohibited.
+
+Any account may be suspended indefinitely at the discretion of dNeero.
+
+USE BY CHILDREN UNDER 13 YEARS OF AGE PROHIBITED
+
+dNeero is intended solely for the use by persons 13 years of age or older.  All persons under 13 years of age are prohibited from registering on our site.
+
+TERMINATION
+
+If, at any time, we, dNeero, believe you are in breach of any of the terms and conditions contained in this agreement, dNeero may immediately terminate this agreement without liability.
+
+NO WARRANTIES
+
+dNeero makes no warranties of any kind, whether expressed or implied, for the services to be provided hereunder.
+
+You, the Customer, agree that dNeero shall not be liable for any losses or damages of any kind to Customer, including, but not limited to, those that may result from service interruptions, delays, non-deliveries, or mis-deliveries. Additionally, dNeero makes no warranties regarding its ability to recover any lost data, lost files, or other information, regardless of how or why the file was lost.
+
+LITIGATION AND ATTORNEY'S FEES
+
+In the event of any dispute arising out of or relating to this agreement, such dispute shall be resolved in Georgia and the prevailing party in any such dispute shall be entitled to reasonable costs, including collection costs, and attorney's fees.
+
+ENTIRE AGREEMENT AND SEVERABILITY
+
+This represents the complete agreement and understanding between dNeero and Customer with respect to the subject matter herein. In the event that any term or provision of this agreement is held by a court to be unenforceable, then the remaining provisions shall remain in full force and effect.
+
+INTELLECTUAL PROPERTY
+
+The Web site and the materials on it are owned by or licensed to Reger, Incorporated, and protected from unauthorized copying and dissemination by U.S. Copyright Act (http://www.copyright.gov/title17/), U.S. Trademark Law (http://www.uspto.gov/web/offices/ tac/tmlaw2.html), international conventions, and other intellectual property laws. Unauthorized use is prohibited. If content originates from other writers, publishers, consultants, and business professionals, that content remains the copyrighted property of those contributors and may not be copied or published without their express permission.
+
+CHANGES TO THIS POLICY
+
+We may change this document from time to time.  We will post changes publicly and upon login to the system after a change you will be asked to agree to the changes.  If you do not agree you account may be suspended.

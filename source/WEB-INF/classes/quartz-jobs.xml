@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='utf-8'?>
+<quartz xmlns="http://www.opensymphony.com/quartz/JobSchedulingData"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.opensymphony.com/quartz/JobSchedulingData
+  http://www.opensymphony.com/quartz/xml/job_scheduling_data_1_5.xsd"
+  version="1.5">
+
+
+    <job>
+        <job-detail>
+          <name>systemStats</name>
+          <group>surveyJobs</group>
+          <job-class>com.mythredz.scheduledjobs.SystemStats</job-class>
+          <volatility>false</volatility>
+          <durability>false</durability>
+          <recover>false</recover>
+        </job-detail>
+        <trigger>
+          <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
+          <cron>
+            <name>systemStatsTrigger</name>
+            <group>surveyTriggers</group>
+            <job-name>systemStats</job-name>
+            <job-group>surveyJobs</job-group>
+            <!-- every x minutes -->
+            <cron-expression>0 0/15 * * * ?</cron-expression>
+          </cron>
+        </trigger>
+    </job>
+
+
+
+    <job>
+        <job-detail>
+          <name>deleteOldPersistentlogins</name>
+          <group>surveyJobs</group>
+          <job-class>com.mythredz.scheduledjobs.DeleteOldPersistentlogins</job-class>
+          <volatility>false</volatility>
+          <durability>false</durability>
+          <recover>false</recover>
+        </job-detail>
+        <trigger>
+          <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
+          <cron>
+            <name>deleteOldPersistentloginsTrigger</name>
+            <group>surveyTriggers</group>
+            <job-name>deleteOldPersistentlogins</job-name>
+            <job-group>surveyJobs</job-group>
+            <!-- Fire at 3am every day -->
+            <cron-expression>0 0 3 * * ?</cron-expression>
+          </cron>
+        </trigger>
+    </job>
+
+
+
+
+
+
+
+
+    
+
+
+    <job>
+        <job-detail>
+          <name>moveMoneyAround</name>
+          <group>surveyJobs</group>
+          <job-class>com.mythredz.scheduledjobs.MoveMoneyAround</job-class>
+          <volatility>false</volatility>
+          <durability>false</durability>
+          <recover>false</recover>
+        </job-detail>
+        <trigger>
+          <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
+          <cron>
+            <name>moveMoneyAroundTrigger</name>
+            <group>surveyTriggers</group>
+            <job-name>moveMoneyAround</job-name>
+            <job-group>surveyJobs</job-group>
+            <!-- Fire at 12pm (noon) every day -->
+            <cron-expression>0 0 5 * * ?</cron-expression>
+          </cron>
+        </trigger>
+    </job>
+
+
+   
+
+
+
+
+    <job>
+        <job-detail>
+          <name>sendMassemails</name>
+          <group>surveyJobs</group>
+          <job-class>com.mythredz.scheduledjobs.SendMassemails</job-class>
+          <volatility>false</volatility>
+          <durability>false</durability>
+          <recover>false</recover>
+        </job-detail>
+        <trigger>
+          <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
+          <cron>
+            <name>sendMassemailsTrigger</name>
+            <group>surveyTriggers</group>
+            <job-name>sendMassemails</job-name>
+            <job-group>surveyJobs</job-group>
+            <!-- every XX minutes -->
+            <cron-expression>0 0/5 * * * ?</cron-expression>
+          </cron>
+        </trigger>
+    </job>
+
+
+    <job>
+        <job-detail>
+          <name>refreshSystemProperties</name>
+          <group>surveyJobs</group>
+          <job-class>com.mythredz.scheduledjobs.RefreshSystemProperties</job-class>
+          <volatility>false</volatility>
+          <durability>false</durability>
+          <recover>false</recover>
+        </job-detail>
+        <trigger>
+          <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
+          <cron>
+            <name>refreshSystemPropertiesTrigger</name>
+            <group>surveyTriggers</group>
+            <job-name>refreshSystemProperties</job-name>
+            <job-group>surveyJobs</job-group>
+            <!-- every x minutes -->
+            <cron-expression>0 0/15 * * * ?</cron-expression>
+          </cron>
+        </trigger>
+    </job>
+
+
+
+    
+
+    <job>
+        <job-detail>
+          <name>htmlCachePurgeStaleItems</name>
+          <group>surveyJobs</group>
+          <job-class>com.mythredz.scheduledjobs.HtmlCachePurgeStaleItems</job-class>
+          <volatility>false</volatility>
+          <durability>false</durability>
+          <recover>false</recover>
+        </job-detail>
+        <trigger>
+          <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
+          <cron>
+            <name>htmlCachePurgeStaleItemsTrigger</name>
+            <group>surveyTriggers</group>
+            <job-name>htmlCachePurgeStaleItems</job-name>
+            <job-group>surveyJobs</job-group>
+            <!-- every x minutes -->
+            <cron-expression>0 0/5 * * * ?</cron-expression>
+          </cron>
+        </trigger>
+    </job>
+
+    <job>
+        <job-detail>
+          <name>pagePerformanceRecordAndFlush</name>
+          <group>surveyJobs</group>
+          <job-class>com.mythredz.scheduledjobs.PagePerformanceRecordAndFlush</job-class>
+          <volatility>false</volatility>
+          <durability>false</durability>
+          <recover>false</recover>
+        </job-detail>
+        <trigger>
+          <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
+          <cron>
+            <name>pagePerformanceRecordAndFlushTrigger</name>
+            <group>surveyTriggers</group>
+            <job-name>pagePerformanceRecordAndFlush</job-name>
+            <job-group>surveyJobs</job-group>
+            <!-- every 6 hours -->
+            <cron-expression>0 0 0/1 * * ?</cron-expression>
+          </cron>
+        </trigger>
+    </job>
+
+</quartz>

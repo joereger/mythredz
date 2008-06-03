@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" version="2.4">
+
+    <description>web.xml</description>
+
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/500.jsp</location>
+    </error-page>
+
+
+
+    <listener>
+      <listener-class>com.mythredz.startup.ApplicationStartup</listener-class>
+    </listener>
+
+
+
+    <servlet>
+      <servlet-name>jcaptcha</servlet-name>
+      <servlet-class>com.mythredz.util.jcaptcha.ImageCaptchaServlet</servlet-class>
+      <load-on-startup>0</load-on-startup>
+   </servlet>
+   <servlet-mapping>
+        <servlet-name>jcaptcha</servlet-name>
+        <url-pattern>/jcaptcha</url-pattern>
+    </servlet-mapping>
+
+
+
+
+    <filter>
+        <filter-name>HibernateSessionCloser</filter-name>
+        <filter-class>com.mythredz.dao.hibernate.HibernateSessionCloser</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>HibernateSessionCloser</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>FilterMain</filter-name>
+        <filter-class>com.mythredz.htmlui.FilterMain</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FilterMain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>Encode4FacebookFilter</filter-name>
+        <filter-class>com.mythredz.htmlui.Encode4FacebookFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Encode4FacebookFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+
+    <servlet>
+        <servlet-name>EmailActivationServlet</servlet-name>
+        <servlet-class>com.mythredz.email.EmailActivationServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmailActivationServlet</servlet-name>
+        <url-pattern>/eas</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>FbCallbackServlet</servlet-name>
+        <servlet-class>com.mythredz.facebook.FbCallbackServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FbCallbackServlet</servlet-name>
+        <url-pattern>/fb/*</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>BlogRss</servlet-name>
+        <servlet-class>com.mythredz.helpers.BlogRss</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>BlogRss</servlet-name>
+        <url-pattern>/rss.xml</url-pattern>
+    </servlet-mapping>
+
+
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+    <distributable/>
+
+
+
+</web-app>

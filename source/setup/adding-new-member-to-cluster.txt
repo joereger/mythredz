@@ -1,0 +1,20 @@
+1) Put the c:/dNeeroApp/ onto the server
+
+2) Install Firedaemon
+
+3) Import the service xml file into Firedaemon
+
+4) Edit the service's ip bind with service startup parameters
+
+5) Edit C:\dNeeroApp\jboss01\server\all\deploy\jboss-web.deployer\server.xml
+   -- <Connector port="8080" (remember that in production I run on 8080)
+   -- <Engine name="jboss.web" defaultHost="localhost" jvmRoute="node1">  ("node1" must match Apache workers.properties)
+   -- <Connector port="8009" address="${jboss.bind.address}" protocol="AJP/1.3" (set the ajp port)
+
+6) Edit workers.properties file for Apache load balancing... add this machine to the cluster
+
+7) Edit dneero-C_dNeeroApp_jboss01_server_all_._tmp_deploy_ROOT-dbconfig.txt
+    -- Get production password
+    -- Set dbconnectionurl
+    -- Set instance name
+    -- Set runscheduledtasksonthisinstance

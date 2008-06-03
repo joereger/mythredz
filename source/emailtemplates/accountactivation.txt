@@ -1,0 +1,9 @@
+Thanks for trying dNeero!
+
+You can use your account for three days before needing to activate by email.
+
+You can activate your account by visiting this page:
+
+<$baseUrl.includinghttp$>eas?u=<$user.userid$>&k=<$user.emailactivationkey$>
+
+The dNeero Team

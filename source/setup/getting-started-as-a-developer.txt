@@ -1,0 +1,79 @@
+
+
+0) Create the following directory structure:
+   C:/Superfly/
+              /SourceIdeaProjects/
+                                 /pingFit/
+                                        /builds/
+              /SourceSvn/
+                        /pingFit/
+                               /trunk/
+              /Tomcat/
+
+1) Download and install a Java SDK.  I'm using 1.6.
+
+2) Download and install MySQL. Create a database called "pingFit" and an account username/pass.
+
+3) Download Tomcat version 5.5.x or version 6.x
+    - Install to C:/Superfly/Tomcat/
+    - Install as a service (I use FireDaemon but you can use their built-in util)
+    - Stop the service for now
+    - C:\Superfly\Tomcat\webapps\ROOT
+       - Rename this directory to \ROOT-old\ or just delete it.
+    - C:\Superfly\Tomcat\webapps\ROOT.war
+       - Delete this file
+    - C:\Superfly\Tomcat\conf\server.xml
+       - Edit this file to bind to an IP and port.  Rely on Tomcat doc if you're unsure.
+       - <Service name="Catalina">
+             <Connector port="80"  address="127.0.0.1" maxHttpHeaderSize="8192" maxThreads="150" minSpareThreads="25" maxSpareThreads="75" enableLookups="false" redirectPort="8443" acceptCount="100" connectionTimeout="20000" disableUploadTimeout="true" />
+
+4) Use Subversion to check out from the svn server to the directory listed below
+    - svn://www.reger.com/pingFit/trunk (repository url)
+       - Request username/pass from joe@joereger.com
+    - C:/Superfly/SourceSvn/pingFit/trunk  (check out to)
+
+5) C:\Superfly\SourceSvn\pingFit\trunk\buildscripts\build.properties
+    - Edit accordingly.
+    - If you did the directories right the only thing you have to edit is tomcat.service.name
+    - Ignore jboss.* properties for now.
+
+6) C:\Superfly\SourceSvn\pingFit\trunk\buildscripts\build.xml
+    - Run the ANT task "buildWar"
+
+7) C:\Superfly\SourceIdeaProjects\pingFit\builds\WARs\pingFit\ROOT.war
+    - Copy this file to C:\Superfly\Tomcat\webapps
+    - Start Tomcat
+
+8) Go to http://localhost/  (or wherever you configured Tomcat to run)
+
+9) You'll see a System Setup wizard.  You'll be asked for the MySQL username/pass and database name.  And for info to set you up with a SysAdmin account.
+
+10) The system will populate the database structure and initial data.
+   - Go to http://localhost/ (or wherever you configured Tomcat to run)
+   - Log in with the email/pass you created in the wizard
+   - Note the special shiny SysAdmin tab
+   - It probably makes sense to restart the Tomcat service to make sure things are working properly
+
+11) At this point you have the app up and running.  You've done a build.  You can edit code and deploy war files, but this is tedious. Set up an IDE.
+   - Configure your IDE to run ANT tasks from C:\Superfly\SourceSvn\pingFit\trunk\buildscripts\build.xml
+   - QuickBuildWithTomcatRestart - This task moves changed files directly into the Tomcat webapp dir and triggers a restart.  Use this any time you change java classes.
+   - QuickBuild - Moves changed files to the Tomat dir but doesn't restart.  Use when you edit only jsps/images.
+   - QuickBuildClean - Use this to completely refresh the Tomcat dir.  All files are deleted and re-built.
+   - BuildWar - Use to build a self-contained WAR file to C:\Superfly\SourceIdeaProjects\pingFit\builds\WARs\pingFit\ROOT.war
+
+12) IDE Config
+   - I use IntelliJ Idea.  Feel free to use whatever you like.
+      - You probably know your IDE better than I do so config's generally up to you.
+   - Need to add jar files from project to compile classpath
+   - Need to add jar files from Tomcat to compile classpath
+      - C:\Superfly\Tomcat\common\lib
+
+13) SVN: only commit stuff that works.  After big changes email Joe Reger or whoever becomes the build-master.
+
+14) Notes:
+   - Database structure is edited via a startup bootstrap using Hibernate and some Java classes. You'll need more info.
+   - All database access must be done through Hibernate.
+   - Configure Tomcat and/or your service runner's log files.  I output a bunch of stuff with logger.debug("Bleh.");
+   - In SysAdmin click on SysProps... some of these things must be set properly.
+   - In SysAdmin click on Log to see errors.
+   - Questions to joe@joereger.com

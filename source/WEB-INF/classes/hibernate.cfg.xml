@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+
+        <mapping resource="com/mythredz/dao/Balance.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Balancetransaction.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Betainvite.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Blogpost.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Blogpostcomment.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Creditcard.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Error.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Eula.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Facebookpendingreferredby.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Massemail.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Pageperformance.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Supportissue.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Supportissuecomm.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Systemprop.hbm.xml" />
+        <mapping resource="com/mythredz/dao/User.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Usereula.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Userpersistentlogin.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Userrole.hbm.xml" />
+
+    </session-factory>
+</hibernate-configuration>

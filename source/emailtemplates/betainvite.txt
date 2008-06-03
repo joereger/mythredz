@@ -1,0 +1,19 @@
+<$args.0$>
+
+----------
+
+Your beta password is: <$args.1$>
+
+Go to http://www.pingfit.com and enter that password to get through the closed beta umbrella.  From there... sign up and explore!
+
+----------
+
+Your feedback is very valuable to us.  We've vetted our concept with a number of bloggers, market researchers and advertisers.  Now we're extending our search for feedback.
+
+Please send comments through the online help system, via email to joe@joereger.com or call me directly at 404-394-6102.
+
+We look forward to making a great tool for the blogosphere!
+
+Take care,
+
+Joe Reger, Jr.

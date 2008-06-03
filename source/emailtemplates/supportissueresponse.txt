@@ -1,0 +1,10 @@
+Hello <$user.firstname$>.
+
+Issue Subject: <$args.0$>
+Status: <$args.2$>
+Latest Comment:
+<$args.1$>
+
+You can view the complete issue with its complete communications history by logging in to your dNeero account.
+
+The dNeero Team

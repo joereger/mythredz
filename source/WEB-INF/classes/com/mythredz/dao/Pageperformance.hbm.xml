@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 17, 2006 3:45:28 PM by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="com.mythredz.dao.Pageperformance" table="pageperformance">
+        <cache usage="transactional"/>
+        <id name="pageperformanceid" type="int">
+            <column name="pageperformanceid" />
+            <generator class="native" />
+        </id>
+        <property name="year" type="int">
+            <column name="year" not-null="true" />
+        </property>
+        <property name="month" type="int">
+            <column name="month" not-null="true" />
+        </property>
+        <property name="day" type="int">
+            <column name="day" not-null="true" />
+        </property>
+        <property name="partofday" type="string">
+            <column name="partofday" not-null="true" />
+        </property>
+        <property name="pageid" type="string">
+            <column name="pageid" not-null="true" />
+        </property>
+        <property name="servername" type="string">
+            <column name="servername" not-null="true" />
+        </property>
+        <property name="totalloads" type="double">
+            <column name="totalloads" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="totaltime" type="double">
+            <column name="totaltime" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="avgtime" type="double">
+            <column name="avgtime" precision="22" scale="0" not-null="true" />
+        </property>
+
+    </class>
+</hibernate-mapping>

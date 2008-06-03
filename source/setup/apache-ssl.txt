@@ -1,0 +1,98 @@
+
+
+1) Download and install Apache 2.2 from Apache's site using the installer
+
+2) Download and install OpenSSL windows binary from http://www.openssl.org/related/binaries.html
+
+3) Download mod_ssl.so and put it in /modules/
+
+4) Edit /conf/httpd.conf: LoadModule ssl_module modules/mod_ssl.so
+
+5) Edit /conf/httpd.conf: Include conf/extra/httpd-ssl.conf
+
+6) Put httpd-ssl.conf into /conf/extra/  (Check vars)
+
+7) Generate a self-signed cert:
+Open a command prompt. Navigate to where you unzipped OpenSSL... the /bin/dir
+openssl req -config openssl.cnf -new -out my-server.csr
+
+You can replace my-server.csr with whatever you want aslong as the extention is .csr. When asked for "Common Name (eg, your websites domain name)", give the exact domain name of your web server (e.g. www.my-server.dom). The certificate belongs to this server name and browsers complain if the name doesn't match.
+openssl rsa -in privkey.pem -out my-server.key
+
+This removes the passphrase from the private key. You MUST understand what this means; my-server.key should be only readable by the apache server and the administrator. You should delete the .rnd file because it contains the entropy information for creating the key and could be used for cryptographic attacks against your private key.
+openssl x509 -in my-server.csr -out my-server.cert -req -signkey my-server.key -days 365
+
+This creates a self-signed certificate that you can use until you get a "real" one from a certificate authority. (Which is optional; if you know your users, you can tell them to install the certificate into their browsers.) Note that this certificate expires after one year, you can increase -days 365 if you don't want this.
+
+Create a directory in the Apache folder name Apache2/conf/ssl and move my-server.key and my-server.cert into it.
+
+Make sure httpd-ssl.conf points to the server keys
+
+8) Generate a CSR for a certificate signing authority:
+To generate a pair of private key and public Certificate Signing Request (CSR) for a webserver, "server", use the following command :
+
+    openssl req -new -nodes -keyout myserver.key -out server.csr
+
+This creates a two files. The file myserver.key contains a private key; do not disclose this file to anyone. Carefully protect the private key.
+
+In particular, be sure to backup the private key, as there is no means to recover it should it be lost. The private key is used as input in the command to generate a Certificate Signing Request (CSR).
+
+You will now be asked to enter details to be entered into your CSR.
+
+What you are about to enter is what is called a Distinguished Name or a DN.
+
+For some fields there will be a default value, If you enter '.', the field will be left blank.
+
+
+    Country Name (2 letter code) [AU]: GB
+    State or Province Name (full name) [Some-State]: Yorks
+    Locality Name (eg, city) []: York
+    Organization Name (eg, company) [Internet Widgits Pty Ltd]: MyCompany Ltd
+    Organizational Unit Name (eg, section) []: IT
+    Common Name (eg, YOUR name) []: mysubdomain.mydomain.com
+    Email Address []:
+
+Please enter the following 'extra' attributes to be sent with your certificate request
+
+    A challenge password []:
+    An optional company name []:
+
+Use the name of the webserver as Common Name (CN). If the domain name is mydomain.com append the domain to the hostname (use the fully qualified domain name).
+
+The fields email address, optional company name and challenge password can be left blank for a webserver certificate.
+
+Your CSR will now have been created. Open the server.csr in a text editor and copy and paste the contents into the online enrollment form when requested.
+
+9) Install the certificate from the certificate-signing authority:
+Step one: Copy your certificate to a file on your apache server
+
+You will receive an email from Comodo with the certificate in the email. The certificate will be called 'yourDOMAINNAME.crt' and will be within a *.zip file you have received as an email from us. When viewed in a text editor, your certificate will look something like this:
+
+-----BEGIN CERTIFICATE-----
+MIAGCSqGSIb3DQEHAqCAMIACAQExADALBgkqhkiG9w0BBwGggDCCAmowggHXAhAF
+UbM77e50M63v1Z2A/5O5MA0GCSqGSIb3DQEOBAUAMF8xCzAJBgNVBAYTAlVTMSAw
+(.......)
+E+cFEpf0WForA+eRP6XraWw8rTN8102zGrcJgg4P6XVS4l39+l5aCEGGbauLP5W6
+K99c42ku3QrlX2+KeDi+xBG2cEIsdSiXeQS/16S36ITclu4AADEAAAAAAAAA
+-----END CERTIFICATE-----
+
+Copy your Certificate into the same directory as your Private Key. In this example we will use '/etc/ssl/crt/'. The private key used in the example will be labeled 'private.key' and the public key will be 'yourDOMAINNAME.crt'.
+
+Note: It is recommended that you make the directory that contains the private key file only readable by root.
+Step two: Install the Intermediate Certificate
+
+You will need to install the Intermediate CA certificates in order for browsers to trust your certificate. The Intermediate CA certificates are contained within the 'ca-bundle' file that was attached to your email in the *.zip file we sent you (this should be named 'yourSERVERNAME.ca-bundle'). In the relevant 'Virtual Host' section for your site, you will need to do the following to get this file correctly referenced:
+
+a. First, copy the 'yourSERVERNAME.ca-bundle' file to the same directory as the certificate and key files. As a reminder, in this example we called the directory '/etc/ssl/crt/'.
+
+b. Next, add the following line to the SSL section of the 'httpd.conf' file. Again we assume that '/etc/ssl/crt/' is the directory to where you have copied the intermediate CA file. If the line already exists amend it to read the following:
+
+    SSLCertificateChainFile /etc/ssl/crt/yourSERVERNAME.ca-bundle
+
+c. If you are using a different location and different certificate file names, you will need to change the path and filename to reflect the path and filename that you are using. The SSL section of the updated config file should now read:
+
+   SSLCertificateFile /etc/ssl/crt/yourDOMAINNAME.crt
+   SSLCertificateKeyFile /etc/ssl/crt/private.key
+   SSLCertificateChainFile /etc/ssl/crt/yourSERVERNAME.ca-bundle
+
+d. Save your 'config' file and restart Apache.

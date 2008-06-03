@@ -1,0 +1,19 @@
+In the InnoDB options of MySql server I want to have One File Per Table selected.
+
+If I end up starting allowing the system to create database tables in a single InnoDB file then I can convert to one-per-table with the following process:
+1) Shut down app servers
+2) Using my.cnf set the innodb_file_per_table or use the MySql Administrator startup parameters InnoDB settings
+3) Restart MySql
+4) Create database dneero-tmp using SqlYog
+   4a) Create database for any other databases using InnoDB
+5) Copy dneeero to dneero-tmp using SqlYog's data copy wizard
+   5a) Copy any other databases using InnoDb to theirname-tmp too
+6) As it's copying, verify that new .idb files are being created per-table in the dneero-tmp data directory
+7) Shut down MySql
+8) Rename dneero to dneero-old
+9) Rename dneero-tmp to dneero
+10) Start up MySql
+11) Test dneero with SqlYog
+12) Assign proper permissions for app server credentials
+13) Start app servers
+14) Test app

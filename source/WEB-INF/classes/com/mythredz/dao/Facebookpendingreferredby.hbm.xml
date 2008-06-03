@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 17, 2006 3:45:28 PM by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="com.mythredz.dao.Facebookpendingreferredby" table="facebookpendingreferredby">
+        <cache usage="transactional"/>
+        <id name="facebookpendingreferredbyid" type="int">
+            <column name="facebookpendingreferredbyid" />
+            <generator class="native" />
+        </id>
+        <property name="referredbyuserid" type="int">
+            <column name="referredbyuserid" not-null="true" />
+        </property>
+        <property name="date" type="timestamp">
+            <column name="date" not-null="true" />
+        </property>
+        <property name="facebookuid" type="int">
+            <column name="facebookuid" not-null="false" />
+        </property>
+
+    </class>
+</hibernate-mapping>

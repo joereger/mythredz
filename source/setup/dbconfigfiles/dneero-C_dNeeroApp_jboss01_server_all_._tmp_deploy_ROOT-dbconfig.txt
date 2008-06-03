@@ -1,0 +1,12 @@
+#InstanceProperties for C_dNeeroApp_jboss01_server_all_._tmp_deploy_ROOT
+#Thu Jun 21 10:46:12 EDT 2007
+runScheduledTasksOnThisInstance=0
+dbMaxActive=100
+instancename=NonameServer
+dbMaxIdle=20
+dbMaxWait=10000
+dbConnectionUrl=jdbc\:mysql\://10.0.0.2\:3306/dneero?autoReconnect\=true
+dbMinIdle=10
+dbUsername=root
+dbDriverName=com.mysql.jdbc.Driver
+dbPassword=YyfIEUenA5I8FnoWpQb9Fw\=\=

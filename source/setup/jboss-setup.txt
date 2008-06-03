@@ -1,0 +1,65 @@
+-- Download Jboss 4.2.0 GA as a .zip file
+
+-- Extract the zip
+
+-- Rename "jboss-4.2.0.GA" directory to "jboss01"
+
+-- Put it at C:\dNeeroApp\jboss01\
+
+-- Create a directory C:\dNeeroApp\jboss01\server\all\log\
+
+-- Rename C:\dNeeroApp\jboss01\server\all\deploy\jboss-web.deployer\ROOT.war
+      to
+          C:\dNeeroApp\jboss01\server\all\deploy\jboss-web.deployer\welcome.war
+
+-- Edit C:\dNeeroApp\jboss01\server\all\deploy\jboss-web.deployer\server.xml
+        -- <Connector port="80" (remember that in production I run on 8080)
+        -- <Engine name="jboss.web" defaultHost="localhost" jvmRoute="node1">
+
+
+-- Disable the Jboss built-in JSF implementation
+        -- Nothing to do, added the below to web.xml and it seems to work
+        -- <context-param>
+            <param-name>org.jboss.jbossfaces.WAR_BUNDLES_JSF_IMPL</param-name>
+            <param-value>true</param-value>
+           </context-param>
+
+--C:\dNeeroApp\jboss01\server\all\deploy\jboss-web.deployer\META-INF\jboss-service.xml
+        -- <attribute name="UseJK">true</attribute>
+
+-- Secure the /jmx-console/ and /web-console/
+        -- C:\dNeeroApp\jboss01\server\all\conf\login-config.xml
+            -- Verify that the <application-policy name = "jmx-console">  is uncommented (usually is by default)
+        -- C:\dNeeroApp\jboss01\server\all\conf\props\jmx-console-roles.properties
+            -- Verify it exists with role of admin (usually is by default)
+        -- C:\dNeeroApp\jboss01\server\all\conf\props\jmx-console-users.properties
+            -- Change password for admin by making it "admin=password"
+        -- C:\dNeeroApp\jboss01\server\all\deploy\jmx-console.war\WEB-INF\web.xml
+            -- Uncomment the <security-constraint> section
+        -- C:\dNeeroApp\jboss01\server\all\deploy\jmx-console.war\WEB-INF\jboss-web.xml
+            -- Uncomment the <security-domain>java:/jaas/jmx-console</security-domain> line... note that it points to a JAAS of jmx-console
+        -- C:\dNeeroApp\jboss01\server\all\deploy\management\console-mgr.sar\web-console.war\WEB-INF\web.xml
+            -- Uncomment the <security-constraint> section
+        -- C:\dNeeroApp\jboss01\server\all\deploy\management\console-mgr.sar\web-console.war\WEB-INF\jboss-web.xml
+            -- Change the <security-domain>java:/jaas/jmx-console</security-domain> line... note that it points to a JAAS of jmx-console (same as jmx... only using one JAAS realm to simplify)
+
+--Workaround for jsp 1.5 generics error
+        -- C:\dNeeroApp\jboss01\server\allFbdblog\deploy\jboss-web.deployer\conf\web.xml
+        -- Add the below to the JSP Servlet:
+        <init-param>
+           <param-name>compilerSourceVM</param-name>
+           <param-value>1.5</param-value>
+        </init-param>
+        <init-param>
+           <param-name>compilerTargetVM</param-name>
+           <param-value>1.5</param-value>
+        </init-param>
+
+-- Secure the ws
+        -- C:\dNeeroApp\jboss01\server\all\conf\props\jbossws-users.properties
+            -- Change password "kermit=password"
+            
+--Configure FireDaemon
+        -- Use /setup/firedaemon-jboss.xml (from SVN) to setup the service on Firedaemon 1.9
+        -- Make sure " -c all -b 172.16.1.33" is in Program Paramaters after org.jboss.main (at end) (or correct jboss.bind.address ip address)
+            -- This is how jboss is bound to an ip

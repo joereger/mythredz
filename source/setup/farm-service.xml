@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>    
+<server>        
+        
+    <mbean code="org.jboss.ha.framework.server.FarmMemberService"     
+            name="jboss:service=FarmMember,partition=DefaultPartition">     
+        <attribute name="PartitionName">DefaultPartition</attribute>      
+        <attribute name="ScanPeriod">5000</attribute>      
+        <attribute name="URLs">farm/</attribute>     
+    </mbean>       
+</server>

@@ -1,0 +1,9 @@
+<$user.firstname$> <$user.lastname$> has invited you to earn money with your blog by using dNeero.
+
+<$args.0$>
+
+<$baseUrl.includinghttp$>invite.jsp?referredby=<$user.userid$>
+
+Best,
+
+The dNeero Team

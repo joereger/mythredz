@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 17, 2006 3:45:28 PM by Hibernate Tools 3.1.0.beta4 -->
+<hibernate-mapping>
+    <class name="com.mythredz.dao.Creditcard" table="creditcard">
+        <cache usage="transactional"/>
+        <id name="creditcardid" type="int">
+            <column name="creditcardid" />
+            <generator class="native" />
+        </id>
+        <property name="userid" type="int">
+            <column name="userid" not-null="true" />
+        </property>
+        <property name="ccnum" type="string">
+            <column name="ccnum" not-null="true" />
+        </property>
+        <property name="cctype" type="int">
+            <column name="cctype" not-null="true" />
+        </property>
+        <property name="cvv2" type="string">
+            <column name="cvv2" not-null="true" />
+        </property>
+        <property name="ccexpmo" type="int">
+            <column name="ccexpmo" not-null="true" />
+        </property>
+        <property name="ccexpyear" type="int">
+            <column name="ccexpyear" not-null="true" />
+        </property>
+        <property name="postalcode" type="string">
+            <column name="postalcode" not-null="true" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" not-null="true" />
+        </property>
+        <property name="street" type="string">
+            <column name="street" not-null="true" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" not-null="true" />
+        </property>
+        <property name="firstname" type="string">
+            <column name="firstname" not-null="true" />
+        </property>
+        <property name="lastname" type="string">
+            <column name="lastname" not-null="true" />
+        </property>
+        <property name="ipaddress" type="string">
+            <column name="ipaddress" not-null="true" />
+        </property>
+        <property name="merchantsessionid" type="string">
+            <column name="merchantsessionid" not-null="true" />
+        </property>
+
+
+    </class>
+</hibernate-mapping>
