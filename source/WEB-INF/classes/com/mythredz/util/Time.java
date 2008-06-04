@@ -255,6 +255,9 @@ public class Time {
     * Date format
     *
     */
+    public static String dateformatcompactwithtime(Date date) {
+		return dateformatcompactwithtime(getCalFromDate(date));
+	}
 	public static String dateformatcompactwithtime(Calendar date) {
 		DateFormat myDateFormat = new SimpleDateFormat("EEE, MMM d, yyyy HH:mm:ss");
 		if (date==null){

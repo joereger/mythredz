@@ -35,6 +35,8 @@
         <td valign="top">
             <img src="/images/clear.gif" width="10" height="1" align="left"/>
             <a href="/"><img src="/images/mythredz-logo.gif" border="0" alt=""></a>
+            <br/>
+            <img src="/images/clear.gif" width="1" height="10"/>
         </td>
         <td valign="top" style="text-align: right;">
             <%if (!Pagez.getUserSession().getIsloggedin()){%>
@@ -72,14 +74,12 @@
             <ul class="glossymenu">
                 <%if (navtab.equals("home")){%><li class="current"><a href="/index.jsp"><b>Home</b></a></li><%}%>
                 <%if (!navtab.equals("home")){%><li><a href="/index.jsp"><b>Home</b></a></li><%}%>
-                <%if (navtab.equals("whatis")){%><li class="current"><a href="/whatis.jsp"><b>What is myThredz?</b></a></li><%}%>
-                <%if (!navtab.equals("whatis")){%><li><a href="/whatis.jsp"><b>What is myThredz?</b></a></li><%}%>
-                <%if (navtab.equals("blog")){%><li class="current"><a href="/blog.jsp"><b>myThredz Blog</b></a></li><%}%>
-                <%if (!navtab.equals("blog")){%><li><a href="/blog.jsp"><b>myThredz Blog</b></a></li><%}%>
-                <%if (!navtab.equals("reports") && Pagez.getUserSession().getIsloggedin()){%><li><a href="/account/reports.jsp"><b>Reports</b></a></li><%}%>
-                <%if (navtab.equals("reports") && Pagez.getUserSession().getIsloggedin()){%><li class="current"><a href="/account/reports.jsp"><b>Reports</b></a></li><%}%>
-                <%if (!navtab.equals("youraccount") && Pagez.getUserSession().getIsloggedin()){%><li><a href="/account/index.jsp"><b>Settings</b></a></li><%}%>
-                <%if (navtab.equals("youraccount") && Pagez.getUserSession().getIsloggedin()){%><li class="current"><a href="/account/index.jsp"><b>Settings</b></a></li><%}%>
+                <%if (navtab.equals("blog")){%><li class="current"><a href="/blog.jsp"><b>Our Blog</b></a></li><%}%>
+                <%if (!navtab.equals("blog")){%><li><a href="/blog.jsp"><b>Our Blog</b></a></li><%}%>
+                <%if (!navtab.equals("mythredz") && Pagez.getUserSession().getIsloggedin()){%><li><a href="/account/index.jsp"><b>myThredz</b></a></li><%}%>
+                <%if (navtab.equals("mythredz") && Pagez.getUserSession().getIsloggedin()){%><li class="current"><a href="/account/index.jsp"><b>myThredz</b></a></li><%}%>
+                <%if (!navtab.equals("youraccount") && Pagez.getUserSession().getIsloggedin()){%><li><a href="/account/accountsettings.jsp"><b>Settings</b></a></li><%}%>
+                <%if (navtab.equals("youraccount") && Pagez.getUserSession().getIsloggedin()){%><li class="current"><a href="/account/accountsettings.jsp"><b>Settings</b></a></li><%}%>
                 <%if (!navtab.equals("youraccount") && !Pagez.getUserSession().getIsloggedin()){%><li><a href="/registration.jsp"><b>Sign Up</b></a></li><%}%>
                 <%if (navtab.equals("youraccount") && !Pagez.getUserSession().getIsloggedin()){%><li class="current"><a href="/registration.jsp"><b>Sign Up</b></a></li><%}%>
                 <%if (!navtab.equals("help") && Pagez.getUserSession().getIsloggedin()){%><li><a href="/account/accountsupportissueslist.jsp"><b>Help</b></a></li><%}%>
@@ -104,17 +104,21 @@
             <%if (navtab.equals("youraccount")){%>
                 <%if (Pagez.getUserSession().getIsloggedin()){%>
                     <img src="/images/clear.gif" alt="" width="10" height="1"/>
-                    <a href="/account/exerciselist.jsp"><font class="subnavfont" style="color: #000000;">Your Exercises</font></a>
-                    <img src="/images/clear.gif" alt="" width="10" height="1"/>
-                    <a href="/account/exerciselistlist.jsp"><font class="subnavfont" style="color: #000000;">Your Exercise Lists</font></a>        
-                    <img src="/images/clear.gif" alt="" width="10" height="1"/>
                     <a href="/account/accountsettings.jsp"><font class="subnavfont" style="color: #000000;">Account Settings</font></a>
-                    <img src="/images/clear.gif" alt="" width="10" height="1"/>
-                    <a href="/account/accountbalance.jsp"><font class="subnavfont" style="color: #000000;">Account Balance</font></a>
                     <img src="/images/clear.gif" alt="" width="10" height="1"/>
                     <a href="/account/changepassword.jsp"><font class="subnavfont" style="color: #000000;">Change Password</font></a>
                 <%}%>
             <%}%>
+
+            <%if (navtab.equals("mythredz")){%>
+                <%if (Pagez.getUserSession().getIsloggedin()){%>
+                    <img src="/images/clear.gif" alt="" width="10" height="1"/>
+                    <a href="/account/index.jsp"><font class="subnavfont" style="color: #000000;">Main</font></a>
+                    <img src="/images/clear.gif" alt="" width="10" height="1"/>
+                    <a href="/account/thredzlist.jsp"><font class="subnavfont" style="color: #000000;">Manage Thredz</font></a>
+                <%}%>
+            <%}%>
+
             <%if (navtab.equals("sysadmin")){%>
                 <%if (Pagez.getUserSession().getIsloggedin() && Pagez.getUserSession().getIsSysadmin()){%>
                     <a href="/sysadmin/errorlist.jsp"><font class="subnavfont" style=" color: #000000;">Log</font></a>
@@ -129,8 +133,6 @@
                     <a href="/sysadmin/hibernatecache.jsp"><font class="subnavfont" style=" color: #000000;">Cache</font></a>
                     <a href="/sysadmin/massemaillist.jsp"><font class="subnavfont" style=" color: #000000;">Email</font></a>
                     <a href="/sysadmin/pageperformance.jsp"><font class="subnavfont" style=" color: #000000;">Perf</font></a>
-                    <a href="/sysadmin/exerciselist.jsp"><font class="subnavfont" style=" color: #000000;">Exercises</font></a>
-                    <a href="/sysadmin/exerciselistlist.jsp"><font class="subnavfont" style=" color: #000000;">Exercise Lists</font></a>
                     <a href="/sysadmin/blogpost.jsp"><font class="subnavfont" style=" color: #000000;">Blog</font></a>
                 <%}%>
             <%}%>
