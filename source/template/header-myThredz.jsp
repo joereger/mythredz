@@ -5,17 +5,17 @@
     <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1"/>
     <title>myThredz</title>
     <link rel="stylesheet" type="text/css" href="/css/basic.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/pingFit.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/myThredz.css"/>
     <link rel="stylesheet" type="text/css" href="/js/niftycube/niftyCorners.css"/>
     <link rel="alternate" type="application/rss+xml" title="myThredz"
           href="http://www.mythredz.com/rss.xml"/>
     <meta name="description"
-          content="PingFit"/>
+          content="myThredz"/>
     <meta name="keywords" content="fitness,workout"/>
     <script type="text/javascript" src="/js/mootools/mootools-release-1.11.js"></script>
     <script type="text/javascript" src="/js/niftycube/niftycube.js"></script>
     <script type="text/javascript">
-        NiftyLoad = function() {
+        NiftyLoad=function() {
             Nifty("div.rounded", "big");
         }
     </script>
@@ -31,15 +31,15 @@
 <body>
 
 <table width="786" cellspacing="0" border="0" cellpadding="0">
-    <tr>
-        <td valign="top">
-            <img src="/images/clear.gif" width="10" height="1" align="left"/>
-            <a href="/"><img src="/images/mythredz-logo.gif" border="0" alt=""></a>
-            <br/>
-            <img src="/images/clear.gif" width="1" height="10"/>
-        </td>
-        <td valign="top" style="text-align: right;">
-            <%if (!Pagez.getUserSession().getIsloggedin()){%>
+<tr>
+    <td valign="top">
+        <img src="/images/clear.gif" width="10" height="1" align="left"/>
+        <a href="/"><img src="/images/mythredz-logo.gif" border="0" alt=""></a>
+        <br/>
+        <img src="/images/clear.gif" width="1" height="10"/>
+    </td>
+    <td valign="top" style="text-align: right;">
+        <%if (!Pagez.getUserSession().getIsloggedin()){%>
                 <div style="padding: 10px; text-align: right;">
                 <font class="subnavfont">Already have an account?<img src="/images/clear.gif" width="20" height="1"/><a href="/login.jsp">Log In</a></font>
                 <br/>
@@ -74,14 +74,14 @@
             <ul class="glossymenu">
                 <%if (navtab.equals("home")){%><li class="current"><a href="/index.jsp"><b>Home</b></a></li><%}%>
                 <%if (!navtab.equals("home")){%><li><a href="/index.jsp"><b>Home</b></a></li><%}%>
-                <%if (navtab.equals("blog")){%><li class="current"><a href="/blog.jsp"><b>Our Blog</b></a></li><%}%>
-                <%if (!navtab.equals("blog")){%><li><a href="/blog.jsp"><b>Our Blog</b></a></li><%}%>
                 <%if (!navtab.equals("mythredz") && Pagez.getUserSession().getIsloggedin()){%><li><a href="/account/index.jsp"><b>myThredz</b></a></li><%}%>
                 <%if (navtab.equals("mythredz") && Pagez.getUserSession().getIsloggedin()){%><li class="current"><a href="/account/index.jsp"><b>myThredz</b></a></li><%}%>
                 <%if (!navtab.equals("youraccount") && Pagez.getUserSession().getIsloggedin()){%><li><a href="/account/accountsettings.jsp"><b>Settings</b></a></li><%}%>
                 <%if (navtab.equals("youraccount") && Pagez.getUserSession().getIsloggedin()){%><li class="current"><a href="/account/accountsettings.jsp"><b>Settings</b></a></li><%}%>
                 <%if (!navtab.equals("youraccount") && !Pagez.getUserSession().getIsloggedin()){%><li><a href="/registration.jsp"><b>Sign Up</b></a></li><%}%>
                 <%if (navtab.equals("youraccount") && !Pagez.getUserSession().getIsloggedin()){%><li class="current"><a href="/registration.jsp"><b>Sign Up</b></a></li><%}%>
+                <%if (navtab.equals("blog")){%><li class="current"><a href="/blog.jsp"><b>Our Blog</b></a></li><%}%>
+                <%if (!navtab.equals("blog")){%><li><a href="/blog.jsp"><b>Our Blog</b></a></li><%}%>
                 <%if (!navtab.equals("help") && Pagez.getUserSession().getIsloggedin()){%><li><a href="/account/accountsupportissueslist.jsp"><b>Help</b></a></li><%}%>
                 <%if (navtab.equals("help") && Pagez.getUserSession().getIsloggedin()){%><li class="current"><a href="/account/accountsupportissueslist.jsp"><b>Help</b></a></li><%}%>
                 <%if (1==2 && !navtab.equals("help") && !Pagez.getUserSession().getIsloggedin()){%><li><a href="/account/accountsupportissueslist.jsp"><b>Help</b></a></li><%}%>

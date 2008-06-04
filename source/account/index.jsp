@@ -10,6 +10,7 @@
 <%@ page import="com.mythredz.dao.Post" %>
 <%@ page import="com.mythredz.util.Time" %>
 <%@ page import="org.hibernate.criterion.Order" %>
+<%@ page import="com.mythredz.cache.providers.CacheFactory" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
 String pagetitle = "";
@@ -40,6 +41,10 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
                 } catch (Exception ex) {
                     logger.error("", ex);
                 }
+                //Clear the Javascript Embed cache
+                String nameInCache="embedjavascriptservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
+                String cacheGroup="embedjavascriptcache" + "/";
+                CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
             }
         }
         Pagez.getUserSession().setMessage("Thredz have been saved!");

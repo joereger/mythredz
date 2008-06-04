@@ -76,6 +76,15 @@
         <url-pattern>/fb/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>EmbedJavascript</servlet-name>
+        <servlet-class>com.mythredz.embed.EmbedJavascript</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmbedJavascript</servlet-name>
+        <url-pattern>/embed/js/*</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>BlogRss</servlet-name>
