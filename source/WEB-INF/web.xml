@@ -82,7 +82,25 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>EmbedJavascript</servlet-name>
-        <url-pattern>/embed/js/*</url-pattern>
+        <url-pattern>/embed/horizjs/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>EmbedJavascriptVertical</servlet-name>
+        <servlet-class>com.mythredz.embed.EmbedJavascriptVertical</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EmbedJavascriptVertical</servlet-name>
+        <url-pattern>/embed/vertjs/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ProfileServlet</servlet-name>
+        <servlet-class>com.mythredz.profile.ProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ProfileServlet</servlet-name>
+        <url-pattern>/user/*</url-pattern>
     </servlet-mapping>
 
 

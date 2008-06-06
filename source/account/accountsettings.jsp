@@ -16,6 +16,7 @@ AccountSettings accountSettings = (AccountSettings) Pagez.getBeanMgr().get("Acco
     try {
         accountSettings.setFirstname(Textbox.getValueFromRequest("firstname", "First Name", true, DatatypeString.DATATYPEID));
         accountSettings.setLastname(Textbox.getValueFromRequest("lastname", "Last Name", true, DatatypeString.DATATYPEID));
+        accountSettings.setNickname(Textbox.getValueFromRequest("nickname", "Nickname", true, DatatypeString.DATATYPEID));
         accountSettings.setEmail(Textbox.getValueFromRequest("email", "Email", true, DatatypeString.DATATYPEID));
         accountSettings.saveAction();
         Pagez.getUserSession().setMessage("Settings saved.");
@@ -25,6 +26,8 @@ AccountSettings accountSettings = (AccountSettings) Pagez.getBeanMgr().get("Acco
 }
 %>
 <%@ include file="/template/header.jsp" %>
+
+
 
     <br/><br/>
     <form action="/account/accountsettings.jsp" method="post">
@@ -48,6 +51,15 @@ AccountSettings accountSettings = (AccountSettings) Pagez.getBeanMgr().get("Acco
                     </td>
                     <td valign="top">
                         <%=Textbox.getHtml("lastname", accountSettings.getLastname(), 255, 20, "", "")%>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td valign="top">
+                        <font class="formfieldnamefont">Nickname</font>
+                    </td>
+                    <td valign="top">
+                        <%=Textbox.getHtml("nickname", accountSettings.getNickname(), 255, 20, "", "")%>
                     </td>
                 </tr>
 

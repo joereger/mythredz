@@ -27,6 +27,7 @@ public class AccountSettings implements Serializable {
     private String email;
     private String firstname;
     private String lastname;
+    private String nickname;
 
     
 
@@ -44,6 +45,7 @@ public class AccountSettings implements Serializable {
             email = user.getEmail();
             firstname = user.getFirstname();
             lastname = user.getLastname();
+            nickname = user.getNickname();
         }
     }
 
@@ -61,6 +63,16 @@ public class AccountSettings implements Serializable {
                 } else {
                     emailNeedsToBeReactivated = true;
                     user.setEmail(email);
+                }
+            }
+
+            if (!user.getNickname().equals(nickname)){
+                int cnt = NumFromUniqueResult.getInt("select count(*) from User where nickname='"+Str.cleanForSQL(nickname)+"' and userid<>'"+userSession.getUser().getUserid()+"'");
+                if (cnt>0){
+                    vex.addValidationError("The nickname ("+nickname+") is already in use and was not added to your account.");
+                    nickname = user.getNickname();
+                } else {
+                    user.setNickname(nickname);
                 }
             }
 
@@ -127,5 +139,11 @@ public class AccountSettings implements Serializable {
     }
 
 
+    public String getNickname() {
+        return nickname;
+    }
 
+    public void setNickname(String nickname) {
+        this.nickname=nickname;
+    }
 }

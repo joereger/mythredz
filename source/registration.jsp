@@ -19,6 +19,7 @@ Registration registration = (Registration)Pagez.getBeanMgr().get("Registration")
             registration.setEmail(Textbox.getValueFromRequest("email", "Email", true, DatatypeString.DATATYPEID));
             registration.setEula(Textarea.getValueFromRequest("eula", "Eula", true));
             registration.setFirstname(Textbox.getValueFromRequest("firstname", "First Name", true, DatatypeString.DATATYPEID));
+            registration.setNickname(Textbox.getValueFromRequest("nickname", "Nickname", true, DatatypeString.DATATYPEID));
             registration.setJ_captcha_response(Textbox.getValueFromRequest("j_captcha_response", "Squiggly Letters", true, DatatypeString.DATATYPEID));
             registration.setCaptchaId(request.getParameter("captchaId"));
             registration.setLastname(Textbox.getValueFromRequest("lastname", "Last Name", true, DatatypeString.DATATYPEID));
@@ -89,6 +90,15 @@ Registration registration = (Registration)Pagez.getBeanMgr().get("Registration")
                         </td>
                         <td valign="top">
                             <%=Textbox.getHtml("lastname", registration.getLastname(), 255, 35, "", "")%>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td valign="top">
+                            <font class="formfieldnamefont">Nickname</font>
+                        </td>
+                        <td valign="top">
+                            <%=Textbox.getHtml("nickname", registration.getNickname(), 255, 35, "", "")%>
                         </td>
                     </tr>
 

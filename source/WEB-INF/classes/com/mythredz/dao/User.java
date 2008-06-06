@@ -25,6 +25,7 @@ public class User extends BasePersistentClass implements java.io.Serializable, A
      private String password;
      private String firstname;
      private String lastname;
+     private String nickname;
      private boolean isactivatedbyemail;
      private String emailactivationkey;
      private Date emailactivationlastsent;
@@ -106,6 +107,15 @@ public class User extends BasePersistentClass implements java.io.Serializable, A
 
     public boolean getIsenabled() {
         return isenabled;
+    }
+
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname=nickname;
     }
 
     public void setIsenabled(boolean isenabled) {

@@ -1,3 +1,4 @@
+<%@ page import="com.mythredz.htmlui.Pagez" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -7,12 +8,12 @@
     <link rel="stylesheet" type="text/css" href="/css/basic.css"/>
     <link rel="stylesheet" type="text/css" href="/css/myThredz.css"/>
     <link rel="stylesheet" type="text/css" href="/js/niftycube/niftyCorners.css"/>
-    <link rel="alternate" type="application/rss+xml" title="myThredz"
-          href="http://www.mythredz.com/rss.xml"/>
-    <meta name="description"
-          content="myThredz"/>
+    <link rel="alternate" type="application/rss+xml" title="myThredz" href="http://www.mythredz.com/rss.xml"/>
+    <meta name="description" content="myThredz"/>
     <meta name="keywords" content="fitness,workout"/>
     <script type="text/javascript" src="/js/mootools/mootools-release-1.11.js"></script>
+
+
     <script type="text/javascript" src="/js/niftycube/niftycube.js"></script>
     <script type="text/javascript">
         NiftyLoad=function() {
@@ -34,7 +35,7 @@
 <tr>
     <td valign="top">
         <img src="/images/clear.gif" width="10" height="1" align="left"/>
-        <a href="/"><img src="/images/mythredz-logo.gif" border="0" alt=""></a>
+        <a href="/"><img src="/images/mythredz-logo.gif" height="75" border="0" alt=""></a>
         <br/>
         <img src="/images/clear.gif" width="1" height="10"/>
     </td>

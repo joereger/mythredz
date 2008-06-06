@@ -33,6 +33,7 @@ public class Registration implements Serializable {
     private String passwordverify;
     private String firstname;
     private String lastname;
+    private String nickname;
     private String j_captcha_response;
     private String captchaId;
     private String eula;
@@ -119,6 +120,12 @@ public class Registration implements Serializable {
             haveErrors = true;
         }
 
+        List<User> users2 = HibernateUtil.getSession().createQuery("from User where nickname='"+ Str.cleanForSQL(nickname)+"'").list();
+        if (users2.size()>0){
+            vex.addValidationError("That nickname is already in use.");
+            haveErrors = true;
+        }
+
         if (haveErrors){
             throw vex;
         }
@@ -130,6 +137,7 @@ public class Registration implements Serializable {
         user.setPassword(password);
         user.setFirstname(firstname);
         user.setLastname(lastname);
+        user.setNickname(nickname);
         user.setIsactivatedbyemail(false);
         user.setEmailactivationkey(RandomString.randomAlphanumeric(5));
         user.setEmailactivationlastsent(new Date());
@@ -277,5 +285,14 @@ public class Registration implements Serializable {
 
     public void setDisplaytempresponsesavedmessage(boolean displaytempresponsesavedmessage) {
         this.displaytempresponsesavedmessage = displaytempresponsesavedmessage;
+    }
+
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname=nickname;
     }
 }

@@ -11,6 +11,7 @@
 <%@ page import="com.mythredz.util.Time" %>
 <%@ page import="org.hibernate.criterion.Order" %>
 <%@ page import="com.mythredz.cache.providers.CacheFactory" %>
+<%@ page import="com.mythredz.systemprops.SystemProperty" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
 String pagetitle = "";
@@ -73,12 +74,64 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
         </div>
     <%}%>
 
+    <%--<div class="rounded" style="padding: 10px; margin: 10px; background: #e6e6e6;">--%>
+        <%--<%String url = "http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/user/"+Pagez.getUserSession().getUser().getNickname();%>--%>
+        <%--<font class="smallfont">Thredz as others see them: <a href="<%=url%>"><%=url%></a></font>--%>
+        <%--<br/>--%>
+        <%--<font class="smallfont">Embed into your blog: <a href="/account/embed.jsp">How to</a></font>--%>
+    <%--</div>--%>
+
+    <style type="text/css">
+
+        #log_res.ajax-loading {
+            padding: 20px 0;
+            background: url(http://demos.mootools.net/demos/Group/spinner.gif) no-repeat center;
+        }
+
+
+    </style>
+
+    <script type="text/javascript" language="javascript">
+        window.addEvent('domready', function(){
+            $('myForm').addEvent('submit', function(e) {
+                /**
+                 * Prevent the submit event
+                 */
+                new Event(e).stop();
+
+                /**
+                 * This empties the log and shows the spinning indicator
+                 */
+                var log = $('log_res').empty().addClass('ajax-loading');
+
+                /**
+                 * send takes care of encoding and returns the Ajax instance.
+                 * onComplete removes the spinner from the log.
+                 */
+                this.send({
+                    update: log,
+                    onComplete: function() {
+                        log.removeClass('ajax-loading');
+                    }
+                });
+
+                /**
+                 *  Clear the form
+                 */
+                this.reset();
+
+
+            });
+        });
+
+    </script>
 
 
 
-    <br/><br/>
-    <form action="/account/index.jsp" method="post">
-        <input type="hidden" name="dpage" value="/account/index.jsp">
+
+
+    <form id="myForm" action="/account/index-ajax.jsp" method="post">
+        <input type="hidden" name="dpage" value="/account/index-ajax.jsp">
         <input type="hidden" name="action" value="save">
 
 
@@ -121,6 +174,7 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
     </tr>
 
 
+
     <%
         int colspan=1;
         if (threds != null) {
@@ -130,30 +184,40 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
     <tr>
     <td valign="top" colspan="<%=colspan%>"><center><input type="submit" class="formsubmitbutton" value="Save myThredz"><br/><br/></center></td>
     </tr>
+    </table>
 
 
+    <div id="log">
+	<div id="log_res">
+
+    <table cellpadding="0" cellspacing="5" border="0" width="100%">
     <tr>
     <%
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
             Thred thred=iterator.next();
-    %><td valign="top"><%
-        List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
-                .add(Restrictions.eq("thredid", thred.getThredid()))
-                .addOrder(Order.desc("date"))
-                .setMaxResults(25)
-                .setCacheable(true)
-                .list();
-        for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
-            Post post=iterator1.next();
-            %><font class="tinyfont" style="color: #cccccc;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
-        }
-        %></td><%
+            double widthDbl=100 / threds.size();
+            Double widthBigDbl=new Double(widthDbl);
+            int width=widthBigDbl.intValue();
+            %><td valign="top" width="<%=width%>%"><%
+            List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
+                    .add(Restrictions.eq("thredid", thred.getThredid()))
+                    .addOrder(Order.desc("date"))
+                    .setMaxResults(25)
+                    .setCacheable(true)
+                    .list();
+            for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
+                Post post=iterator1.next();
+                %><font class="tinyfont" style="color: #cccccc;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
+            }
+            %></td><%
 
         }
     %>
     </tr>
     </table>
 
+    </div>
+    </div>
 
 
     </form>

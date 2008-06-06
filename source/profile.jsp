@@ -4,72 +4,107 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.mythredz.dbgrid.Grid" %>
 <%@ page import="com.mythredz.htmlui.*" %>
+<%@ page import="org.hibernate.criterion.Restrictions" %>
+<%@ page import="com.mythredz.dao.Thred" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.mythredz.dao.Post" %>
+<%@ page import="java.util.Iterator" %>
+<%@ page import="com.mythredz.cache.providers.CacheFactory" %>
+<%@ page import="com.mythredz.dao.hibernate.HibernateUtil" %>
+<%@ page import="com.mythredz.htmluibeans.AccountIndex" %>
+<%@ page import="org.hibernate.criterion.Order" %>
+<%@ page import="com.mythredz.util.Time" %>
+<%@ page import="com.mythredz.dao.User" %>
+
 <%
-    PublicProfile publicProfile=(PublicProfile) Pagez.getBeanMgr().get("PublicProfile");
+    User user=null;
+    List<User> users = HibernateUtil.getSession().createCriteria(User.class)
+                                       .add(Restrictions.eq("nickname", request.getParameter("nickname")))
+                                       .setCacheable(true)
+                                       .setMaxResults(1)
+                                       .list();
+    if (users!=null && users.size()>0){
+        user = users.get(0);
+    }
 %>
+
 <%
-if (publicProfile==null || publicProfile.getUser()==null || publicProfile.getUser().getUserid()==0 || !publicProfile.getUser().getIsenabled()){
-    Pagez.sendRedirect("/notauthorized.jsp");
-    return;
+if (user==null){
+    Pagez.sendRedirect("/index.jsp");
+    return;    
 }
 %>
+
+<%
+boolean isLoggedInUsersProfile = false;
+if (Pagez.getUserSession().getIsloggedin() && Pagez.getUserSession().getUser().getUserid()==user.getUserid()){
+    isLoggedInUsersProfile = true;
+}
+%>
+
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
-String pagetitle = publicProfile.getUser().getFirstname()+" "+publicProfile.getUser().getLastname()+"'s Profile";
+String pagetitle = "";
 String navtab = "home";
 String acl = "public";
 %>
 <%@ include file="/template/auth.jsp" %>
 
+
 <%@ include file="/template/header.jsp" %>
 
-    <%if (publicProfile.getMsg()!=null && !publicProfile.getMsg().equals("")){%>
-        <center><div class="rounded" style="background: #F2FFBF; text-align: left; padding: 20px;"><font class="smallfont">
-        <%=publicProfile.getMsg()%>
-        </font></div></center>
-        <br/><br/>
-    <%}%>
 
-    <div class="rounded" style="background: #e6e6e6; text-align: left; padding: 20px;">
-    <table cellpadding="10" cellspacing="0" border="0" width="100%">
-        <tr>
-            <td valign="top" width="50%">
-                <img src="/images/user.png" alt="" border="0" width="128" height="128"/>
+
+
+
+<br/><br/>
+
+
+
+    <table cellpadding="0" cellspacing="5" border="0" width="100%">
+    <tr>
+        <%
+        List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
+                .add(Restrictions.eq("userid", user.getUserid()))
+                .setCacheable(true)
+                .list();
+        for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
+            Thred thred=iterator.next();
+            double widthDbl=100 / threds.size();
+            Double widthBigDbl=new Double(widthDbl);
+            int width=widthBigDbl.intValue();
+            %>
+            <td valign="top" width="<%=width%>%">
+                <font class="normalfont" style="font-weight: bold;"><%=thred.getName()%></font>
             </td>
-            <td valign="top">
-                <div class="rounded" style="background: #ffffff; text-align: left; padding: 15px;">
-                    <table cellpadding="10" cellspacing="0" border="0" width="100%">
-                        <tr>
-                            <td valign="top" width="50%">
-                                <font class="formfieldnamefont">Social Influence Rating (TM)</font>
-                            </td>
-                            <td valign="top" width="50%">
-                                <%if (publicProfile.getBlogger()!=null){%>
-                                    <font class="smallfont"><%=publicProfile.getBlogger().getSocialinfluencerating()%></font>
-                                    <br/>
-                                    <font class="smallfont">Rank: <%=publicProfile.getBlogger().getSocialinfluenceratingranking()%></font>
-                                <%} else {%>
-                                    <font class="smallfont">na</font>
-                                <%}%>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td valign="top" width="50%">
-                                <font class="formfieldnamefont">Amt Earned for Charity</font>
-                            </td>
-                            <td valign="top" width="50%">
-                                <font class="smallfont"><%=publicProfile.getCharityamtdonatedForscreen()%></font>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </td>
-          </tr>
-       </table>
-       </div>
+            <%
+
+        }
+        %>
+    </tr>
 
 
+    <tr>
+    <%
+        for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
+            Thred thred=iterator.next();
+    %><td valign="top"><%
+        List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
+                .add(Restrictions.eq("thredid", thred.getThredid()))
+                .addOrder(Order.desc("date"))
+                .setMaxResults(100)
+                .setCacheable(true)
+                .list();
+        for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
+            Post post=iterator1.next();
+    %><font class="tinyfont" style="color: #cccccc;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
+        }
+        %></td><%
 
+        }
+    %>
+    </tr>
+    </table>
 
 
 

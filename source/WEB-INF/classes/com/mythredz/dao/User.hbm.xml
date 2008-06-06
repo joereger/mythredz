@@ -40,6 +40,9 @@
         <property name="lastname" type="string">
             <column name="lastname" not-null="true" />
         </property>
+        <property name="nickname" type="string">
+            <column name="nickname" not-null="true" />
+        </property>
         <property name="isactivatedbyemail" type="boolean">
             <column name="isactivatedbyemail" />
         </property>
