@@ -6,7 +6,6 @@ import com.mythredz.dao.User;
 import com.mythredz.dao.Thred;
 import com.mythredz.dao.Post;
 import com.mythredz.dao.hibernate.HibernateUtil;
-import com.mythredz.htmlui.Pagez;
 import com.mythredz.util.Time;
 import com.mythredz.systemprops.SystemProperty;
 import org.apache.log4j.Logger;
@@ -51,7 +50,7 @@ public class ThredzAsHtml {
         out.append("\n<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">");
         //out.append("<tr>");
             List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
-                .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
+                .add(Restrictions.eq("userid", user.getUserid()))
                 .setCacheable(true)
                 .list();
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
@@ -143,7 +142,7 @@ public class ThredzAsHtml {
         out.append("\n<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">");
         //out.append("<tr>");
             List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
-                .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
+                .add(Restrictions.eq("userid", user.getUserid()))
                 .setCacheable(true)
                 .list();
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
