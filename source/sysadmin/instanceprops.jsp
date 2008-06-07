@@ -24,6 +24,8 @@ SysadminInstanceProps sysadminInstanceProps = (SysadminInstanceProps)Pagez.getBe
             sysadminInstanceProps.setDbUsername(Textbox.getValueFromRequest("dbUsername", "dbUsername", true, DatatypeString.DATATYPEID));
             sysadminInstanceProps.setInstancename(Textbox.getValueFromRequest("instancename", "instancename", true, DatatypeString.DATATYPEID));
             sysadminInstanceProps.setRunScheduledTasksOnThisInstance(Textbox.getValueFromRequest("runScheduledTasksOnThisInstance", "runScheduledTasksOnThisInstance", true, DatatypeString.DATATYPEID));
+            sysadminInstanceProps.setRunEmailListenerOnThisInstance(Textbox.getValueFromRequest("runEmailListenerOnThisInstance", "runEmailListenerOnThisInstance", true, DatatypeString.DATATYPEID));
+            sysadminInstanceProps.setEmailListenerIP(Textbox.getValueFromRequest("emailListenerIP", "emailListenerIP", true, DatatypeString.DATATYPEID));
             sysadminInstanceProps.setAbsolutepathtoexerciseimages(Textbox.getValueFromRequest("absolutepathtoexerciseimages", "absolutepathtoexerciseimages", false, DatatypeString.DATATYPEID));
             sysadminInstanceProps.saveProps();
             Pagez.getUserSession().setMessage("Props saved.");
@@ -143,6 +145,28 @@ SysadminInstanceProps sysadminInstanceProps = (SysadminInstanceProps)Pagez.getBe
                 </td>
                 <td valign="top">
                     <%=Textbox.getHtml("absolutepathtoexerciseimages", sysadminInstanceProps.getAbsolutepathtoexerciseimages(), 255, 35, "", "")%>
+                </td>
+            </tr>
+
+            <tr>
+                <td valign="top">
+                    <font class="formfieldnamefont">runEmailListenerOnThisInstance</font>
+                    <br/>
+                    <font class="tinyfont">0 or 1</font>
+                </td>
+                <td valign="top">
+                    <%=Textbox.getHtml("runEmailListenerOnThisInstance", sysadminInstanceProps.getRunEmailListenerOnThisInstance(), 255, 35, "", "")%>
+                </td>
+            </tr>
+
+            <tr>
+                <td valign="top">
+                    <font class="formfieldnamefont">emailListenerIP</font>
+                    <br/>
+                    <font class="tinyfont">192.168.1.1 or localhost</font>
+                </td>
+                <td valign="top">
+                    <%=Textbox.getHtml("emailListenerIP", sysadminInstanceProps.getEmailListenerIP(), 255, 35, "", "")%>
                 </td>
             </tr>
 

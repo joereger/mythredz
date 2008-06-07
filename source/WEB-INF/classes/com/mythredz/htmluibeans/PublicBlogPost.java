@@ -78,7 +78,7 @@ public class PublicBlogPost implements Serializable {
             try{blogpost.save();}catch(Exception ex){logger.error("",ex);}
         }
         //Notify via XMPP
-        SendXMPPMessage xmpp = new SendXMPPMessage(SendXMPPMessage.GROUP_CUSTOMERSUPPORT, "dNeero Blog Comment: "+ name + ": " + comment + " (http://pingfit.com/blogpost.jsp?blogpostid="+blogpost.getBlogpostid()+")");
+        SendXMPPMessage xmpp = new SendXMPPMessage(SendXMPPMessage.GROUP_CUSTOMERSUPPORT, "myThredz Blog Comment: "+ name + ": " + comment + " (http://mythredz.com/blogpost.jsp?blogpostid="+blogpost.getBlogpostid()+")");
         xmpp.send();
         //load();
         Pagez.sendRedirect("/blogpost.jsp?blogpostid="+blogpost.getBlogpostid());

@@ -4,7 +4,7 @@
 
 Your beta password is: <$args.1$>
 
-Go to http://www.pingfit.com and enter that password to get through the closed beta umbrella.  From there... sign up and explore!
+Go to http://www.myThredz.com and enter that password to get through the closed beta umbrella.  From there... sign up and explore!
 
 ----------
 

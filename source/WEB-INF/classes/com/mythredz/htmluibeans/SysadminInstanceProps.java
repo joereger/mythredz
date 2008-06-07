@@ -29,6 +29,8 @@ public class SysadminInstanceProps implements Serializable {
     private String runScheduledTasksOnThisInstance;
     private String instancename;
     private String absolutepathtoexerciseimages;
+    private String runEmailListenerOnThisInstance;
+    private String emailListenerIP;
 
     public SysadminInstanceProps(){
 
@@ -52,6 +54,12 @@ public class SysadminInstanceProps implements Serializable {
         }
         instancename = InstanceProperties.getInstancename();
         absolutepathtoexerciseimages = InstanceProperties.getAbsolutepathtoexerciseimages();
+        if (InstanceProperties.getRunEmailListenerOnThisInstance()){
+            runEmailListenerOnThisInstance = "1";
+        } else {
+            runEmailListenerOnThisInstance = "0";
+        }
+        emailListenerIP = InstanceProperties.getEmailListenerIP();
     }
 
     public void saveProps() throws ValidationException {
@@ -74,6 +82,12 @@ public class SysadminInstanceProps implements Serializable {
             }
             InstanceProperties.setInstancename(instancename);
             InstanceProperties.setAbsolutepathtoexerciseimages(absolutepathtoexerciseimages);
+            if (runEmailListenerOnThisInstance.equals("1")){
+                InstanceProperties.setRunEmailListenerOnThisInstance(true);
+            } else {
+                InstanceProperties.setRunEmailListenerOnThisInstance(false);
+            }
+            InstanceProperties.setEmailListenerIP(emailListenerIP);
             try{
                 InstanceProperties.save();
                 if (InstanceProperties.haveValidConfig()){
@@ -182,5 +196,22 @@ public class SysadminInstanceProps implements Serializable {
 
     public void setAbsolutepathtoexerciseimages(String absolutepathtoexerciseimages) {
         this.absolutepathtoexerciseimages = absolutepathtoexerciseimages;
+    }
+
+
+    public String getRunEmailListenerOnThisInstance() {
+        return runEmailListenerOnThisInstance;
+    }
+
+    public void setRunEmailListenerOnThisInstance(String runEmailListenerOnThisInstance) {
+        this.runEmailListenerOnThisInstance=runEmailListenerOnThisInstance;
+    }
+
+    public String getEmailListenerIP() {
+        return emailListenerIP;
+    }
+
+    public void setEmailListenerIP(String emailListenerIP) {
+        this.emailListenerIP=emailListenerIP;
     }
 }

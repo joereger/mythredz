@@ -29,18 +29,18 @@ Registration registration = (Registration)Pagez.getBeanMgr().get("Registration")
             //Redir if https is on
             if (SystemProperty.getProp(SystemProperty.PROP_ISSSLON).equals("1")) {
                 try {
-                    logger.debug("redirecting to https - " + BaseUrl.get(true) + "index.jsp");
-                    Pagez.sendRedirect(BaseUrl.get(true) + "index.jsp");
+                    logger.debug("redirecting to https - " + BaseUrl.get(true) + "/account/index.jsp");
+                    Pagez.sendRedirect(BaseUrl.get(true) + "/account/index.jsp");
                     return;
                 } catch (Exception ex) {
                     logger.error("", ex);
                     //@todo setIsfirsttimelogin(true) on AccountIndex bean
-                    Pagez.sendRedirect("index.jsp");
+                    Pagez.sendRedirect("/account/index.jsp");
                     return;
                 }
             } else {
                 //@todo setIsfirsttimelogin(true) on AccountIndex bean
-                Pagez.sendRedirect("index.jsp");
+                Pagez.sendRedirect("/account/index.jsp");
                 return;
             }
         } catch (ValidationException vex) {

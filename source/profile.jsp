@@ -15,6 +15,7 @@
 <%@ page import="org.hibernate.criterion.Order" %>
 <%@ page import="com.mythredz.util.Time" %>
 <%@ page import="com.mythredz.dao.User" %>
+<%@ page import="com.mythredz.systemprops.SystemProperty" %>
 
 <%
     User user=null;
@@ -56,6 +57,8 @@ String acl = "public";
 
 
 
+<font class="largefont" style="background: #e6e6e6;"><%=user.getNickname()%></font>
+<br/><font class="tinyfont">http://<%=SystemProperty.getProp(SystemProperty.PROP_BASEURL)%>/user/<%=user.getNickname()%>/</font>
 
 <br/><br/>
 
@@ -92,7 +95,7 @@ String acl = "public";
         List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                 .add(Restrictions.eq("thredid", thred.getThredid()))
                 .addOrder(Order.desc("date"))
-                .setMaxResults(100)
+                .setMaxResults(1000)
                 .setCacheable(true)
                 .list();
         for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {

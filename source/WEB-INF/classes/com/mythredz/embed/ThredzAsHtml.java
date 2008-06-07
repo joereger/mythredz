@@ -8,6 +8,7 @@ import com.mythredz.dao.Post;
 import com.mythredz.dao.hibernate.HibernateUtil;
 import com.mythredz.htmlui.Pagez;
 import com.mythredz.util.Time;
+import com.mythredz.systemprops.SystemProperty;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Order;
@@ -44,7 +45,7 @@ public class ThredzAsHtml {
                 "}\n"+
                 "</style>");
 
-        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; width: 100%; border: 5px solid #eeeeee; height: "+totHeight+"px; overflow : auto; text-align: left;\">"+"\n");
+        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; width: margin: 0px; 95%; border: 5px solid #eeeeee; height: "+totHeight+"px; overflow : auto; text-align: left;\">"+"\n");
 
 
         out.append("\n<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">");
@@ -78,8 +79,8 @@ public class ThredzAsHtml {
             int width=widthBigDbl.intValue();
             out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
             out.append("\n<div style=\"background : #ffffff; padding: 0px; width: 100%; height: "+(totHeight-0)+"px; overflow : auto; text-align: left;\">"+"\n");
-            out.append("\n<font class=\"normalfont\" style=\"font-weight: bold;\">"+thred.getName()+"</font>");
-            out.append("\n<br/>");
+            out.append("\n<div style=\"width: 100%; background: #e6e6e6; text-align: center; height: 26px;\"><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">"+thred.getName()+"</font></div>");
+            //out.append("\n<br/>");
             List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                     .add(Restrictions.eq("thredid", thred.getThredid()))
                     .addOrder(Order.desc("date"))
@@ -91,6 +92,14 @@ public class ThredzAsHtml {
                 out.append("\n<font class=\"tinyfont\" style=\"color: #cccccc;\">"+Time.dateformatcompactwithtime(post.getDate())+"</font>");
                 out.append("\n<br/><font class=\"smallfont\">"+post.getContents()+"</font><br/><br/>");
             }
+            out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/user/"+user.getNickname()+"/\">");
+            out.append("<font class=\"normalfont\" style=\"font-weight: bold;\">More of this Thred</font>");
+            out.append("</a>");
+            out.append("<br/><br/>");
+            out.append("<font class=\"tinyfont\">Powered by MyThredz</font><br/>");
+            out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">");
+            out.append("<font class=\"tinyfont\">Get Your Own!</font>");
+            out.append("</a>");
             out.append("\n</div>");
             out.append("\n</td>");
 
@@ -128,7 +137,7 @@ public class ThredzAsHtml {
                 "}\n"+
                 "</style>");
 
-        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; width: 100%; border: 5px solid #eeeeee; text-align: left;\">"+"\n");
+        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; margin: 0px; width: 95%; border: 5px solid #eeeeee; text-align: left;\">"+"\n");
 
 
         out.append("\n<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">");
@@ -163,8 +172,8 @@ public class ThredzAsHtml {
             out.append("\n<tr>");
             out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
             out.append("\n<div style=\"background : #ffffff; padding: 0px; width: 100%; height: 100px; overflow : auto; text-align: left;\">"+"\n");
-            out.append("\n<font class=\"normalfont\" style=\"font-weight: bold;\">"+thred.getName()+"</font>");
-            out.append("\n<br/>");
+            out.append("\n<div style=\"width: 100%; background: #e6e6e6; text-align: center; height: 26px;\"><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">"+thred.getName()+"</font></div>");
+            //out.append("\n<br/>");
             List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                     .add(Restrictions.eq("thredid", thred.getThredid()))
                     .addOrder(Order.desc("date"))
@@ -176,6 +185,14 @@ public class ThredzAsHtml {
                 out.append("\n<font class=\"tinyfont\" style=\"color: #cccccc;\">"+Time.dateformatcompactwithtime(post.getDate())+"</font>");
                 out.append("\n<br/><font class=\"smallfont\">"+post.getContents()+"</font><br/><br/>");
             }
+            out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/user/"+user.getNickname()+"/\">");
+            out.append("<font class=\"normalfont\" style=\"font-weight: bold;\">More of this Thred</font>");
+            out.append("</a>");
+            out.append("<br/><br/>");
+            out.append("<font class=\"tinyfont\">Powered by MyThredz</font><br/>");
+            out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">");
+            out.append("<font class=\"tinyfont\">Get Your Own!</font>");
+            out.append("</a>");
             out.append("\n</div>");
             out.append("\n</td>");
             out.append("\n\n</tr>");

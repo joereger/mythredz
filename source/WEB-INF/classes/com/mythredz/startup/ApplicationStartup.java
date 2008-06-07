@@ -7,6 +7,7 @@ import com.mythredz.dao.hibernate.HibernateUtil;
 import com.mythredz.dao.hibernate.HibernateSessionQuartzCloser;
 import com.mythredz.xmpp.SendXMPPMessage;
 import com.mythredz.scheduledjobs.SystemStats;
+import com.mythredz.scheduledjobs.StartEmailListener;
 import com.mythredz.pageperformance.PagePerformanceUtil;
 
 import javax.servlet.*;
@@ -40,7 +41,7 @@ public class ApplicationStartup implements ServletContextListener {
     private static Scheduler scheduler = null;
 
     public void contextInitialized(ServletContextEvent cse) {
-       System.out.println("PINGFIT: Application initialized");
+       System.out.println("MyThredz: Application initialized");
        //Shut down mbeans, if they're running
        shutdownCacheMBean();
        //Configure some dir stuff
@@ -72,6 +73,8 @@ public class ApplicationStartup implements ServletContextListener {
         //Refresh SystemStats
         SystemStats ss = new SystemStats();
         try{ss.execute(null);}catch(Exception ex){logger.error("",ex);}
+        //Start SMTP Listener
+        try{StartEmailListener.startListener();}catch(Exception ex){logger.error("",ex);}
         //Initialize Quartz
         initQuartz(cse.getServletContext());
         //Add Quartz listener
@@ -100,7 +103,7 @@ public class ApplicationStartup implements ServletContextListener {
         //Shut down MBeans
         shutdownCacheMBean();
         //Log it
-        System.out.println("PINGFIT: Application shut down! ("+InstanceProperties.getInstancename()+")");
+        System.out.println("MYTHREDZ: Application shut down! ("+InstanceProperties.getInstancename()+")");
     }
 
     public static void initQuartz(ServletContext sc){

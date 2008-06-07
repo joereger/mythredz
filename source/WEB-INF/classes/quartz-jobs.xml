@@ -183,4 +183,26 @@
         </trigger>
     </job>
 
+    <job>
+        <job-detail>
+          <name>startEmailListener</name>
+          <group>surveyJobs</group>
+          <job-class>com.mythredz.scheduledjobs.StartEmailListener</job-class>
+          <volatility>false</volatility>
+          <durability>false</durability>
+          <recover>false</recover>
+        </job-detail>
+        <trigger>
+          <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
+          <cron>
+            <name>startEmailListenerTrigger</name>
+            <group>surveyTriggers</group>
+            <job-name>startEmailListener</job-name>
+            <job-group>surveyJobs</job-group>
+            <!-- every x minutes -->
+            <cron-expression>0 0/5 * * * ?</cron-expression>
+          </cron>
+        </trigger>
+    </job>
+
 </quartz>

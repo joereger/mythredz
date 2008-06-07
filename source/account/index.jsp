@@ -24,32 +24,43 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
 <%@ include file="/template/auth.jsp" %>
 
 <%
-    if (Pagez.getRequest().getParameter("action") != null && Pagez.getRequest().getParameter("action").equals("save")) {
-        List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
+List<Thred> thredsCheck = HibernateUtil.getSession().createCriteria(Thred.class)
                 .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
                 .setCacheable(true)
                 .list();
-        for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
-            Thred thred=iterator.next();
-            if (Pagez.getRequest().getParameter("threadid-" + thred.getThredid()) != null && !Pagez.getRequest().getParameter("threadid-" + thred.getThredid()).trim().equals("")) {
-                String in=Pagez.getRequest().getParameter("threadid-" + thred.getThredid()).trim();
-                Post post=new Post();
-                post.setContents(in);
-                post.setDate(new java.util.Date());
-                post.setThredid(thred.getThredid());
-                try {
-                    post.save();
-                } catch (Exception ex) {
-                    logger.error("", ex);
-                }
-                //Clear the Javascript Embed cache
-                String nameInCache="embedjavascriptservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
-                String cacheGroup="embedjavascriptcache" + "/";
-                CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
-            }
-        }
-        Pagez.getUserSession().setMessage("Thredz have been saved!");
-    }
+if (thredsCheck==null || thredsCheck.size()<=0){
+    Pagez.sendRedirect("/account/thredzwizard.jsp");
+    return;
+}
+%>
+
+<%
+//    if (Pagez.getRequest().getParameter("action") != null && Pagez.getRequest().getParameter("action").equals("save")) {
+//        List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
+//                .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
+//                .setCacheable(true)
+//                .list();
+//        for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
+//            Thred thred=iterator.next();
+//            if (Pagez.getRequest().getParameter("threadid-" + thred.getThredid()) != null && !Pagez.getRequest().getParameter("threadid-" + thred.getThredid()).trim().equals("")) {
+//                String in=Pagez.getRequest().getParameter("threadid-" + thred.getThredid()).trim();
+//                Post post=new Post();
+//                post.setContents(in);
+//                post.setDate(new java.util.Date());
+//                post.setThredid(thred.getThredid());
+//                try {
+//                    post.save();
+//                } catch (Exception ex) {
+//                    logger.error("", ex);
+//                }
+//                //Clear the Javascript Embed cache
+//                String nameInCache="embedjavascriptservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
+//                String cacheGroup="embedjavascriptcache" + "/";
+//                CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
+//            }
+//        }
+//        Pagez.getUserSession().setMessage("Thredz have been saved!");
+//    }
 %>
 
 <%@ include file="/template/header.jsp" %>

@@ -68,7 +68,7 @@ public class EmailTemplateProcessor {
             if (fromaddress!=null && !fromaddress.equals("")){
                 email.setFrom(fromaddress, fromaddress);
             } else {
-                email.setFrom(EmailSendThread.DEFAULTFROM, "The PingFit Server");
+                email.setFrom(EmailSendThread.DEFAULTFROM, "The myThredz Server");
             }
             email.setSubject(subject);
             email.setHtmlMsg(htmlEmailHeader + htmlMessage + htmlEmailFooter);

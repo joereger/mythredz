@@ -1,4 +1,4 @@
-<$user.firstname$> <$user.lastname$> has invited you to earn money with your blog by using dNeero.
+<$user.firstname$> <$user.lastname$> has invited you to earn money with your blog by using myThredz.
 
 <$args.0$>
 
@@ -6,4 +6,4 @@
 
 Best,
 
-The dNeero Team
+The myThredz Team

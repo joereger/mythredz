@@ -116,7 +116,11 @@
                     <img src="/images/clear.gif" alt="" width="10" height="1"/>
                     <a href="/account/index.jsp"><font class="subnavfont" style="color: #000000;">Main</font></a>
                     <img src="/images/clear.gif" alt="" width="10" height="1"/>
-                    <a href="/account/thredzlist.jsp"><font class="subnavfont" style="color: #000000;">Manage Thredz</font></a>
+                    <a href="/account/thredzlist.jsp"><font class="subnavfont" style="color: #000000;">Add/Edit Thredz</font></a>
+                    <img src="/images/clear.gif" alt="" width="10" height="1"/>
+                    <a href="/account/embed.jsp"><font class="subnavfont" style="color: #000000;">Embed in your Blog</font></a>
+                    <img src="/images/clear.gif" alt="" width="10" height="1"/>
+                    <a href="/account/mobile.jsp"><font class="subnavfont" style="color: #000000;">Mobile Device</font></a>
                 <%}%>
             <%}%>
 

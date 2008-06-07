@@ -88,7 +88,7 @@ public class SysadminBlogpost implements Serializable {
         GetCachedStuff.refresh(new BlogPosts());
         try{
             if (doPingomatic && BaseUrl.get(false).indexOf("localhost")<=-1){
-                Pingomatic.ping("PingFit.com Blog", BaseUrl.get(false)+"blog.jsp", BaseUrl.get(false)+"rss.xml");
+                Pingomatic.ping("myThredz Blog", BaseUrl.get(false)+"blog.jsp", BaseUrl.get(false)+"rss.xml");
             }
         } catch (Exception ex){
             logger.error("",ex);

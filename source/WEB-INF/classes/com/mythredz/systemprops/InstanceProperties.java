@@ -30,6 +30,8 @@ public class InstanceProperties {
     private static String runScheduledTasksOnThisInstance;
     private static String instancename;
     private static String absolutepathtoexerciseimages;
+    private static String runEmailListenerOnThisInstance;
+    private static String emailListenerIP;
 
 
 
@@ -99,6 +101,8 @@ public class InstanceProperties {
             runScheduledTasksOnThisInstance = properties.getProperty("runScheduledTasksOnThisInstance", "0");
             instancename = properties.getProperty("instancename", "InstanceNotNamed");
             absolutepathtoexerciseimages = properties.getProperty("absolutepathtoexerciseimages", "");
+            runEmailListenerOnThisInstance = properties.getProperty("runEmailListenerOnThisInstance", "0");
+            emailListenerIP = properties.getProperty("emailListenerIP", "0");
 
             haveAttemptedToLoadDefaultPropsFile = true;
             haveNewConfigToTest = true;
@@ -153,6 +157,12 @@ public class InstanceProperties {
             }
             if (absolutepathtoexerciseimages!=null){
                 properties.setProperty("absolutepathtoexerciseimages", absolutepathtoexerciseimages);
+            }
+            if (runEmailListenerOnThisInstance!=null){
+                properties.setProperty("runEmailListenerOnThisInstance", runEmailListenerOnThisInstance);
+            }
+            if (emailListenerIP!=null){
+                properties.setProperty("emailListenerIP", emailListenerIP);
             }
 
             if (testConfig()){
@@ -353,6 +363,21 @@ public class InstanceProperties {
         }
     }
 
+    public static boolean getRunEmailListenerOnThisInstance() {
+        load();
+        if (runEmailListenerOnThisInstance!=null && runEmailListenerOnThisInstance.equals("1")){
+            return true;
+        }
+        return false;
+    }
+
+    public static void setRunEmailListenerOnThisInstance(boolean runEmailListenerOnThisInstance) {
+        if (runEmailListenerOnThisInstance){
+            InstanceProperties.runEmailListenerOnThisInstance = "1";
+        } else {
+            InstanceProperties.runEmailListenerOnThisInstance = "0";
+        }
+    }
 
     public static String getInstancename() {
         load();
@@ -371,5 +396,15 @@ public class InstanceProperties {
 
     public static void setAbsolutepathtoexerciseimages(String absolutepathtoexerciseimages) {
         InstanceProperties.absolutepathtoexerciseimages = absolutepathtoexerciseimages;
+    }
+
+
+    public static String getEmailListenerIP() {
+        load();
+        return emailListenerIP;
+    }
+
+    public static void setEmailListenerIP(String emailListenerIP) {
+        InstanceProperties.emailListenerIP = emailListenerIP;
     }
 }

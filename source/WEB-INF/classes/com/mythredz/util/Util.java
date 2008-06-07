@@ -1,6 +1,7 @@
 package com.mythredz.util;
 
 import org.apache.log4j.Logger;
+import org.apache.commons.io.FilenameUtils;
 
 import javax.servlet.http.Cookie;
 import java.util.*;
@@ -185,4 +186,19 @@ public class Util {
         }
         return out.toString();
     }
+
+    public static String getFilenameExtension(String infilename){
+        return FilenameUtils.getExtension(infilename);
+    }
+
+    /**
+     * Returns the base filename of a file.  This is essentially the filename minus the extension.
+     */
+    public static String getFilenameBase(String infilename){
+        String filename = FilenameUtils.getName(infilename);
+        String filenamebase = FilenameUtils.removeExtension(filename);
+        return filenamebase;
+    }
+
+
 }

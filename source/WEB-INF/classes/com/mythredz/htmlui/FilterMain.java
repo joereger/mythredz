@@ -74,12 +74,12 @@ public class FilterMain implements Filter {
                 //Production redirect to www.pingfit.com for https
                 //@todo make this configurable... i.e. no hard-coded urls
                 UrlSplitter urlSplitter = new UrlSplitter(httpServletRequest);
-                if (urlSplitter.getRawIncomingServername().equals("pingfit.com")){
+                if (urlSplitter.getRawIncomingServername().equals("mythredz.com")){
                     if (urlSplitter.getMethod().equals("GET")){
-                        httpServletResponse.sendRedirect(urlSplitter.getScheme()+"://"+"www.pingfit.com"+urlSplitter.getServletPath()+urlSplitter.getParametersAsQueryStringQuestionMarkIfRequired());
+                        httpServletResponse.sendRedirect(urlSplitter.getScheme()+"://"+"www.mythredz.com"+urlSplitter.getServletPath()+urlSplitter.getParametersAsQueryStringQuestionMarkIfRequired());
                         return;
                     } else {
-                        httpServletResponse.sendRedirect(urlSplitter.getScheme()+"://"+"www.pingfit.com/");
+                        httpServletResponse.sendRedirect(urlSplitter.getScheme()+"://"+"www.mythredz.com/");
                         return;
                     }
                 }

@@ -18,9 +18,6 @@ String pagetitle = "";
 String navtab = "mythredz";
 String acl = "account";
 %>
-<%
-AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex");
-%>
 <%@ include file="/template/auth.jsp" %>
 
 <%
@@ -46,12 +43,9 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
                 String nameInCache="embedjavascriptservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
                 String cacheGroup="embedjavascriptcache" + "/";
                 CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
-                String nameInCacheVert="embedjavascriptverticalservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
-                String cacheGroupVert="embedjavascriptcache" + "/";
-                CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
             }
         }
-        //Pagez.getUserSession().setMessage("Thredz have been saved!");
+        out.print("Thredz have been saved!<br/>");
     }
 %>
 
@@ -60,41 +54,38 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
 
 
 
-    <table cellpadding="0" cellspacing="5" border="0" width="100%">
-    
+
+    <form id="myForm" action="/account/mobile.jsp" method="post">
+        <input type="hidden" name="dpage" value="/account/mobile.jsp">
+        <input type="hidden" name="action" value="save">
 
 
+    <input type="submit" class="formsubmitbutton" value="Save myThredz"><br/><br/>
 
 
-    <tr>
     <%
         List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
                 .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
                 .setCacheable(true)
                 .list();
-        logger.debug("threds.size()="+threds.size());
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
             Thred thred=iterator.next();
-            double widthDbl=100 / threds.size();
-            Double widthBigDbl=new Double(widthDbl);
-            int width=widthBigDbl.intValue();
-            %><td valign="top" width="<%=width%>%"><%
-                List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
-                        .add(Restrictions.eq("thredid", thred.getThredid()))
-                        .addOrder(Order.desc("date"))
-                        .setMaxResults(25)
-                        .setCacheable(true)
-                        .list();
-                for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
-                    Post post=iterator1.next();
-                    %><font class="tinyfont" style="color: #cccccc;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
-                }
-                %></td><%
+    %>
+
+                <%=thred.getName()%><br/>
+                <textarea name="threadid-<%=thred.getThredid()%>" rows="5" cols="5" style="width: 100%;"></textarea>
+                <br/><br/>
+            <%
 
         }
     %>
-    </tr>
-    </table>
+
+
+
+    <input type="submit" class="formsubmitbutton" value="Save myThredz">
+
+
+    </form>
 
 
 <%//@ include file="/template/footer.jsp" %>
