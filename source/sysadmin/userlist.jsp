@@ -88,8 +88,7 @@ SysadminUserList sysadminUserList = (SysadminUserList)Pagez.getBeanMgr().get("Sy
                 ArrayList<GridCol> cols=new ArrayList<GridCol>();
                 cols.add(new GridCol("Userid", "<a href=\"/sysadmin/userdetail.jsp?userid=<$userid$>\"><$userid$></a>", false, "", "tinyfont"));
                 cols.add(new GridCol("Bloggerid", "<$bloggerid$>", false, "", "tinyfont"));
-                cols.add(new GridCol("Researcherid", "<$researcherid$>", false, "", "tinyfont"));
-                cols.add(new GridCol("Facebookuid", "<$facebookuserid$>", false, "", "tinyfont"));
+                cols.add(new GridCol("Nickname", "<$nickname$>", false, "", "tinyfont"));
                 cols.add(new GridCol("Name", "<$firstname$> <$lastname$>", false, "", "tinyfont"));
                 cols.add(new GridCol("Email", "<$email$>", false, "", "tinyfont"));
                 cols.add(new GridCol("Signup Date", "<$createdate|"+Grid.GRIDCOLRENDERER_DATETIMECOMPACT+"$>", false, "", "tinyfont"));
