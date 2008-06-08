@@ -97,7 +97,7 @@ public class ThredzAsHtml {
             out.append("<font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">More of this Thred</font>");
             out.append("</a>");
             out.append("<br/><br/>");
-            out.append("<font class=\"tinyfont\">Powered by MyThredz</font><br/>");
+            out.append("<font class=\"tinyfont\">Powered by myThredz</font><br/>");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">");
             out.append("<font class=\"tinyfont\">Get Your Own!</font>");
             out.append("</a>");
@@ -193,7 +193,7 @@ public class ThredzAsHtml {
             out.append("<font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">More of this Thred</font>");
             out.append("</a>");
             out.append("<br/><br/>");
-            out.append("<font class=\"tinyfont\">Powered by MyThredz</font><br/>");
+            out.append("<font class=\"tinyfont\">Powered by myThredz</font><br/>");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">");
             out.append("<font class=\"tinyfont\">Get Your Own!</font>");
             out.append("</a>");
