@@ -33,16 +33,16 @@ Login login = (Login) Pagez.getBeanMgr().get("Login");
             }
             if (SystemProperty.getProp(SystemProperty.PROP_ISSSLON).equals("1")) {
                 try {
-                    logger.debug("redirecting to https - " + BaseUrl.get(true) + "index.jsp"+keepmeloggedinStr);
-                    Pagez.sendRedirect(BaseUrl.get(true) + "index.jsp"+keepmeloggedinStr);
+                    logger.debug("redirecting to https - " + BaseUrl.get(true) + "account/index.jsp"+keepmeloggedinStr);
+                    Pagez.sendRedirect(BaseUrl.get(true) + "account/index.jsp"+keepmeloggedinStr);
                     return;
                 } catch (Exception ex) {
                     logger.error("", ex);
-                    Pagez.sendRedirect("/index.jsp"+keepmeloggedinStr);
+                    Pagez.sendRedirect("/account/index.jsp"+keepmeloggedinStr);
                     return;
                 }
             } else {
-                Pagez.sendRedirect("/index.jsp"+keepmeloggedinStr);
+                Pagez.sendRedirect("/account/index.jsp"+keepmeloggedinStr);
                 return;
             }
         } catch (ValidationException vex) {
