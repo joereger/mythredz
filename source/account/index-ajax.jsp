@@ -78,7 +78,7 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
             double widthDbl=100 / threds.size();
             Double widthBigDbl=new Double(widthDbl);
             int width=widthBigDbl.intValue();
-            %><td valign="top" width="<%=width%>%"><%
+            %><td valign="top" width="<%=width%>%"><div style="height: 35px;"><font class="normalfont" style="font-weight: bold; background: #ffffff;"><%=thred.getName()%></font></div><%
                 List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                         .add(Restrictions.eq("thredid", thred.getThredid()))
                         .addOrder(Order.desc("date"))
@@ -87,7 +87,7 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
                         .list();
                 for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
                     Post post=iterator1.next();
-                    %><font class="tinyfont" style="color: #cccccc;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
+                    %><font class="tinyfont" style="color: #cccccc; background: #999999;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
                 }
                 %></td><%
 

@@ -78,7 +78,7 @@ String acl = "public";
             int width=widthBigDbl.intValue();
             %>
             <td valign="top" width="<%=width%>%">
-                <font class="normalfont" style="font-weight: bold;"><%=thred.getName()%></font>
+                <font class="normalfont" style="font-weight: bold; background: #ffffff;"><%=thred.getName()%></font>
             </td>
             <%
 
@@ -95,12 +95,12 @@ String acl = "public";
         List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                 .add(Restrictions.eq("thredid", thred.getThredid()))
                 .addOrder(Order.desc("date"))
-                .setMaxResults(1000)
+                .setMaxResults(4000)
                 .setCacheable(true)
                 .list();
         for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
             Post post=iterator1.next();
-    %><font class="tinyfont" style="color: #cccccc;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
+    %><font class="tinyfont" style="color: #cccccc; background: #999999;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
         }
         %></td><%
 

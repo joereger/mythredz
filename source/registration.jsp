@@ -68,7 +68,7 @@ Registration registration = (Registration)Pagez.getBeanMgr().get("Registration")
             <input type="hidden" name="dpage" value="/registration.jsp">
             <input type="hidden" name="action" value="register">
             <input type="hidden" name="captchaId" value="<%=captchaId%>">
-            <div class="rounded" style="padding: 15px; margin: 5px; background: #ffffff;">
+
                 <font class="mediumfont" style="color: #333333">Get started!</font>
                 <br/>
                 <font class="smallfont">Sign Up is free.  On this page we collect some basic information.  Your account is completely free to set up and explore.</font><br/><br/>
@@ -173,7 +173,6 @@ Registration registration = (Registration)Pagez.getBeanMgr().get("Registration")
                     </tr>
 
                 </table>
-            </div>
         </form>
 
 

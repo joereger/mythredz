@@ -27,23 +27,24 @@ String acl = "public";
 
 <table cellpadding="10" cellspacing="0" border="0">
     <tr>
-        <td valign="top">
-            <div class="rounded" style="padding: 15px; margin: 5px; background: #e6e6e6;">
-                <div class="rounded" style="padding: 15px; margin: 5px; background: #ffffff;">
+        <td valign="top" style="text-align: left;">
+            <%--<div class="rounded" style="padding: 15px; margin: 5px; background: #e6e6e6;">--%>
+                <%--<div class="rounded" style="padding: 15px; margin: 5px; background: #ffffff;">--%>
 
-                    <font class="largefont" style="background: #e6e6e6;">1) Create a list of Thredz.</font>
+                    <font class="largefont" style="background: #f8c600;">1) Create a list of Thredz.</font>
                     <br/><font class="tinyfont">Themes that you'd like to write a little about every day, every hour or every few minutes.  Starting points: "Work", "Family", "Hobby", "Yard Project."  Anything you want.</font>
 
 
-                    <br/><br/><font class="largefont" style="background: #e6e6e6;">2) Write a bit.</font>
+                    <br/><br/><font class="largefont" style="background: #f8c600;">2) Write a bit.</font>
                     <br/><font class="tinyfont">A few words.  A few sentences.  Just enough to capture what's happening with that theme.</font>
 
 
-                    <br/><br/><font class="largefont" style="background: #e6e6e6;">3) Embed onto your blog.</font>
+                    <br/><br/><font class="largefont" style="background: #f8c600;">3) Embed into your blog.</font>
                     <br/><font class="tinyfont">A small piece of your blog to hold a running commentary on the Thredz.</font>
+                    <br/><font class="tinyfont">See it in action at the top of <a href="http://www.joereger.com">joereger.com</a></font>
 
-                </div>
-            </div>
+                <!--</div>-->
+            <!--</div>-->
         </td>
         <td valign="top" width="20%">
             <%if (!Pagez.getUserSession().getIsloggedin()){%>

@@ -2,7 +2,7 @@ body {
     padding:0px;
     margin:0px;
     background:#FFFFFF;
-    background-image: url("/images/background-grey.gif");
+    background-image: url("/images/template-v1/bg.gif");
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: normal;
@@ -44,6 +44,16 @@ a, a:link, a:visited, a:active {
     color: #333333;
 }
 
+.navtabfontlevel1 {
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 16px;
+    color: #333333;
+}
+
+
 .mediumfont {
     font-family: Verdana, Arial, Helvetica, sans-serif;
     font-weight: bold;
@@ -57,7 +67,7 @@ a, a:link, a:visited, a:active {
 
 .pagetitlefont {
     font-family: Impact, Verdana, Arial, Helvetica, sans-serif;
-    color: #00FF00;
+    color: #9999cc;
     font-size: 34px;
 }
 
@@ -144,12 +154,12 @@ form {
    font-family:'trebuchet ms',helvetica,sans-serif;
    font-weight:bold;
    font-size: 16px;
-   background-color:#e6e6e6;
+   background-color:#f8c600;
    border:4px solid;
-   border-top-color:#00ff00;
-   border-left-color:#00ff00;
-   border-right-color:#00ff00;
-   border-bottom-color:#00ff00;
+   border-top-color:#behb00;
+   border-left-color:#behb00;
+   border-right-color:#behb00;
+   border-bottom-color:#behb00;
    margin: 0px;
    cursor: pointer;
    cursor: hand;

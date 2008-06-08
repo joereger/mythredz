@@ -44,7 +44,7 @@ public class ThredzAsHtml {
                 "}\n"+
                 "</style>");
 
-        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; width: margin: 0px; 95%; border: 5px solid #eeeeee; height: "+totHeight+"px; overflow : auto; text-align: left;\">"+"\n");
+        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; width: margin: 0px; 95%; border: 5px solid #eeeeee; height: "+totHeight+"px; overflow: visible; text-align: left;\">"+"\n");
 
 
         out.append("\n<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">");
@@ -91,14 +91,17 @@ public class ThredzAsHtml {
                 out.append("\n<font class=\"tinyfont\" style=\"color: #cccccc;\">"+Time.dateformatcompactwithtime(post.getDate())+"</font>");
                 out.append("\n<br/><font class=\"smallfont\">"+post.getContents()+"</font><br/><br/>");
             }
+
+            out.append("<div style=\"width: 100%; background: #e6e6e6; text-align: center;\">");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/user/"+user.getNickname()+"/\">");
-            out.append("<font class=\"normalfont\" style=\"font-weight: bold;\">More of this Thred</font>");
+            out.append("<font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">More of this Thred</font>");
             out.append("</a>");
             out.append("<br/><br/>");
             out.append("<font class=\"tinyfont\">Powered by MyThredz</font><br/>");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">");
             out.append("<font class=\"tinyfont\">Get Your Own!</font>");
             out.append("</a>");
+            out.append("</div>");
             out.append("\n</div>");
             out.append("\n</td>");
 
@@ -184,14 +187,17 @@ public class ThredzAsHtml {
                 out.append("\n<font class=\"tinyfont\" style=\"color: #cccccc;\">"+Time.dateformatcompactwithtime(post.getDate())+"</font>");
                 out.append("\n<br/><font class=\"smallfont\">"+post.getContents()+"</font><br/><br/>");
             }
+
+            out.append("<div style=\"width: 100%; background: #e6e6e6; text-align: center;\">");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/user/"+user.getNickname()+"/\">");
-            out.append("<font class=\"normalfont\" style=\"font-weight: bold;\">More of this Thred</font>");
+            out.append("<font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">More of this Thred</font>");
             out.append("</a>");
             out.append("<br/><br/>");
             out.append("<font class=\"tinyfont\">Powered by MyThredz</font><br/>");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">");
             out.append("<font class=\"tinyfont\">Get Your Own!</font>");
             out.append("</a>");
+            out.append("</div>");
             out.append("\n</div>");
             out.append("\n</td>");
             out.append("\n\n</tr>");

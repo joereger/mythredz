@@ -73,7 +73,7 @@ String acl = "account";
     %>
 
                 <%=thred.getName()%><br/>
-                <textarea name="threadid-<%=thred.getThredid()%>" rows="5" cols="5" style="width: 100%;"></textarea>
+                <textarea name="threadid-<%=thred.getThredid()%>" rows="1" cols="20"></textarea>
                 <br/><br/>
             <%
 
