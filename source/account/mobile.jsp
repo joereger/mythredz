@@ -60,7 +60,7 @@ String acl = "account";
         <input type="hidden" name="action" value="save">
 
 
-    <input type="submit" class="formsubmitbutton" value="Save myThredz"><br/><br/>
+    <input type="submit" class="formsubmitbutton" value="Save myThredz"><br/>
 
 
     <%
@@ -74,7 +74,7 @@ String acl = "account";
 
                 <%=thred.getName()%><br/>
                 <textarea name="threadid-<%=thred.getThredid()%>" rows="1" cols="20"></textarea>
-                <br/><br/>
+                <br/>
             <%
 
         }
