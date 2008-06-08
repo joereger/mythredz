@@ -31,33 +31,54 @@ String acl = "public";
             <%--<div class="rounded" style="padding: 15px; margin: 5px; background: #e6e6e6;">--%>
                 <%--<div class="rounded" style="padding: 15px; margin: 5px; background: #ffffff;">--%>
 
-                    <font class="largefont" style="background: #f8c600;">1) Create a list of Thredz.</font>
-                    <br/><font class="tinyfont">Themes that you'd like to write a little about every day, every hour or every few minutes.  Starting points: "Work", "Family", "Hobby", "Yard Project."  Anything you want.</font>
+                    <font class="largefont" style="background: #f8c600;">1) Create Some Thredz</font><br/>
+                    <font class="tinyfont">Themes that you'd like to write a little about every day, every hour or every few minutes.  Starting points: "Work", "Family", "Hobby", "Yard Project."  Anything you want.  You can have up to seven; three or four is recommended.</font><br/>
 
 
-                    <br/><br/><font class="largefont" style="background: #f8c600;">2) Write a bit.</font>
-                    <br/><font class="tinyfont">A few words.  A few sentences.  Just enough to capture what's happening with that theme.</font>
+                    <br/><font class="largefont" style="background: #f8c600;">2) Write a Bit</font><br/>
+                    <font class="tinyfont">A few words.  A few sentences.  Enough to capture what's happening with that Thred at the time.</font><br/>
 
 
-                    <br/><br/><font class="largefont" style="background: #f8c600;">3) Embed into your blog.</font>
-                    <br/><font class="tinyfont">A small piece of your blog to hold a running commentary on the Thredz.</font>
-                    <br/><font class="tinyfont">See it in action at the top of <a href="http://www.joereger.com">joereger.com</a></font>
+                    <br/><font class="largefont" style="background: #f8c600;">3) Embed into Your blog</font><br/>
+                    <font class="tinyfont">A small piece of your blog to hold a running commentary on the Thredz.  Vertical embed for the sidebar.  Horizontal embed for the top of your blog. See the horizontal embed in action at the top of <a href="http://www.joereger.com">joereger.com</a></font><br/>
 
                 <!--</div>-->
             <!--</div>-->
         </td>
-        <td valign="top" width="20%">
+        <td valign="top" width="50%">
             <%if (!Pagez.getUserSession().getIsloggedin()){%>
-                <div class="rounded" style="padding: 15px; margin: 5px; background: #e6e6e6;">
-                    <a href="/registration.jsp"><font class="mediumfont">Sign Up</font></a>
-                    <br/><a href="/login.jsp"><font class="mediumfont">Log In</font></a>
+                <div class="rounded" style="padding: 15px; background: #e6e6e6;">
+                    <font class="smallfont">You're Not Logged In</font>
+                    <br/><a href="/login.jsp"><font class="mediumfont">>Log In</font></a>
+                    <br/><a href="/registration.jsp"><font class="mediumfont">>Sign Up</font></a>
                 </div>
             <%} else {%>
-                <div class="rounded" style="padding: 15px; margin: 5px; background: #e6e6e6;">
+                <div class="rounded" style="padding: 15px; background: #e6e6e6;">
                     <font class="smallfont">You're Logged In</font>
-                    <br/><a href="/account/index.jsp"><font class="mediumfont">See your Thredz</font></a>
+                    <br/><a href="/account/index.jsp"><font class="mediumfont">> Publish Stuff</font></a>
+                    <br/><a href="/user/<%=Pagez.getUserSession().getUser().getNickname()%>/"><font class="mediumfont">> See How Others See You</font></a>
+                    <br/><a href="/account/embed.jsp"><font class="mediumfont">> Embed in Your Blog</font></a>
                 </div>
             <%}%>
+            <br/><br/>
+            <div class="rounded" style="padding: 15px; background: #e6e6e6;">
+                <font class="smallfont" style="background: #ffffff;">What is myThredz?</font>
+                <br/><font class="tinyfont">A microblogging system that you can use to track, organize and publish those short updates that aren't quite worth a full blog post.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">What's unique about it?</font>
+                <br/><font class="tinyfont">The concept of Thredz.  These are themes.  You choose a Thred that you want to track... "Work" or "Family" or whatever.  You then post your updates to one of these Thredz.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">What happens once I publish to a Thred?</font>
+                <br/><font class="tinyfont">Your updates are published to your blog.  You have myThredz embedded on your blog.  It takes up a small piece of real estate.  People can see the Thredz that you're tracking and can scroll each one for updates.  Check <a href="http://www.joereger.com">joereger.com</a> for an example.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">Why do we need this?</font>
+                <br/><font class="tinyfont">We have single-Thred microblogging systems like Twitter, etc.  But their organization of themes isn't (yet?) strong and their embeds are simplistic.  You get one publishing stream, that's it.  We wanted something that takes over a little more screen real estate than the tiny Twitter embed while illustrating the Thredz.  In this way your blog readers who don't care about your work can simply ignore the "Work" Thred (assuming you have one.)</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">What blogging systems are supported?</font>
+                <br/><font class="tinyfont">Any blogging system that allows you to publish Javascript includes.  At this point we don't have a list.  Let us know what we're missing.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">Is this a social network?</font>
+                <br/><font class="tinyfont">No.  It could be.  We could do the whole Follow thing and create a river of friend news.  But we don't even have users yet. We believe in the bootstrapping ethos.  Kick us in the nads if you want social features.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">How do I publish?</font>
+                <br/><font class="tinyfont">Log in to myThredz.com.  We also have a low-bandwidth mobile phone page you can use.  And we'd love to make it so that you can publish directly from the embed widget on your blog.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">How much does it cost?</font>
+                <br/><font class="tinyfont">Completely free.  At this point we have no idea how/if we'll make money on it.</font><br/>
+            </div>
         </td>
     </tr>
 

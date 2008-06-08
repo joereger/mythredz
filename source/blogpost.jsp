@@ -36,7 +36,7 @@ PublicBlogPost publicBlogPost = (PublicBlogPost) Pagez.getBeanMgr().get("PublicB
 %>
 <%@ include file="/template/header.jsp" %>
 
-    <font class="mediumfont" style="color: #0bae17;"><%=publicBlogPost.getBlogpost().getTitle()%></font>
+    <font class="mediumfont" style="color: #9999cc;"><%=publicBlogPost.getBlogpost().getTitle()%></font>
     <br/>
     <font class="smallfont"><%=publicBlogPost.getBlogpost().getBody()%></font>
     <br/>

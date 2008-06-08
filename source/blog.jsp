@@ -28,7 +28,7 @@ PublicBlog publicBlog = (PublicBlog)Pagez.getBeanMgr().get("PublicBlog");
     <%} else {%>
         <%
         StringBuffer post = new StringBuffer();
-        post.append("<a href=\"/blogpost.jsp?blogpostid=<$blogpostid$>\"><font class=\"mediumfont\" style=\"color: #0bae17; font-weight: bold;\"><$title$></font></a>\n" +
+        post.append("<a href=\"/blogpost.jsp?blogpostid=<$blogpostid$>\"><font class=\"mediumfont\" style=\"color: #9999cc; font-weight: bold;\"><$title$></font></a>\n" +
 "        <br/>\n" +
 "        <font class=\"smallfont\"><$body$></font>\n" +
 "        <br/>\n" +

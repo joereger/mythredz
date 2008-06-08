@@ -37,14 +37,14 @@
         <img src="/images/clear.gif" width="1" height="6" alt=""/><br/> 
 		<%if (navtab.equals("home")){%><font class="navtabfontlevel1" style="background: #ffffff;"><a href="/index.jsp"><b>Home</b></a></font><%}%>
         <%if (!navtab.equals("home")){%><font class="navtabfontlevel1"><a href="/index.jsp"><b>Home</b></a></font><%}%>
-        <%if (!navtab.equals("mythredz") && Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1"><a href="/account/index.jsp"><b>myThredz</b></a></font><%}%>
-        <%if (navtab.equals("mythredz") && Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1" style="background: #ffffff;"><a href="/account/index.jsp"><b>myThredz</b></a></font><%}%>
+        <%if (!navtab.equals("mythredz") && Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1"><a href="/account/index.jsp"><b>Publish</b></a></font><%}%>
+        <%if (navtab.equals("mythredz") && Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1" style="background: #ffffff;"><a href="/account/index.jsp"><b>Publish</b></a></font><%}%>
         <%if (!navtab.equals("youraccount") && Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1"><a href="/account/accountsettings.jsp"><b>Settings</b></a></font><%}%>
         <%if (navtab.equals("youraccount") && Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1" style="background: #ffffff;"><a href="/account/accountsettings.jsp"><b>Settings</b></a></font><%}%>
-        <%if (!navtab.equals("youraccount") && !Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1"><a href="/registration.jsp"><b>Sign Up</b></a></font><%}%>
-        <%if (navtab.equals("youraccount") && !Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1" style="background: #ffffff;"><a href="/registration.jsp"><b>Sign Up</b></a></font><%}%>
-        <%if (navtab.equals("blog")){%><font class="navtabfontlevel1" style="background: #ffffff;"><a href="/blog.jsp"><b>Our Blog</b></a></font><%}%>
-        <%if (!navtab.equals("blog")){%><font class="navtabfontlevel1"><a href="/blog.jsp"><b>Our Blog</b></a></font><%}%>
+        <%if (1==2 && !navtab.equals("youraccount") && !Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1"><a href="/registration.jsp"><b>Sign Up</b></a></font><%}%>
+        <%if (1==2 && navtab.equals("youraccount") && !Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1" style="background: #ffffff;"><a href="/registration.jsp"><b>Sign Up</b></a></font><%}%>
+        <%if (navtab.equals("blog")){%><font class="navtabfontlevel1" style="background: #ffffff;"><a href="/blog.jsp"><b>Blog</b></a></font><%}%>
+        <%if (!navtab.equals("blog")){%><font class="navtabfontlevel1"><a href="/blog.jsp"><b>Blog</b></a></font><%}%>
         <%if (!navtab.equals("help") && Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1"><a href="/account/accountsupportissueslist.jsp"><b>Help</b></a></font><%}%>
         <%if (navtab.equals("help") && Pagez.getUserSession().getIsloggedin()){%><font class="navtabfontlevel1" style="background: #ffffff;"><a href="/account/accountsupportissueslist.jsp"><b>Help</b></a></font><%}%>
         <%if (Pagez.getUserSession().getIsSysadmin() && !navtab.equals("sysadmin")){%><font class="navtabfontlevel1"><a href="/sysadmin/index.jsp"><b>SysAdmin</b></a></font><%}%>
@@ -55,9 +55,9 @@
     <td valign="center" style="text-align: right;">
 		<%if (navtab.equals("home")){%>
             <img src="/images/clear.gif" alt="" width="10" height="1"/>
-            <%if (!Pagez.getUserSession().getIsloggedin()){%><a href="/registration.jsp"><font class="subnavfont" style="color: #000000;">Sign Up</font></a><%}%>
+            <%if (1==2 && !Pagez.getUserSession().getIsloggedin()){%><a href="/registration.jsp"><font class="subnavfont" style="color: #000000;">Sign Up</font></a><%}%>
             <img src="/images/clear.gif" alt="" width="10" height="1"/>
-            <%if (!Pagez.getUserSession().getIsloggedin()){%><a href="/login.jsp"><font class="subnavfont" style="color: #000000;">Log In</font></a><%}%>
+            <%if (1==2 && !Pagez.getUserSession().getIsloggedin()){%><a href="/login.jsp"><font class="subnavfont" style="color: #000000;">Log In</font></a><%}%>
         <%}%>
 
         <%if (navtab.equals("youraccount")){%>
@@ -72,13 +72,13 @@
         <%if (navtab.equals("mythredz")){%>
             <%if (Pagez.getUserSession().getIsloggedin()){%>
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>
-                <a href="/account/index.jsp"><font class="subnavfont" style="color: #000000;">Post Stuff</font></a>
+                <a href="/account/index.jsp"><font class="subnavfont" style="color: #000000;">Publish myThredz</font></a>
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>
                 <a href="/account/thredzlist.jsp"><font class="subnavfont" style="color: #000000;">Add/Edit Thredz</font></a>
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>                               
-                <a href="/account/embed.jsp"><font class="subnavfont" style="color: #000000;">Embed in your Blog</font></a>
+                <a href="/account/embed.jsp"><font class="subnavfont" style="color: #000000;">Embed in Your Blog</font></a>
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>
-                <a href="/account/mobile.jsp"><font class="subnavfont" style="color: #000000;">Mobile Device</font></a>
+                <a href="/account/mobile.jsp"><font class="subnavfont" style="color: #000000;">Mobile Device Screen</font></a>
             <%}%>
         <%}%>
 

@@ -193,7 +193,7 @@ if (thredsCheck==null || thredsCheck.size()<=0){
         }
     %>
     <tr>
-    <td valign="top" colspan="<%=colspan%>"><center><input type="submit" class="formsubmitbutton" value="Save myThredz"><br/><br/></center></td>
+    <td valign="top" colspan="<%=colspan%>"><center><input type="submit" class="formsubmitbutton" value="Publish myThredz"><br/><br/></center></td>
     </tr>
     </table>
 
