@@ -34,7 +34,9 @@ public class SmtpListener implements Runnable  {
         logger.debug("MyThredz: SmtpListener.shutDownSmtpListener() called");
         try{
             keepMeRunning = false;
-            slisten.close();
+            if (slisten!=null){
+                slisten.close();
+            }
             thread = null;
         } catch (Exception ex){
             logger.error("", ex);
