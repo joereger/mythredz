@@ -44,6 +44,25 @@ String acl = "public";
 
                 <!--</div>-->
             <!--</div>-->
+
+            <br/><br/>
+            <table cellpadding="10" cellspacing="0" border="0">
+            <tr>
+                <td valign="top">
+                    <a href="/images/mythredz-screenshot-01.jpg" target="mythredzscreenshot"><img src="/images/mythredz-screenshot-01-thumb.gif" alt="" width="200" height="120" border="0"></a>
+                    <br/><br/><font class="smallfont" style="background: #ffffff;">Screenshot: Publishing Screen</font><br/>
+                    <font class="tinyfont">Once you define your Thredz you get a dead-simple publishing screen with an input box for each one.  You type a bit and click Publish.  Your updates are saved.</font><br/>
+                    <a href="/images/mythredz-screenshot-01.jpg" target="mythredzscreenshot"><font class="tinyfont">Zoom +</font></a>
+                </td>
+                <td valign="top">
+                    <a href="/images/mythredz-screenshot-02.jpg" target="mythredzscreenshot"><img src="/images/mythredz-screenshot-02-thumb.gif" alt="" width="200" height="120" border="0"></a>
+                    <br/><br/><font class="smallfont" style="background: #ffffff;">Screenshot: Thredz Embedded in a Blog</font><br/>
+                    <font class="tinyfont">Thredz sitting at the top of a blog.  Note that there's one scrollable box for each Thred.</font><br/>
+                    <a href="/images/mythredz-screenshot-02.jpg" target="mythredzscreenshot"><font class="tinyfont">Zoom +</font></a>
+                </td>
+            </tr>
+            </table>
+
         </td>
         <td valign="top" width="50%">
             <%if (!Pagez.getUserSession().getIsloggedin()){%>
@@ -69,7 +88,7 @@ String acl = "public";
                 <br/><font class="smallfont" style="background: #ffffff;">What happens once I publish to a Thred?</font>
                 <br/><font class="tinyfont">Your updates are published to your blog.  You have myThredz embedded on your blog.  It takes up a small piece of real estate.  People can see the Thredz that you're tracking and can scroll each one for updates.  Check <a href="http://www.joereger.com">joereger.com</a> for an example.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">Why do we need this?</font>
-                <br/><font class="tinyfont">We have single-Thred microblogging systems like Twitter, etc.  But their organization of themes isn't (yet?) strong and their embeds are simplistic.  You get one publishing stream, that's it.  We wanted something that takes over a little more screen real estate than the tiny Twitter embed while illustrating the Thredz.  In this way your blog readers who don't care about your work can simply ignore the "Work" Thred (assuming you have one.)</font><br/>
+                <br/><font class="tinyfont">There's tremendous value in the details of life but often such details tend to overwhelm a focused blog.  Enter microblogging.  We have single-Thred microblogging systems like Twitter, etc.  But their organization of themes isn't (yet?) strong and their embeds are simplistic.  You get one publishing stream, that's it.  We wanted something that takes over a little more screen real estate than the tiny Twitter embed while illustrating the Thredz.  In this way your blog readers who don't care about your work can simply ignore the "Work" Thred (assuming you have one.)</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">What blogging systems are supported?</font>
                 <br/><font class="tinyfont">Any blogging system that allows you to publish Javascript includes.  At this point we don't have a list.  Let us know what we're missing.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">Is this a social network?</font>
