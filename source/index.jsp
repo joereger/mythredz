@@ -56,7 +56,7 @@ String acl = "public";
                 </td>
                 <td valign="top">
                     <a href="/images/mythredz-screenshot-02.jpg" target="mythredzscreenshot"><img src="/images/mythredz-screenshot-02-thumb.gif" alt="" width="200" height="120" border="0"></a>
-                    <br/><br/><font class="smallfont" style="background: #ffffff;">Screenshot: Thredz Embedded in a Blog</font><br/>
+                    <br/><br/><font class="smallfont" style="background: #ffffff;">Screenshot: Embedded in a Blog</font><br/>
                     <font class="tinyfont">Thredz sitting at the top of a blog.  Note that there's one scrollable box for each Thred.</font><br/>
                     <a href="/images/mythredz-screenshot-02.jpg" target="mythredzscreenshot"><font class="tinyfont">Zoom +</font></a>
                 </td>
