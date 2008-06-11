@@ -11,6 +11,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.mythredz.util.Num" %>
 <%@ page import="com.mythredz.dao.Post" %>
+<%@ page import="com.mythredz.cache.providers.CacheFactory" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
 String pagetitle = "Post";
@@ -46,19 +47,28 @@ if (thred!=null){
 
 <%
     if (request.getParameter("action") != null && request.getParameter("action").equals("save")) {
-    try {
-        post.setContents(Textarea.getValueFromRequest("postcontent", "Post Content", true));
-        post.save();
-        Pagez.getUserSession().setMessage("Post saved.");
-        Pagez.sendRedirect("/account/index.jsp");
-        return;
-    } catch (ValidationException vex){
-        Pagez.getUserSession().setMessage(vex.getErrorsAsSingleString());
-    } catch (Exception ex) {
-        logger.error("", ex);
-        Pagez.getUserSession().setMessage("There was some sort of funky error.  A sysadmin has been contacted. Please try again.");
+        try {
+            post.setContents(Textarea.getValueFromRequest("postcontent", "Post Content", true));
+            post.save();
+
+            //Clear the Javascript Embed cache
+            String nameInCache="embedjavascriptservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
+            String cacheGroup="embedjavascriptcache" + "/";
+            CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
+            String nameInCacheVert="embedjavascriptverticalservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
+            String cacheGroupVert="embedjavascriptcache" + "/";
+            CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
+
+            Pagez.getUserSession().setMessage("Post saved.");
+            Pagez.sendRedirect("/account/index.jsp");
+            return;
+        } catch (ValidationException vex) {
+            Pagez.getUserSession().setMessage(vex.getErrorsAsSingleString());
+        } catch (Exception ex) {
+            logger.error("", ex);
+            Pagez.getUserSession().setMessage("There was some sort of funky error.  A sysadmin has been contacted. Please try again.");
+        }
     }
-}
 %>
 
 <%
@@ -76,6 +86,15 @@ if (thred!=null){
     if (request.getParameter("action") != null && request.getParameter("action").equals("deleteconfirm")) {
     try {
         post.delete();
+        
+        //Clear the Javascript Embed cache
+        String nameInCache="embedjavascriptservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
+        String cacheGroup="embedjavascriptcache" + "/";
+        CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
+        String nameInCacheVert="embedjavascriptverticalservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
+        String cacheGroupVert="embedjavascriptcache" + "/";
+        CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
+
         Pagez.getUserSession().setMessage("Post deleted.");
         Pagez.sendRedirect("/account/index.jsp");
         return;

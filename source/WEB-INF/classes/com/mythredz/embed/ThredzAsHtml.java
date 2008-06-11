@@ -44,35 +44,40 @@ public class ThredzAsHtml {
                 "    font-size: 12px;\n" +
                 "}\n"+
                 ".thrednormal{\n" +
-                "   background : #ffffff; padding: 0px; width: 100%; height: "+(totHeight-0)+"px; overflow : hidden; text-align: left;\n" +
+                "   background : #ffffff; padding: 0px; width: 100%; height: "+(totHeight-0)+"px; overflow : hidden; text-align: left; z-index: 1;\n" +
                 "}\n"+
                 ".thredhot{\n" +
-                "   background : #ffffff; padding: 0px; width: 100%; height: 350px; overflow : auto; text-align: left;\n" +
+                "   background : #ffffff; padding: 0px; width: 100%; height: 250px; overflow : auto; text-align: left; z-index: 99;\n" +
                 "}\n"+
                 "</style>");
 
         out.append("\n\n<div style=\"background : #ffffff; padding: 0px; width: margin: 0px; 95%; border: 5px solid #ffffff; height: "+totHeight+"px; overflow: visible; text-align: left;\">"+"\n");
 
 
+
+
+        List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
+            .add(Restrictions.eq("userid", user.getUserid()))
+            .setCacheable(true)
+            .list();
+
+
+
+
         out.append("\n<table cellpadding=\"0\" cellspacing=\"1\" border=\"0\" width=\"100%\">");
-        //out.append("<tr>");
-            List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
-                .add(Restrictions.eq("userid", user.getUserid()))
-                .setCacheable(true)
-                .list();
+
+        out.append("\n<tr>");
+
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
             Thred thred=iterator.next();
             double widthDbl=100 / threds.size();
             Double widthBigDbl=new Double(widthDbl);
             int width=widthBigDbl.intValue();
-            //out.append("<td valign=\"top\" width=\""+width+"%\">");
-
-            //out.append("</td>");
-
-
+            out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
+            out.append("\n<div style=\"width: 100%; background: #e6e6e6; text-align: center; height: 26px;\"><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">"+thred.getName()+"</font></div>");
+            out.append("</td>");
         }
-        //out.append("</tr>");
-
+        out.append("\n\n</tr>");
 
 
 
@@ -83,9 +88,8 @@ public class ThredzAsHtml {
             double widthDbl=100 / threds.size();
             Double widthBigDbl=new Double(widthDbl);
             int width=widthBigDbl.intValue();
-            out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
+            out.append("\n\n<td valign=\"top\">");
             out.append("\n<div class=\"thrednormal\" style=\"\" onmouseover=\"this.className='thredhot';\" onmouseout=\"this.className='thrednormal';\">"+"\n");
-            out.append("\n<div style=\"width: 100%; background: #e6e6e6; text-align: center; height: 26px;\"><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">"+thred.getName()+"</font></div>");
             //out.append("\n<br/>");
             List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                     .add(Restrictions.eq("thredid", thred.getThredid()))
@@ -113,8 +117,18 @@ public class ThredzAsHtml {
             out.append("\n</td>");
 
         }
-
         out.append("\n\n</tr>");
+
+
+
+
+
+
+
+
+
+
+
         out.append("\n</table>");
 
 
@@ -147,37 +161,22 @@ public class ThredzAsHtml {
                 "    font-size: 12px;\n" +
                 "}\n"+
                 ".thrednormal{\n" +
-                "   background : #ffffff; padding: 0px; width: 100%; height: 100px; overflow : hidden; text-align: left;\n" +
+                "   background : #ffffff; padding: 0px; width: 100%; height: 100px; overflow : hidden; text-align: left; z-index: 1;\n" +
                 "}\n"+
                 ".thredhot{\n" +
-                "   background : #ffffff; padding: 0px; width: 100%; height: 300px; overflow : auto; text-align: left;\n" +
+                "   background : #ffffff; padding: 0px; width: 100%; height: 250px; overflow : auto; text-align: left; z-index: 99;\n" +
                 "}\n"+
                 "</style>");
 
         out.append("\n\n<div style=\"background : #ffffff; padding: 0px; margin: 0px; width: 95%; border: 5px solid #ffffff; text-align: left;\">"+"\n");
 
 
-        out.append("\n<table cellpadding=\"0\" cellspacing=\"0\" border=\"0\" width=\"100%\">");
+        out.append("\n<table cellpadding=\"0\" cellspacing=\"1\" border=\"0\" width=\"100%\">");
         //out.append("<tr>");
             List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
                 .add(Restrictions.eq("userid", user.getUserid()))
                 .setCacheable(true)
                 .list();
-        for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
-            Thred thred=iterator.next();
-            double widthDbl=100 / threds.size();
-            Double widthBigDbl=new Double(widthDbl);
-            int width=widthBigDbl.intValue();
-            //out.append("<td valign=\"top\" width=\""+width+"%\">");
-
-            //out.append("</td>");
-
-
-        }
-        //out.append("</tr>");
-
-
-
 
 
 
@@ -188,9 +187,12 @@ public class ThredzAsHtml {
             int width=widthBigDbl.intValue();
             out.append("\n<tr>");
             out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
-             out.append("\n<div class=\"thrednormal\" style=\"\" onmouseover=\"this.className='thredhot';\" onmouseout=\"this.className='thrednormal';\">"+"\n");
             out.append("\n<div style=\"width: 100%; background: #e6e6e6; text-align: center; height: 26px;\"><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">"+thred.getName()+"</font></div>");
-            //out.append("\n<br/>");
+            out.append("</td>");
+            out.append("</tr>");
+            out.append("\n<tr>");
+            out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
+            out.append("\n<div class=\"thrednormal\" style=\"\" onmouseover=\"this.className='thredhot';\" onmouseout=\"this.className='thrednormal';\">"+"\n");
             List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                     .add(Restrictions.eq("thredid", thred.getThredid()))
                     .addOrder(Order.desc("date"))
