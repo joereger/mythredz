@@ -10,50 +10,47 @@
 <%@ page import="com.mythredz.dbgrid.GridCol" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.mythredz.util.Num" %>
+<%@ page import="com.mythredz.dao.Post" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
-String pagetitle = "Thred";
+String pagetitle = "Post";
 String navtab = "mythredz";
 String acl = "account";
 %>
 <%@ include file="/template/auth.jsp" %>
 
 <%
-    Thred thred=new Thred();
-    thred.setCreatedate(new java.util.Date());
-    thred.setUserid(Pagez.getUserSession().getUser().getUserid());
-    if (request.getParameter("thredid") != null && Num.isinteger(request.getParameter("thredid"))) {
-        thred = Thred.get(Integer.parseInt(request.getParameter("thredid")));
+    Post post=new Post();
+    if (request.getParameter("postid") != null && Num.isinteger(request.getParameter("postid"))) {
+        post=Post.get(Integer.parseInt(request.getParameter("postid")));
+    }
+    if (post.getPostid()<=0){
+        Pagez.getUserSession().setMessage("Sorry, you can't edit that post.");
+        Pagez.sendRedirect("/account/index.jsp");
+        return;
     }
 %>
 
 <%
-if (thred.getUserid()!=Pagez.getUserSession().getUser().getUserid()){
-    Pagez.getUserSession().setMessage("Sorry, you can't edit that thred.");
-    Pagez.sendRedirect("/account/thredzlist.jsp");
-    return;
+Thred thred = null;
+thred = Thred.get(post.getThredid());
+if (thred!=null){
+    if (thred.getUserid()!=Pagez.getUserSession().getUser().getUserid()){
+        Pagez.getUserSession().setMessage("Sorry, you can't edit that post.");
+        Pagez.sendRedirect("/account/index.jsp");
+        return;
+    }
 }
 %>
 
-<%
-List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
-                .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
-                .setCacheable(true)
-                .list();
-if (threds!=null && threds.size()>=7){
-    Pagez.getUserSession().setMessage("Sorry, you can only have up to seven threds.");
-    Pagez.sendRedirect("/account/thredzlist.jsp");
-    return;
-}
-%>
 
 <%
     if (request.getParameter("action") != null && request.getParameter("action").equals("save")) {
     try {
-        thred.setName(Textbox.getValueFromRequest("name", "Thred Name", true, DatatypeString.DATATYPEID));
-        thred.save();
-        Pagez.getUserSession().setMessage("Thred saved.");
-        Pagez.sendRedirect("/account/thredzlist.jsp");
+        post.setContents(Textarea.getValueFromRequest("postcontent", "Post Content", true));
+        post.save();
+        Pagez.getUserSession().setMessage("Post saved.");
+        Pagez.sendRedirect("/account/index.jsp");
         return;
     } catch (ValidationException vex){
         Pagez.getUserSession().setMessage(vex.getErrorsAsSingleString());
@@ -67,7 +64,7 @@ if (threds!=null && threds.size()>=7){
 <%
     if (request.getParameter("action") != null && request.getParameter("action").equals("delete")) {
     try {
-        Pagez.getUserSession().setMessage("Are you sure you want to delete this thred and all posts created for it?  <a href=\"/account/thrededit.jsp?thredid="+thred.getThredid()+"&action=deleteconfirm\">Yes, Delete It</a> <a href=\"/account/thredzlist.jsp\">No, Nevermind</a>");
+        Pagez.getUserSession().setMessage("Are you sure you want to delete this post?  <a href=\"/account/postedit.jsp?postid="+post.getPostid()+"&action=deleteconfirm\">Yes, Delete It</a> <a href=\"/account/postedit.jsp?postid="+post.getPostid()+"\">No, Nevermind</a>");
     } catch (Exception ex) {
         logger.error("", ex);
         Pagez.getUserSession().setMessage("There was some sort of funky error.  A sysadmin has been contacted. Please try again.");
@@ -78,10 +75,9 @@ if (threds!=null && threds.size()>=7){
 <%
     if (request.getParameter("action") != null && request.getParameter("action").equals("deleteconfirm")) {
     try {
-        HibernateUtil.getSession().createQuery("delete Post p where p.thredid="+thred.getThredid()).executeUpdate();
-        thred.delete();
-        Pagez.getUserSession().setMessage("Thred deleted.");
-        Pagez.sendRedirect("/account/thredzlist.jsp");
+        post.delete();
+        Pagez.getUserSession().setMessage("Post deleted.");
+        Pagez.sendRedirect("/account/index.jsp");
         return;
     } catch (Exception ex) {
         logger.error("", ex);
@@ -94,18 +90,17 @@ if (threds!=null && threds.size()>=7){
 
 
     <br/><br/>
-    <form action="/account/thrededit.jsp" method="post">
-        <input type="hidden" name="dpage" value="/account/thrededit.jsp">
+    <form action="/account/postedit.jsp" method="post">
+        <input type="hidden" name="dpage" value="/account/postedit.jsp">
         <input type="hidden" name="action" value="save">
-        <input type="hidden" name="thredid" value="<%=request.getParameter("thredid")%>">
+        <input type="hidden" name="postid" value="<%=request.getParameter("postid")%>">
             <table cellpadding="0" cellspacing="0" border="0">
 
                 <tr>
-                    <td valign="top">
-                        <font class="formfieldnamefont">Thred Name</font>
-                    </td>
-                    <td valign="top">
-                        <%=Textbox.getHtml("name", thred.getName(), 20, 20, "", "")%>
+                    <td valign="top" colspan="2">
+                        <font class="formfieldnamefont">Post Content:</font>
+                        <br/>
+                        <%=Textarea.getHtml("postcontent", post.getContents(), 5, 45, "", "")%>
                     </td>
                 </tr>
 
@@ -116,10 +111,10 @@ if (threds!=null && threds.size()>=7){
                     </td>
                     <td valign="top">
                         <br/><br/>
-                        <input type="submit" class="formsubmitbutton" value="Save Thred">
+                        <input type="submit" class="formsubmitbutton" value="Save Post">
                         <%if (thred.getThredid()>0){%>
                             <br/><br/>
-                            <a href="/account/thrededit.jsp?thredid=<%=thred.getThredid()%>&action=delete"><font class="tinyfont">Delete Thred</font></a>
+                            <a href="/account/postedit.jsp?postid=<%=post.getPostid()%>&action=delete"><font class="tinyfont">Delete Post</font></a>
                         <%}%>
                     </td>
                 </tr>

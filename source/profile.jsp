@@ -100,7 +100,7 @@ String acl = "public";
                 .list();
         for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
             Post post=iterator1.next();
-    %><font class="tinyfont" style="color: #cccccc; background: #999999;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
+            %><font class="tinyfont" style="color: #cccccc; background: #999999;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
         }
         %></td><%
 

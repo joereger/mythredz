@@ -76,7 +76,7 @@ String acl = "account";
                         <font class="formfieldnamefont">myThred #1</font>
                     </td>
                     <td valign="top">
-                        <%=Textbox.getHtml("thred1", "Work", 100, 20, "", "")%>
+                        <%=Textbox.getHtml("thred1", "Work", 20, 20, "", "")%>
                     </td>
                 </tr>
 
@@ -85,7 +85,7 @@ String acl = "account";
                         <font class="formfieldnamefont">myThred #2</font>
                     </td>
                     <td valign="top">
-                        <%=Textbox.getHtml("thred2", "Family", 100, 20, "", "")%>
+                        <%=Textbox.getHtml("thred2", "Family", 20, 20, "", "")%>
                     </td>
                 </tr>
 
@@ -94,7 +94,7 @@ String acl = "account";
                         <font class="formfieldnamefont">myThred #3</font>
                     </td>
                     <td valign="top">
-                        <%=Textbox.getHtml("thred3", "Hobby", 100, 20, "", "")%>
+                        <%=Textbox.getHtml("thred3", "Hobby", 20, 20, "", "")%>
                     </td>
                 </tr>
 
