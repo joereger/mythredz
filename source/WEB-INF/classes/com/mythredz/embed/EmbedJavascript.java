@@ -71,7 +71,7 @@ public class EmbedJavascript extends HttpServlet {
                 logger.debug("rebuilding string and putting it into cache");
                 try{
                     String thredzashtml = ThredzAsHtml.get(user, makeHttpsIfSSLIsOn);
-                    output = Str.cleanForjavascriptAndReplaceDoubleQuoteWithSingle(thredzashtml);
+                    output = Str.cleanForjavascriptAndEscapeDoubleQuote(thredzashtml);
                     output = output.replaceAll("\\n", "\"+\\\n\"");
                     output = output.replaceAll("\\r", "\"+\\\n\"");
                     output = "document.write(\""+output+"\");"+"\n";
