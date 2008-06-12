@@ -44,6 +44,13 @@ String acl = "account";
             </div>
         </td>
     </tr>
+    <tr>
+        <td valign="top">
+            <div class="rounded" style="padding: 15px; margin: 5px; background: #cccccc;">
+            <font class="mediumfont">Once you get myThredz embedded, be sure to mouse over Publish to MyThredz for in-blog functionality.</font>
+            </div>
+        </td>
+    </tr>
 
 </table>
 

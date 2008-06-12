@@ -85,6 +85,8 @@ String acl = "public";
                 <br/><font class="tinyfont">A microblogging system that you can use to track, organize and publish those short updates that aren't quite worth a full blog post.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">What's unique about it?</font>
                 <br/><font class="tinyfont">The concept of Thredz.  These are themes.  You choose a Thred that you want to track... "Work" or "Family" or whatever.  You then post your updates to one of these Thredz.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">How do I publish?</font>
+                <br/><font class="tinyfont">Once you embed the widget into your blog you can publish directly on your blog... without ever leaving!  You can also publish at myThredz.com.  We also have a low-bandwidth mobile phone page you can use.  And we'd love to make it so that you can publish directly from the embed widget on your blog.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">What happens once I publish to a Thred?</font>
                 <br/><font class="tinyfont">Your updates are published to your blog.  You have myThredz embedded on your blog.  It takes up a small piece of real estate.  People can see the Thredz that you're tracking and can scroll each one for updates.  Check <a href="http://www.joereger.com">joereger.com</a> for an example.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">Why do we need this?</font>
@@ -93,8 +95,6 @@ String acl = "public";
                 <br/><font class="tinyfont">Any blogging system that allows you to publish Javascript includes.  At this point we don't have a list.  Let us know what we're missing.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">Is this a social network?</font>
                 <br/><font class="tinyfont">No.  It could be.  We could do the whole Follow thing and create a river of friend news.  But we don't even have users yet. We believe in the bootstrapping ethos.  Kick us in the nads if you want social features.</font><br/>
-                <br/><font class="smallfont" style="background: #ffffff;">How do I publish?</font>
-                <br/><font class="tinyfont">Log in to myThredz.com.  We also have a low-bandwidth mobile phone page you can use.  And we'd love to make it so that you can publish directly from the embed widget on your blog.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">How much does it cost?</font>
                 <br/><font class="tinyfont">Completely free.  At this point we have no idea how/if we'll make money on it.</font><br/>
             </div>

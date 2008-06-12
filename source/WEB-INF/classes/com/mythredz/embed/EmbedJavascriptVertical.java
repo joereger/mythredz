@@ -93,7 +93,7 @@ public class EmbedJavascriptVertical extends HttpServlet {
             dynamicPortionOfOutput = "document.write(\""+dynamicPortionOfOutput+"\");"+"\n";
         }
         //Now add toolbar
-        output.append(getToolbar());
+        output.append(getToolbar(user.getUserid()));
         //Append dynamic
         output.append(dynamicPortionOfOutput);
 
@@ -107,7 +107,7 @@ public class EmbedJavascriptVertical extends HttpServlet {
         out.print(finalOutput);
     }
 
-    private String getToolbar(){
+    private String getToolbar(int userid){
         StringBuffer out = new StringBuffer();
 
         out.append("<style>\n"+
@@ -148,7 +148,7 @@ public class EmbedJavascriptVertical extends HttpServlet {
         out.append("\n<div class=\"toolbarnormalvert\"  onmouseover=\"this.className='toolbarhotvert';\" onmouseout=\"this.className='toolbarnormalvert';\">"+"\n");
         out.append("<div style=\"text-align: right;\"><font class=\"tinyfont\" style=\"color: #cccccc;\">Publish to myThredz</font></div>");
         out.append("<br/><br/>");
-        if (Pagez.getUserSession().getIsloggedin() && Pagez.getUserSession().getUser()!=null){
+        if (Pagez.getUserSession().getIsloggedin() && Pagez.getUserSession().getUser()!=null && Pagez.getUserSession().getUser().getUserid()==userid){
             out.append(getThredzInputForm());
         } else {
             out.append("<form action=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/login.jsp\" method=\"post\">\n" +
