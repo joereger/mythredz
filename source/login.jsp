@@ -2,6 +2,8 @@
 <%@ page import="com.mythredz.htmluibeans.Login" %>
 <%@ page import="com.mythredz.htmlui.*" %>
 <%@ page import="com.mythredz.systemprops.SystemProperty" %>
+<%@ page import="com.mythredz.session.PersistentLogin" %>
+<%@ page import="com.mythredz.session.UrlSplitter" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
 String pagetitle = "Log In";
@@ -27,22 +29,37 @@ Login login = (Login) Pagez.getBeanMgr().get("Login");
             login.setKeepmeloggedin(CheckboxBoolean.getValueFromRequest("keepmeloggedin"));
             login.login();
             //Redir if https is on
-            String keepmeloggedinStr = "";
-            if (login.getKeepmeloggedin()){
-                keepmeloggedinStr = "?keepmeloggedin=1";
+            String keepmeloggedinStr="";
+            if (login.getKeepmeloggedin()) {
+                keepmeloggedinStr="?keepmeloggedin=1";
+                //Get all possible cookies to set
+                Cookie[] cookies=PersistentLogin.getPersistentCookies(Pagez.getUserSession().getUser().getUserid(), Pagez.getRequest());
+                //Add a cookies to the response
+                for (int j=0; j<cookies.length; j++) {
+                    Pagez.getResponse().addCookie(cookies[j]);
+                }
             }
+            //For login from embed widget
+            if (request.getParameter("redirtocaller") != null && request.getParameter("redirtocaller").equals("1")) {
+                String referer = request.getHeader("referer");
+                if (referer!=null){
+                    Pagez.sendRedirect(referer);
+                    return;
+                }
+            }
+            //Redir somewhere
             if (SystemProperty.getProp(SystemProperty.PROP_ISSSLON).equals("1")) {
                 try {
-                    logger.debug("redirecting to https - " + BaseUrl.get(true) + "account/index.jsp"+keepmeloggedinStr);
-                    Pagez.sendRedirect(BaseUrl.get(true) + "account/index.jsp"+keepmeloggedinStr);
+                    logger.debug("redirecting to https - " + BaseUrl.get(true) + "account/index.jsp" + keepmeloggedinStr);
+                    Pagez.sendRedirect(BaseUrl.get(true) + "account/index.jsp" + keepmeloggedinStr);
                     return;
                 } catch (Exception ex) {
                     logger.error("", ex);
-                    Pagez.sendRedirect("/account/index.jsp"+keepmeloggedinStr);
+                    Pagez.sendRedirect("/account/index.jsp" + keepmeloggedinStr);
                     return;
                 }
             } else {
-                Pagez.sendRedirect("/account/index.jsp"+keepmeloggedinStr);
+                Pagez.sendRedirect("/account/index.jsp" + keepmeloggedinStr);
                 return;
             }
         } catch (ValidationException vex) {

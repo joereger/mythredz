@@ -51,7 +51,7 @@ public class ThredzAsHtml {
                 "}\n"+
                 "</style>");
 
-        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; width: margin: 0px; 95%; border: 5px solid #ffffff; height: "+totHeight+"px; overflow: visible; text-align: left;\">"+"\n");
+        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; width: margin: 0px; 95%; border: 0px solid #ffffff; height: "+totHeight+"px; overflow: visible; text-align: left;\">"+"\n");
 
 
 
@@ -168,7 +168,7 @@ public class ThredzAsHtml {
                 "}\n"+
                 "</style>");
 
-        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; margin: 0px; width: 95%; border: 5px solid #ffffff; text-align: left;\">"+"\n");
+        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; margin: 0px; width: 95%; border: 0px solid #ffffff; text-align: left;\">"+"\n");
 
 
         out.append("\n<table cellpadding=\"0\" cellspacing=\"1\" border=\"0\" width=\"100%\">");

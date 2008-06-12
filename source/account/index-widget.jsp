@@ -18,9 +18,7 @@ String pagetitle = "";
 String navtab = "mythredz";
 String acl = "account";
 %>
-<%
-AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex");
-%>
+
 <%@ include file="/template/auth.jsp" %>
 
 <%
@@ -50,8 +48,15 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
                     String nameInCacheVert="embedjavascriptverticalservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
                     String cacheGroupVert="embedjavascriptcache" + "/";
                     CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
+
                 }
             }
+        }
+        //Redir to calling page
+        String referer = request.getHeader("referer");
+        if (referer!=null){
+            Pagez.sendRedirect(referer);
+            return;
         }
         //Pagez.getUserSession().setMessage("Thredz have been saved!");
     }
@@ -61,44 +66,6 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
 
 
 
-
-    <table cellpadding="0" cellspacing="5" border="0" width="100%">
-    
-
-
-
-
-    <tr>
-    <%
-        List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
-                .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
-                .setCacheable(true)
-                .list();
-        logger.debug("threds.size()="+threds.size());
-        for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
-            Thred thred=iterator.next();
-            double widthDbl=100 / threds.size();
-            Double widthBigDbl=new Double(widthDbl);
-            int width=widthBigDbl.intValue();
-            %><td valign="top" width="<%=width%>%"><div style="height: 35px;"><font class="normalfont" style="font-weight: bold; background: #ffffff;"><%=thred.getName()%></font></div><%
-                List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
-                        .add(Restrictions.eq("thredid", thred.getThredid()))
-                        .addOrder(Order.desc("date"))
-                        .setMaxResults(25)
-                        .setCacheable(true)
-                        .list();
-                for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
-                    Post post=iterator1.next();
-                    %><font class="tinyfont" style="color: #cccccc; background: #999999;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><%
-                    %><br/><a href="/account/postedit.jsp?postid=<%=post.getPostid()%>"><font class="tinyfont">edit</font></a><br/><%
-                    %><br/><br/><%
-                }
-                %></td><%
-
-        }
-    %>
-    </tr>
-    </table>
 
 
 <%//@ include file="/template/footer.jsp" %>
