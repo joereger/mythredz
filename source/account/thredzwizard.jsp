@@ -48,7 +48,7 @@ String acl = "account";
             try{thred.save();}catch(Exception ex){logger.error("", ex);}
         }
 
-        Pagez.getUserSession().setMessage("Your Thredz have been created.  Make an update by typing into one or all of the thred boxes and hitting save.");
+        Pagez.getUserSession().setMessage("Your Thredz have been created.  Make an update by typing into one or all of the thred boxes and hitting save.  Be sure to <a href=\"/account/embed.jsp\">embed the widget into your blog</a>.");
         Pagez.sendRedirect("/account/index.jsp");
         return;
 

@@ -72,7 +72,7 @@
         <%if (navtab.equals("mythredz")){%>
             <%if (Pagez.getUserSession().getIsloggedin()){%>
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>
-                <a href="/account/index.jsp"><font class="subnavfont" style="color: #000000;">Publish myThredz</font></a>
+                <a href="/account/index.jsp"><font class="subnavfont" style="color: #000000;">Publish to myThredz</font></a>
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>
                 <a href="/account/thredzlist.jsp"><font class="subnavfont" style="color: #000000;">Add/Edit Thredz</font></a>
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>                               
