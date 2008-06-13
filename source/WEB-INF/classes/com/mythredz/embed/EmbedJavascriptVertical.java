@@ -112,7 +112,7 @@ public class EmbedJavascriptVertical extends HttpServlet {
 
         out.append("<style>\n"+
                 ".toolbarnormalvert{\n" +
-                "   background : #ffffff; padding: 0px; width: 100; float: right; height: 15px; overflow : hidden; text-align: left; z-index: 0;\n" +
+                "   background : #ffffff; padding: 0px; width: 150; float: right; height: 15px; overflow : hidden; text-align: left; z-index: 0;\n" +
                 "}\n"+
                 ".toolbarhotvert{\n" +
                 "   background : #e6e6e6; padding: 0px; width: 200; height: 450px; overflow : auto; text-align: left; z-index: 99; background-image: url('http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/embed-toolbar-bg.gif')\n" +

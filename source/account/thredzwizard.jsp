@@ -59,10 +59,33 @@ String acl = "account";
 
 
     <div class="rounded" style="padding: 15px; margin: 5px; background: #e6e6e6;">
+        <%if(request.getParameter("firsttime")!=null && request.getParameter("firsttime").equals("1")){%>
+            <font class="mediumfont">Congrats!  You're all signed up!</font><br/><br/>
+        <%}%>
         <font class="mediumfont">You need to create some thredz.  A thred is simply some recurring theme that you'd like to track.  Something you can write a little about each day.  You can always add or change thredz later on.</font>
     </div>
 
     <br/><br/>
+
+    <%if(request.getParameter("firsttime")!=null && request.getParameter("firsttime").equals("1")){%>
+        <div style="float: right;">
+            <!-- Google Code for Sign up for myThredz.com Conversion Page -->
+            <script language="JavaScript" type="text/javascript">
+            <!--
+            var google_conversion_id = 1072612680;
+            var google_conversion_language = "en_US";
+            var google_conversion_format = "1";
+            var google_conversion_color = "ffffff";
+            var google_conversion_label = "3FESCLD-TxDIirv_Aw";
+            //-->
+            </script>
+            <script language="JavaScript" src="http://www.googleadservices.com/pagead/conversion.js">
+            </script>
+            <noscript>
+            <img height="1" width="1" border="0" src="http://www.googleadservices.com/pagead/conversion/1072612680/?label=3FESCLD-TxDIirv_Aw&amp;script=0"/>
+            </noscript>
+        </div>
+    <%}%>
 
     <form id="myForm" action="/account/thredzwizard.jsp" method="post">
         <input type="hidden" name="dpage" value="/account/thredzwizard.jsp">

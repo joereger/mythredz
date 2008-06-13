@@ -112,10 +112,10 @@ public class EmbedJavascript extends HttpServlet {
 
         out.append("<style>\n"+
                 ".toolbarnormal{\n" +
-                "   background : #ffffff; padding: 0px; width: 100; float: right; height: 15px; overflow : hidden; text-align: left; z-index: 0;\n" +
+                "   background : #ffffff; padding: 0px; width: 150; float: right; height: 15px; overflow : hidden; text-align: left; z-index: 0;\n" +
                 "}\n"+
                 ".toolbarhot{\n" +
-                "   background : #e6e6e6; padding: 0px; width: 100%; height: 250px; overflow : auto; text-align: left; z-index: 99; background-image: url('http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/embed-toolbar-bg.gif')\n" +
+                "   background : #e6e6e6; padding: 0px; width: 100%; height: 275px; overflow : auto; text-align: left; z-index: 99; background-image: url('http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/embed-toolbar-bg.gif')\n" +
                 "}\n"+
                 ".formfieldnamefont {\n" +
                 "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
@@ -222,7 +222,7 @@ public class EmbedJavascript extends HttpServlet {
     }
 
     private String getThredzInputForm(){
-
+                                         
         StringBuffer out = new StringBuffer();
         out.append("<form id=\"myForm\" action=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/account/index-widget.jsp\" method=\"post\">\n" +
                 "        <input type=\"hidden\" name=\"dpage\" value=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/account/index-widget.jsp\">\n" +
