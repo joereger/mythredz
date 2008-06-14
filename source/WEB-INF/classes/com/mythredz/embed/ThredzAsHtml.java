@@ -74,7 +74,9 @@ public class ThredzAsHtml {
             Double widthBigDbl=new Double(widthDbl);
             int width=widthBigDbl.intValue();
             out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
-            out.append("\n<div style=\"width: 100%; background: #e6e6e6; text-align: center; height: 26px;\"><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">"+thred.getName()+"</font></div>");
+            out.append("\n<div style=\"width: 100%; background: #e6e6e6; text-align: center; height: 26px;\">");
+            out.append("<font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">"+thred.getName()+"</font>");
+            out.append("</div>");
             out.append("</td>");
         }
         out.append("\n\n</tr>");
@@ -104,15 +106,17 @@ public class ThredzAsHtml {
             }
 
             out.append("<div style=\"width: 100%; background: #e6e6e6; text-align: center;\">");
+            out.append("<br/><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/user/"+user.getNickname()+"/\">");
-            out.append("<font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">See All of this Thred</font>");
+            out.append("See All of this Thred");
             out.append("</a>");
+            out.append("</font>");
             out.append("<br/>");
-            out.append("<font class=\"tinyfont\">Powered by myThredz</font><br/>");
-            out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">");
-            out.append("<font class=\"tinyfont\">Get Your Own!</font>");
-            out.append("</a>");
+            out.append("<font class=\"tinyfont\">Powered by <a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">myThredz</a></font><br/>");
+            out.append("<br/><font class=\"tinyfont\" style=\"font-weight: bold;\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss.xml?thredid="+thred.getThredid()+"\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
+            out.append("<br/><br/>");
             out.append("</div>");
+
             out.append("\n</div>");
             out.append("\n</td>");
 
@@ -206,15 +210,18 @@ public class ThredzAsHtml {
             }
 
             out.append("<div style=\"width: 100%; background: #e6e6e6; text-align: center;\">");
+            out.append("<br/><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/user/"+user.getNickname()+"/\">");
-            out.append("<font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">See All of this Thred</font>");
+            out.append("See All of this Thred");
             out.append("</a>");
+            out.append("</font>");
             out.append("<br/>");
-            out.append("<font class=\"tinyfont\">Powered by myThredz</font><br/>");
-            out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">");
-            out.append("<font class=\"tinyfont\">Get Your Own!</font>");
-            out.append("</a>");
+            out.append("<font class=\"tinyfont\">Powered by <a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">myThredz</a></font><br/>");
+            out.append("<br/><font class=\"tinyfont\" style=\"font-weight: bold;\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss.xml?thredid="+thred.getThredid()+"\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
+            out.append("<br/><br/>");
             out.append("</div>");
+
+
             out.append("\n</div>");
             out.append("\n</td>");
             out.append("\n\n</tr>");

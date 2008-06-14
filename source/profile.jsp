@@ -79,6 +79,8 @@ String acl = "public";
             %>
             <td valign="top" width="<%=width%>%">
                 <font class="normalfont" style="font-weight: bold; background: #ffffff;"><%=thred.getName()%></font>
+                <br/><font class="tinyfont" style="font-weight: bold; background: #ffffff;"><a href="http://<%=SystemProperty.getProp(SystemProperty.PROP_BASEURL)%>/thredrss.xml?thredid=<%=thred.getThredid()%>">RSS</a></font>
+                <br/><br/>
             </td>
             <%
 

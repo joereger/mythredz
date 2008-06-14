@@ -113,6 +113,16 @@
         <url-pattern>/rss.xml</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ThredRss</servlet-name>
+        <servlet-class>com.mythredz.helpers.ThredRss</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ThredRss</servlet-name>
+        <url-pattern>/thredrss.xml</url-pattern>
+    </servlet-mapping>
+
+
 
 
     <welcome-file-list>
