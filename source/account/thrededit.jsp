@@ -124,7 +124,7 @@ if (threds!=null && threds.size()>=7){
                     <td valign="top">
                         <%=CheckboxBoolean.getHtml("istwitterupdateon", thred.getIstwitterupdateon(), "", "")%> <font class="formfieldnamefont">Yes, Update Twitter</font>
                         <br/>
-                        <font class="tinyfont">Sending updates from this Thred to Twitter limits the input size for this Thred to 160 characters.</font>
+                        <font class="tinyfont">Sending updates from this Thred to Twitter limits the input size for this Thred to 140 characters.</font>
                         <br/>
                         <font class="formfieldnamefont">Twitter ID:</font>
                         <br/>

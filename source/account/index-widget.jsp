@@ -12,6 +12,8 @@
 <%@ page import="org.hibernate.criterion.Order" %>
 <%@ page import="com.mythredz.cache.providers.CacheFactory" %>
 <%@ page import="com.mythredz.systemprops.SystemProperty" %>
+<%@ page import="com.mythredz.util.Str" %>
+<%@ page import="com.mythredz.twitter.TwitterUpdate" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
 String pagetitle = "";
@@ -30,7 +32,7 @@ String acl = "account";
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
             Thred thred=iterator.next();
             if (Pagez.getRequest().getParameter("threadid-" + thred.getThredid()) != null && !Pagez.getRequest().getParameter("threadid-" + thred.getThredid()).trim().equals("")) {
-                if (Pagez.getUserSession().getUser().getUserid()==thred.getUserid()){
+                if (Pagez.getUserSession().getUser().getUserid() == thred.getUserid()) {
                     String in=Pagez.getRequest().getParameter("threadid-" + thred.getThredid()).trim();
                     Post post=new Post();
                     post.setContents(in);
@@ -48,13 +50,20 @@ String acl = "account";
                     String nameInCacheVert="embedjavascriptverticalservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
                     String cacheGroupVert="embedjavascriptcache" + "/";
                     CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
-
+                    //Update twitter
+                    if (thred.getIstwitterupdateon()) {
+                        String posttotwitter=Pagez.getRequest().getParameter("threadid" + thred.getThredid() + "posttotwitter");
+                        if (posttotwitter != null && posttotwitter.trim().equals("1")) {
+                            TwitterUpdate tu=new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
+                            tu.update();
+                        }
+                    }
                 }
             }
         }
         //Redir to calling page
-        String referer = request.getHeader("referer");
-        if (referer!=null){
+        String referer=request.getHeader("referer");
+        if (referer != null) {
             Pagez.sendRedirect(referer);
             return;
         }

@@ -58,7 +58,7 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
                     if (thred.getIstwitterupdateon()) {
                         String posttotwitter = Pagez.getRequest().getParameter("threadid" + thred.getThredid()+"posttotwitter");
                         if (posttotwitter!=null && posttotwitter.trim().equals("1")){
-                            TwitterUpdate tu = new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 160));
+                            TwitterUpdate tu = new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
                             tu.update();
                         }
                     }

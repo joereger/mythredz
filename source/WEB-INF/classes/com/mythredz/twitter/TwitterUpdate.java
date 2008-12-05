@@ -1,5 +1,6 @@
 package com.mythredz.twitter;
 
+
 import org.apache.log4j.Logger;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
@@ -46,9 +47,12 @@ public class TwitterUpdate implements Runnable {
         Logger logger = Logger.getLogger(this.getClass().getName());
         logger.debug("run() called.");
 
+        //Set From... currently it says from Twitter4J which is lame
+        //http://groups.google.com/group/twitter4j/browse_thread/thread/fc148459cf0fcda8
+
         try{
             Twitter twitter=new Twitter(twitterid, twitterpass);
-            Status status=twitter.update(Str.truncateString(updatetext, 160));
+            Status status=twitter.update(Str.truncateString(updatetext, 140));
             logger.debug("Twitter status updated to: "+status);
         } catch (Exception ex){
             logger.error("", ex);

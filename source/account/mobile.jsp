@@ -49,7 +49,7 @@ String acl = "account";
                 if (thred.getIstwitterupdateon()) {
                     String posttotwitter=Pagez.getRequest().getParameter("threadid" + thred.getThredid() + "posttotwitter");
                     if (posttotwitter != null && posttotwitter.trim().equals("1")) {
-                        TwitterUpdate tu=new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 160));
+                        TwitterUpdate tu=new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
                         tu.update();
                     }
                 }
@@ -83,7 +83,7 @@ String acl = "account";
 
                 <%=thred.getName()%><br/>
                 <%if (thred.getIstwitterupdateon()){%>
-                    <input type="text" name="threadid-<%=thred.getThredid()%>" maxlength="160" size="20"><br/><input type="checkbox" name="threadid<%=thred.getThredid()%>posttotwitter" value="1" checked /> Update Twitter Status
+                    <input type="text" name="threadid-<%=thred.getThredid()%>" maxlength="140" size="20"><br/><input type="checkbox" name="threadid<%=thred.getThredid()%>posttotwitter" value="1" checked /> Update Twitter Status
                 <%} else {%>
                     <textarea name="threadid-<%=thred.getThredid()%>" rows="1" cols="20"></textarea>
                 <%}%>

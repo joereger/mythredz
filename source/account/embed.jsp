@@ -29,7 +29,7 @@ String acl = "account";
             <div class="rounded" style="padding: 15px; margin: 5px; background: #e6e6e6;">
             <font class="mediumfont">Vertical Thredz (great for blog sidebar):</font>
             <div class="rounded" style="padding: 15px; margin: 5px; background: #ffffff;">
-            &lt;script type="text/javascript" src="http://<%=SystemProperty.getProp(SystemProperty.PROP_BASEURL)%>/embed/horizjs/?u=<%=Pagez.getUserSession().getUser().getUserid()%>">&lt;/script>
+            &lt;script type="text/javascript" src="http://<%=SystemProperty.getProp(SystemProperty.PROP_BASEURL)%>/embed/vertjs/?u=<%=Pagez.getUserSession().getUser().getUserid()%>">&lt;/script>
             </div>
             </div>
         </td>
