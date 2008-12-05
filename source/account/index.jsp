@@ -138,7 +138,18 @@ if (thredsCheck==null || thredsCheck.size()<=0){
     </script>
 
 
-
+    <script type="text/javascript">
+        function textCounter( field, countfield, onofffield, maxlimit ) {
+          if ( field.value.length > maxlimit ){
+            if (onofffield.checked==true){
+                field.value = field.value.substring( 0, maxlimit );
+                return false;
+            }
+          } else {
+            countfield.value = maxlimit - field.value.length;
+          }
+        }
+    </script>
 
 
     <form id="myForm" action="/account/index-ajax.jsp" method="post">
@@ -176,7 +187,14 @@ if (thredsCheck==null || thredsCheck.size()<=0){
             Thred thred=iterator.next();
     %>
             <td valign="top">
-                <textarea name="threadid-<%=thred.getThredid()%>" rows="5" cols="5" style="width: 100%;"></textarea>
+                <%if (thred.getIstwitterupdateon()){%>
+
+                    <textarea name="threadid-<%=thred.getThredid()%>" rows="5" cols="5" style="width: 100%;" onkeypress="textCounter(this,this.form.counter<%=thred.getThredid()%>,this.form.threadid<%=thred.getThredid()%>posttotwitter,160);"></textarea><br/><input type="checkbox" name="threadid<%=thred.getThredid()%>posttotwitter" value="1" checked /><font class="tinyfont"> Update Twitter Status</font><br/><input type="text" name="counter<%=thred.getThredid()%>" id="counter<%=thred.getThredid()%>" maxlength="3" size="3" style="font-size: 8px;" value="160" onblur="textCounter(this.form.counter<%=thred.getThredid()%>,this,this.form.threadid<%=thred.getThredid()%>posttotwitter,160);"><font class="tinyfont"> chars left</font>
+
+                    <!--<input type="text" name="threadid-<%=thred.getThredid()%>" maxlength="160" size="20">-->
+                <%} else {%>
+                    <textarea name="threadid-<%=thred.getThredid()%>" rows="5" cols="5" style="width: 100%;"></textarea>
+                <%}%>
             </td>
             <%
 

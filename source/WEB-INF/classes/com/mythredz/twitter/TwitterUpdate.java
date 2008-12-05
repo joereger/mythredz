@@ -17,6 +17,9 @@ import com.mythredz.util.Str;
 
 import java.util.Calendar;
 
+import twitter4j.Twitter;
+import twitter4j.Status;
+
 /**
  * User: Joe Reger Jr
  * Date: May 24, 2007
@@ -26,12 +29,16 @@ public class TwitterUpdate implements Runnable {
 
 
     private static ThreadPool tp;
-    private String message = "";
+    private String twitterid = "";
+    private String twitterpass = "";
+    private String updatetext = "";
 
 
 
-    public TwitterUpdate(String message){
-        this.message = message;
+    public TwitterUpdate(String twitterid,  String twitterpass, String updatetext){
+        this.twitterid = twitterid;
+        this.twitterpass = twitterpass;
+        this.updatetext = updatetext;
     }
 
 
@@ -39,39 +46,14 @@ public class TwitterUpdate implements Runnable {
         Logger logger = Logger.getLogger(this.getClass().getName());
         logger.debug("run() called.");
 
-        HttpClient client = new HttpClient();
-
-        // pass our credentials to HttpClient, they will only be used for
-        // authenticating to servers with realm "realm" on the host
-        // "www.verisign.com", to authenticate against
-        // an arbitrary realm or host change the appropriate argument to null.
-        client.getState().setCredentials(
-            new AuthScope(null, 80, null),
-            new UsernamePasswordCredentials(TwitterCredentials.USERNAME, TwitterCredentials.PASSWORD)
-        );
-
-        // create a GET method that reads a file over HTTPS, we're assuming
-        // that this file requires basic authentication using the realm above.
-        PostMethod post = new PostMethod("http://twitter.com/statuses/update.xml");
-
-        // Tell the GET method to automatically handle authentication. The
-        // method will use any appropriate credentials to handle basic
-        // authentication requests.  Setting this value to false will cause
-        // any request for authentication to return with a status of 401.
-        // It will then be up to the client to handle the authentication.
-        post.setDoAuthentication(true);
-
-        //Needs to be less than 140 chars
-        post.addParameter("status", Str.truncateString(message, 140));
-
-        try {
-            int requestStatus = client.executeMethod( post );
-            logger.debug(requestStatus + ": " + post.getResponseBodyAsString());
+        try{
+            Twitter twitter=new Twitter(twitterid, twitterpass);
+            Status status=twitter.update(Str.truncateString(updatetext, 160));
+            logger.debug("Twitter status updated to: "+status);
         } catch (Exception ex){
-            logger.error("",ex);
-        } finally {
-            post.releaseConnection();
+            logger.error("", ex);
         }
+
         logger.debug("done processing.");
     }
 

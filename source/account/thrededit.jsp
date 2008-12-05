@@ -22,6 +22,9 @@ String acl = "account";
     Thred thred=new Thred();
     thred.setCreatedate(new java.util.Date());
     thred.setUserid(Pagez.getUserSession().getUser().getUserid());
+    thred.setIstwitterupdateon(false);
+    thred.setTwitterid("");
+    thred.setTwitterpass("");
     if (request.getParameter("thredid") != null && Num.isinteger(request.getParameter("thredid"))) {
         thred = Thred.get(Integer.parseInt(request.getParameter("thredid")));
     }
@@ -51,6 +54,9 @@ if (threds!=null && threds.size()>=7){
     if (request.getParameter("action") != null && request.getParameter("action").equals("save")) {
     try {
         thred.setName(Textbox.getValueFromRequest("name", "Thred Name", true, DatatypeString.DATATYPEID));
+        thred.setTwitterid(Textbox.getValueFromRequest("twitterid", "Twitter ID", false, DatatypeString.DATATYPEID));
+        thred.setTwitterpass(Textbox.getValueFromRequest("twitterpass", "Twitter Password", false, DatatypeString.DATATYPEID));
+        thred.setIstwitterupdateon(CheckboxBoolean.getValueFromRequest("istwitterupdateon"));
         thred.save();
         Pagez.getUserSession().setMessage("Thred saved.");
         Pagez.sendRedirect("/account/thredzlist.jsp");
@@ -106,6 +112,27 @@ if (threds!=null && threds.size()>=7){
                     </td>
                     <td valign="top">
                         <%=Textbox.getHtml("name", thred.getName(), 20, 20, "", "")%>
+                        <br/><br/><br/>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td valign="top">
+                        <font class="formfieldnamefont">Twitter</font>
+                    </td>
+                    <td valign="top">
+                        <%=CheckboxBoolean.getHtml("istwitterupdateon", thred.getIstwitterupdateon(), "", "")%> <font class="formfieldnamefont">Yes, Update Twitter</font>
+                        <br/>
+                        <font class="tinyfont">Sending updates from this Thred to Twitter limits the input size for this Thred to 160 characters.</font>
+                        <br/>
+                        <font class="formfieldnamefont">Twitter ID:</font>
+                        <br/>
+                        <%=Textbox.getHtml("twitterid", thred.getTwitterid(), 20, 20, "", "")%>
+                        <br/>
+                        <font class="formfieldnamefont">Twitter Password:</font>
+                        <br/>
+                        <%=TextboxSecret.getHtml("twitterpass", thred.getTwitterpass(), 20, 20, "", "")%>
                     </td>
                 </tr>
 

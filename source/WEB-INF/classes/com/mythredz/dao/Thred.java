@@ -16,6 +16,10 @@ public class Thred extends BasePersistentClass implements java.io.Serializable, 
      private int userid;
      private String name;
      private Date createdate;
+     private boolean istwitterupdateon;
+     private String twitterid;
+     private String twitterpass;
+
 
 
     public static Thred get(int id) {
@@ -87,5 +91,30 @@ public class Thred extends BasePersistentClass implements java.io.Serializable, 
 
     public void setCreatedate(Date createdate) {
         this.createdate=createdate;
+    }
+
+
+    public boolean getIstwitterupdateon() {
+        return istwitterupdateon;
+    }
+
+    public void setIstwitterupdateon(boolean istwitterupdateon) {
+        this.istwitterupdateon=istwitterupdateon;
+    }
+
+    public String getTwitterpass() {
+        return twitterpass;
+    }
+
+    public void setTwitterpass(String twitterpass) {
+        this.twitterpass=twitterpass;
+    }
+
+    public String getTwitterid() {
+        return twitterid;
+    }
+
+    public void setTwitterid(String twitterid) {
+        this.twitterid=twitterid;
     }
 }

@@ -11,6 +11,7 @@
         <mapping resource="com/mythredz/dao/Blogpost.hbm.xml" />
         <mapping resource="com/mythredz/dao/Blogpostcomment.hbm.xml" />
         <mapping resource="com/mythredz/dao/Creditcard.hbm.xml" />
+        <mapping resource="com/mythredz/dao/Emailaddress.hbm.xml" />
         <mapping resource="com/mythredz/dao/Error.hbm.xml" />
         <mapping resource="com/mythredz/dao/Eula.hbm.xml" />
         <mapping resource="com/mythredz/dao/Facebookpendingreferredby.hbm.xml" />
@@ -25,6 +26,6 @@
         <mapping resource="com/mythredz/dao/Usereula.hbm.xml" />
         <mapping resource="com/mythredz/dao/Userpersistentlogin.hbm.xml" />
         <mapping resource="com/mythredz/dao/Userrole.hbm.xml" />
-
+        
     </session-factory>
 </hibernate-configuration>

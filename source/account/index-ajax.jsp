@@ -12,6 +12,10 @@
 <%@ page import="org.hibernate.criterion.Order" %>
 <%@ page import="com.mythredz.cache.providers.CacheFactory" %>
 <%@ page import="com.mythredz.systemprops.SystemProperty" %>
+<%@ page import="twitter4j.Twitter" %>
+<%@ page import="twitter4j.Status" %>
+<%@ page import="com.mythredz.util.Str" %>
+<%@ page import="com.mythredz.twitter.TwitterUpdate" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
 String pagetitle = "";
@@ -32,7 +36,7 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
             Thred thred=iterator.next();
             if (Pagez.getRequest().getParameter("threadid-" + thred.getThredid()) != null && !Pagez.getRequest().getParameter("threadid-" + thred.getThredid()).trim().equals("")) {
-                if (Pagez.getUserSession().getUser().getUserid()==thred.getUserid()){
+                if (Pagez.getUserSession().getUser().getUserid() == thred.getUserid()) {
                     String in=Pagez.getRequest().getParameter("threadid-" + thred.getThredid()).trim();
                     Post post=new Post();
                     post.setContents(in);
@@ -50,6 +54,14 @@ AccountIndex accountIndex = (AccountIndex) Pagez.getBeanMgr().get("AccountIndex"
                     String nameInCacheVert="embedjavascriptverticalservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
                     String cacheGroupVert="embedjavascriptcache" + "/";
                     CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
+                    //Update twitter
+                    if (thred.getIstwitterupdateon()) {
+                        String posttotwitter = Pagez.getRequest().getParameter("threadid" + thred.getThredid()+"posttotwitter");
+                        if (posttotwitter!=null && posttotwitter.trim().equals("1")){
+                            TwitterUpdate tu = new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 160));
+                            tu.update();
+                        }
+                    }
                 }
             }
         }

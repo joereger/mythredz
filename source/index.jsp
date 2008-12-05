@@ -95,6 +95,8 @@ String acl = "public";
                 <br/><font class="tinyfont">Any blogging system that allows you to publish Javascript includes.  At this point we don't have a list.  Let us know what we're missing.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">Is this a social network?</font>
                 <br/><font class="tinyfont">No.  It could be.  We could do the whole Follow thing and create a river of friend news.  But we don't even have users yet. We believe in the bootstrapping ethos.  Kick us in the nads if you want social features.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">Does it have RSS?</font>
+                <br/><font class="tinyfont">What do you think this is... 1997?  Yes, you get an RSS feed for each of your Thredz.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">How much does it cost?</font>
                 <br/><font class="tinyfont">Completely free.  At this point we have no idea how/if we'll make money on it.</font><br/>
             </div>

@@ -62,10 +62,22 @@ String acl = "account";
 <%//@ include file="/template/header.jsp" %>
 
 
+    <script type="text/javascript">
+        function textCounter( field, countfield, onofffield, maxlimit ) {
+          if ( field.value.length > maxlimit ){
+            if (onofffield.checked==true){
+                field.value = field.value.substring( 0, maxlimit );
+                return false;
+            }
+          } else {
+            countfield.value = maxlimit - field.value.length;
+          }
+        }
+    </script>
 
 
-    <form id="myForm" action="/account/mobile.jsp" method="post">
-        <input type="hidden" name="dpage" value="/account/mobile.jsp">
+    <form id="myForm" action="/account/mobilejs.jsp" method="post">
+        <input type="hidden" name="dpage" value="/account/mobilejs.jsp">
         <input type="hidden" name="action" value="save">
 
 
@@ -83,7 +95,8 @@ String acl = "account";
 
                 <%=thred.getName()%><br/>
                 <%if (thred.getIstwitterupdateon()){%>
-                    <input type="text" name="threadid-<%=thred.getThredid()%>" maxlength="160" size="20"><br/><input type="checkbox" name="threadid<%=thred.getThredid()%>posttotwitter" value="1" checked /> Update Twitter Status
+                    <textarea name="threadid-<%=thred.getThredid()%>" rows="1" cols="20" onkeypress="textCounter(this,this.form.counter<%=thred.getThredid()%>,this.form.threadid<%=thred.getThredid()%>posttotwitter,160);"></textarea><br/><input type="checkbox" name="threadid<%=thred.getThredid()%>posttotwitter" value="1" checked /><font class="tinyfont"> Update Twitter Status</font><br/><input type="text" name="counter<%=thred.getThredid()%>" id="counter<%=thred.getThredid()%>" maxlength="3" size="3" style="font-size: 8px;" value="160" onblur="textCounter(this.form.counter<%=thred.getThredid()%>,this,this.form.threadid<%=thred.getThredid()%>posttotwitter,160);"><font class="tinyfont"> chars left</font>
+                    <!--<input type="text" name="threadid-<%=thred.getThredid()%>" maxlength="160" size="20"><br/><input type="checkbox" name="threadid<%=thred.getThredid()%>posttotwitter" value="1" checked /> Update Twitter Status-->
                 <%} else {%>
                     <textarea name="threadid-<%=thred.getThredid()%>" rows="1" cols="20"></textarea>
                 <%}%>

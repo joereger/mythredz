@@ -401,6 +401,7 @@ public class EmailApi {
             //See if we have a valid account in the hizzouse
             //@todo use uniquekey to create emailapiaddress and determine if it's valid
             //EmailApiAddress emaddr = new EmailApiAddress(uniquekey);
+
             boolean isvaliduniquekey = true;
             if (isvaliduniquekey){
 

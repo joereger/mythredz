@@ -18,6 +18,15 @@
         <property name="name" type="string">
             <column name="name" not-null="true" />
         </property>
+        <property name="istwitterupdateon" type="boolean">
+            <column name="istwitterupdateon" />
+        </property>
+        <property name="twitterid" type="string">
+            <column name="twitterid" not-null="true" />
+        </property>
+        <property name="twitterpass" type="string">
+            <column name="twitterpass" not-null="true" />
+        </property>
 
     </class>
 </hibernate-mapping>
