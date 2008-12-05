@@ -52,6 +52,7 @@ public class TwitterUpdate implements Runnable {
 
         try{
             Twitter twitter=new Twitter(twitterid, twitterpass);
+            twitter.setSource("mythredz");
             Status status=twitter.update(Str.truncateString(updatetext, 140));
             logger.debug("Twitter status updated to: "+status);
         } catch (Exception ex){
