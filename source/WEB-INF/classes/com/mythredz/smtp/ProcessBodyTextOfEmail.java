@@ -33,37 +33,41 @@ public class ProcessBodyTextOfEmail {
             for (Iterator<Thred> iterator=thredz.iterator(); iterator.hasNext();) {
                 Thred thred=iterator.next();
                 if (thred.getUserid()==emailaddress.getUserid()){
-                    String updateText = getUpdateTextForSpecificThred(body, thred);
-                    if (updateText!=null && !updateText.trim().equals("")){
-                        if (updateText.indexOf("Replace this with what happened.")<0 || updateText.indexOf("Replace this with what happened.")>5){
-                            //We've got ourselves an update!
-                            logger.debug("updateText for (thredid="+thred.getThredid()+") = "+updateText);
-                            Post post=new Post();
-                            post.setContents(updateText);
-                            post.setDate(emailaddress.getDate());
-                            post.setThredid(thred.getThredid());
-                            try {
-                                post.save();
-                            } catch (Exception ex) {
-                                logger.error("", ex);
-                            }
-                            //Clear the Javascript Embed cache
-                            String nameInCache="embedjavascriptservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
-                            String cacheGroup="embedjavascriptcache" + "/";
-                            CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
-                            String nameInCacheVert="embedjavascriptverticalservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
-                            String cacheGroupVert="embedjavascriptcache" + "/";
-                            CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
-                            //Update twitter
-                            if (thred.getIstwitterupdateon()) {
-                                TwitterUpdate tu = new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
-                                tu.update();
+                    try{
+                        String updateText = getUpdateTextForSpecificThred(body, thred);
+                        if (updateText!=null && !updateText.trim().equals("")){
+                            if (updateText.indexOf("Replace this with what happened.")<0 || updateText.indexOf("Replace this with what happened.")>5){
+                                //We've got ourselves an update!
+                                logger.debug("updateText for (thredid="+thred.getThredid()+") = "+updateText);
+                                Post post=new Post();
+                                post.setContents(updateText);
+                                post.setDate(emailaddress.getDate());
+                                post.setThredid(thred.getThredid());
+                                try {
+                                    post.save();
+                                } catch (Exception ex) {
+                                    logger.error("", ex);
+                                }
+                                //Clear the Javascript Embed cache
+                                String nameInCache="embedjavascriptservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
+                                String cacheGroup="embedjavascriptcache" + "/";
+                                CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
+                                String nameInCacheVert="embedjavascriptverticalservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
+                                String cacheGroupVert="embedjavascriptcache" + "/";
+                                CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
+                                //Update twitter
+                                if (thred.getIstwitterupdateon()) {
+                                    TwitterUpdate tu = new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
+                                    tu.update();
+                                }
+                            } else {
+                                logger.debug("updateText had 'Replace this with what happened.' in there too close to beginning");
                             }
                         } else {
-                            logger.debug("updateText had 'Replace this with what happened.' in there too close to beginning");
+                            logger.debug("updateText==null or ''");
                         }
-                    } else {
-                        logger.debug("updateText==null or ''");
+                    } catch (Exception ex) {
+                        logger.error("", ex);
                     }
                 } else {
                     logger.debug("Somebody manually changed the thredid in the email but used their own emailaddress");
@@ -92,18 +96,20 @@ public class ProcessBodyTextOfEmail {
         logger.debug("getUpdateTextForSpecificThred() called");
         StringBuffer out = new StringBuffer();
         if (body!=null && !body.equals("")){
-//            String a = "Start("+thred.getThredid()+")===>";
-//            String b = "End("+thred.getThredid()+")===>";
-//
-
-            Pattern p = Pattern.compile("Start\\("+thred.getThredid()+"\\)\\=\\=\\=\\>(.*?)\\<\\=\\=\\=End\\("+thred.getThredid()+"\\)");
-            logger.debug("p.toString()="+p.toString());
-            Matcher m = p.matcher(body);
-            logger.debug("m.groupCount()="+m.groupCount());
-            while(m.find()) {
-                String found = m.group(1);
-                logger.debug("found for thredid"+thred.getThredid()+"="+found);
-                return found;
+            try{
+                String a = "Start("+thred.getThredid()+")===>";
+                int aStart = body.indexOf(a);
+                int aEnd = aStart + a.length();
+                String b = "<===End("+thred.getThredid()+")";
+                int bStart = body.indexOf(b);
+                logger.debug("body.length()="+body.length()+" a="+a+" aStart="+aStart+" a.length()="+a.length()+" aEnd="+aEnd+" b="+b+" bStart="+bStart+"");
+                if (aEnd>0 && bStart>0){
+                    String outStr = body.substring( aEnd  , bStart );
+                    logger.debug("returning outStr="+outStr);
+                    return outStr;
+                }
+            } catch (Exception ex) {
+                logger.error("", ex);
             }
         }
         logger.debug("returning empty string");
