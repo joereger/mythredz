@@ -31,16 +31,16 @@ String acl = "public";
             <%--<div class="rounded" style="padding: 15px; margin: 5px; background: #e6e6e6;">--%>
                 <%--<div class="rounded" style="padding: 15px; margin: 5px; background: #ffffff;">--%>
 
-                    <font class="largefont" style="background: #f8c600;">1) Create Some Thredz</font><br/>
-                    <font class="tinyfont">Themes that you'd like to write a little about every day, every hour or every few minutes.  Starting points: "Work", "Family", "Hobby", "Yard Project."  Anything you want.  You can have up to seven; three or four is recommended.</font><br/>
+                    <font class="largefont" style="background: #bfdbff;">1) Create the Thredz</font><br/>
+                    <font class="tinyfont">Themes that you'd like to write a little about every day, every hour or every few minutes.  "Work" or "Family" or "Training for My Marathon" or "Learning to Live with Cancer"... whatever's happening in your life.  You can have up to seven; three or four is recommended.</font><br/>
 
 
-                    <br/><font class="largefont" style="background: #f8c600;">2) Write a Bit</font><br/>
-                    <font class="tinyfont">A few words.  A few sentences.  Enough to capture what's happening with that Thred at the time.</font><br/>
+                    <br/><font class="largefont" style="background: #bfdbff;">2) Spread the Thredz</font><br/>
+                    <font class="tinyfont">Share your status with friends and family.  We give you a profile page listing your progress on each of the thredz.  You can embed into a blog.  Or we'll update your Twitter status for you.  Get the word out people!</font><br/>
 
 
-                    <br/><font class="largefont" style="background: #f8c600;">3) Embed into Your blog</font><br/>
-                    <font class="tinyfont">A small piece of your blog to hold a running commentary on the Thredz.  Vertical embed for the sidebar.  Horizontal embed for the top of your blog. See the horizontal embed in action at the top of <a href="http://www.joereger.com">joereger.com</a></font><br/>
+                    <br/><font class="largefont" style="background: #bfdbff;">3) Magical Nightly Email</font><br/>
+                    <font class="tinyfont">We'll gently prompt you with a nightly email.  But it's no ordinary email.  Just hit reply and tell us what happened in each of your thredz.  We'll parse it and update your Thredz.  Easy... no need to log in to a website to update your status.  Send us a few words.  A few sentences.  Whatever you're up for.  Of course, you can always update your status via the web or mobile too.  Or you can ignore your Thredz and not update them.  But what fun would that be?</font><br/>
 
                 <!--</div>-->
             <!--</div>-->
@@ -55,9 +55,23 @@ String acl = "public";
                     <a href="/images/mythredz-screenshot-01.jpg" target="mythredzscreenshot"><font class="tinyfont">Zoom +</font></a>
                 </td>
                 <td valign="top">
+                    <a href="/images/mythredz-screenshot-04.jpg" target="mythredzscreenshot"><img src="/images/mythredz-screenshot-04-thumb.gif" alt="" width="200" height="120" border="0"></a>
+                    <br/><br/><font class="smallfont" style="background: #ffffff;">Screenshot: Updating via Email</font><br/>
+                    <font class="tinyfont">It's so easy to update your Thredz via email.</font><br/>
+                    <a href="/images/mythredz-screenshot-04.jpg" target="mythredzscreenshot"><font class="tinyfont">Zoom +</font></a>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">
+                    <a href="/images/mythredz-screenshot-03.jpg" target="mythredzscreenshot"><img src="/images/mythredz-screenshot-03-thumb.gif" alt="" width="200" height="120" border="0"></a>
+                    <br/><br/><font class="smallfont" style="background: #ffffff;">Screenshot: Embedded in Side of Blog</font><br/>
+                    <font class="tinyfont">Once you define your Thredz you get a dead-simple publishing screen with an input box for each one.  You type a bit and click Publish.  Your updates are saved.</font><br/>
+                    <a href="/images/mythredz-screenshot-03.jpg" target="mythredzscreenshot"><font class="tinyfont">Zoom +</font></a>
+                </td>
+                <td valign="top">
                     <a href="/images/mythredz-screenshot-02.jpg" target="mythredzscreenshot"><img src="/images/mythredz-screenshot-02-thumb.gif" alt="" width="200" height="120" border="0"></a>
-                    <br/><br/><font class="smallfont" style="background: #ffffff;">Screenshot: Embedded in a Blog</font><br/>
-                    <font class="tinyfont">Thredz sitting at the top of a blog.  Note that there's one scrollable box for each Thred.</font><br/>
+                    <br/><br/><font class="smallfont" style="background: #ffffff;">Screenshot: Embedded in Top of Blog</font><br/>
+                    <font class="tinyfont">You can embed a horizontal or a vertical version of MyThredz.  This is a screenshot of a horizontal embed.</font><br/>
                     <a href="/images/mythredz-screenshot-02.jpg" target="mythredzscreenshot"><font class="tinyfont">Zoom +</font></a>
                 </td>
             </tr>
@@ -85,10 +99,14 @@ String acl = "public";
                 <br/><font class="tinyfont">A microblogging system that you can use to track, organize and publish those short updates that aren't quite worth a full blog post.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">What's unique about it?</font>
                 <br/><font class="tinyfont">The concept of Thredz.  These are themes.  You choose a Thred that you want to track... "Work" or "Family" or "Training for My Marathon" or "Learning to Live with Cancer"... whatever's happening in your life.  You then post your updates to one of these Thredz.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">What else is unique about it?</font>
+                <br/><font class="tinyfont">The email interface.  We'll send you a nightly email.  You simply reply to it, updating the status of each of your Thredz.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">How do I publish?</font>
-                <br/><font class="tinyfont">Once you embed the widget into your blog you can publish directly on your blog... without ever leaving!  You can also publish at myThredz.com.  We also have a low-bandwidth mobile phone page you can use.  And we'd love to make it so that you can publish directly from the embed widget on your blog.</font><br/>
+                <br/><font class="tinyfont">Once you embed the widget into your blog you can publish directly on your blog... without ever leaving!  You can also publish at myThredz.com.  We also have a low-bandwidth mobile phone page you can use.  And you can reply to the nightly emails.  Lots of ways to publish.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">What happens once I publish to a Thred?</font>
                 <br/><font class="tinyfont">Your updates are published to your blog.  You have myThredz embedded on your blog.  It takes up a small piece of real estate.  People can see the Thredz that you're tracking and can scroll each one for updates.  Check <a href="http://www.joereger.com">joereger.com</a> for an example.  We'll also automatically update your Twitter status if you like.</font><br/>
+                <br/><font class="smallfont" style="background: #ffffff;">Can I update my Twitter status?</font>
+                <br/><font class="tinyfont">Yep.  You can control Twitter settings per Thred... so some can update Twitter while others won't.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">Why do we need this?</font>
                 <br/><font class="tinyfont">There's tremendous value in the details of life but often such details tend to overwhelm a focused blog.  Enter microblogging.  We have single-Thred microblogging systems like Twitter, etc.  But their organization of themes isn't (yet?) strong and their embeds are simplistic.  You get one publishing stream, that's it.  We wanted something that takes over a little more screen real estate than the tiny Twitter embed while illustrating the Thredz.  In this way your blog readers who don't care about your work can simply ignore the "Work" Thred (assuming you have one.)</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">What blogging systems are supported?</font>

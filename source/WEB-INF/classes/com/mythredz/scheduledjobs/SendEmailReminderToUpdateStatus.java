@@ -76,9 +76,9 @@ public class SendEmailReminderToUpdateStatus implements Job {
     public static String getBodyForUser(User user, Emailaddress emailaddress) throws Exception{
             StringBuffer body = new StringBuffer();
             String dateStr = Time.dateformatDayOfWeekAndDate(Time.getCalFromDate(emailaddress.getDate()));
-            body.append("This email allows you to quickly update your thredz via email."+"\n");
-            body.append("Instructions: hit reply and type what happened between the Start ===> and <=== End for each thred."+"\n");
-            body.append("This email creates updates dated "+dateStr+"."+"\n");
+            body.append("\n");
+            body.append("\n");
+            body.append("Instructions: reply to this email to update the Thredz you're tracking."+"\n");
             body.append("\n");
             List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
                 .add(Restrictions.eq("userid", user.getUserid()))
@@ -88,19 +88,23 @@ public class SendEmailReminderToUpdateStatus implements Job {
                 Thred thred=iterator.next();
                 body.append("\n");
                 body.append(thred.getName()+": "+"\n");
-                body.append("Start("+thred.getThredid()+")===> Replace this with what happened. <===End("+thred.getThredid()+")"+"\n");
+                body.append("Start("+thred.getThredid()+")> Replace with what happened. <End("+thred.getThredid()+")"+"\n");
                 body.append("\n");
             }
             body.append("\n");
             body.append("Notes/Help:"+"\n");
-            body.append("Ignore the thredz you don't want to update."+"\n");
-            body.append("It works best if you keep the email in text format, not html."+"\n");
-            body.append("Reply to this email multiple times... all updates will use the date "+dateStr+"."+"\n");
+            body.append("Type between the Start> and <End.");
+            body.append("Updates made with this email will use the date "+dateStr+"."+"\n");
             body.append("Don't edit the numbers in parentheses... they help us tell your thredz apart."+"\n");
+            body.append("Ignore the thredz you don't want to update."+"\n");
+            body.append("Reply to this email multiple times... all updates will use the same date."+"\n");
             body.append("You can use this email for up to 30 days."+"\n");
+            body.append("It works best if you keep the email in text format, not html."+"\n");
             body.append("Turn these emails on/off in your MyThredz account settings."+"\n");
             body.append("\n");
             body.append("http://www.mythredz.com/"+"\n");
+            body.append("\n");
+            body.append("\n");
             return body.toString();
     }
 

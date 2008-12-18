@@ -36,7 +36,7 @@ public class ProcessBodyTextOfEmail {
                     try{
                         String updateText = getUpdateTextForSpecificThred(body, thred);
                         if (updateText!=null && !updateText.trim().equals("")){
-                            if (updateText.indexOf("Replace this with what happened.")<0 || updateText.indexOf("Replace this with what happened.")>5){
+                            if (updateText.indexOf("Replace with what happened.")<0 || updateText.indexOf("Replace with what happened.")>5){
                                 //We've got ourselves an update!
                                 logger.debug("updateText for (thredid="+thred.getThredid()+") = "+updateText);
                                 Post post=new Post();
@@ -97,10 +97,10 @@ public class ProcessBodyTextOfEmail {
         StringBuffer out = new StringBuffer();
         if (body!=null && !body.equals("")){
             try{
-                String a = "Start("+thred.getThredid()+")===>";
+                String a = "Start("+thred.getThredid()+")>";
                 int aStart = body.indexOf(a);
                 int aEnd = aStart + a.length();
-                String b = "<===End("+thred.getThredid()+")";
+                String b = "<End("+thred.getThredid()+")";
                 int bStart = body.indexOf(b);
                 logger.debug("body.length()="+body.length()+" a="+a+" aStart="+aStart+" a.length()="+a.length()+" aEnd="+aEnd+" b="+b+" bStart="+bStart+"");
                 if (aEnd>0 && bStart>0){
