@@ -7,8 +7,8 @@ import com.mythredz.dao.hibernate.HibernateUtil;
 import com.mythredz.dao.hibernate.HibernateSessionQuartzCloser;
 import com.mythredz.xmpp.SendXMPPMessage;
 import com.mythredz.scheduledjobs.SystemStats;
-import com.mythredz.scheduledjobs.StartEmailListener;
 import com.mythredz.pageperformance.PagePerformanceUtil;
+import com.mythredz.smtp.InboundSmtpStartup;
 
 import javax.servlet.*;
 import javax.management.MBeanServer;
@@ -74,7 +74,7 @@ public class ApplicationStartup implements ServletContextListener {
         SystemStats ss = new SystemStats();
         try{ss.execute(null);}catch(Exception ex){logger.error("",ex);}
         //Start SMTP Listener
-        try{StartEmailListener.startListener();}catch(Exception ex){logger.error("",ex);}
+        InboundSmtpStartup.makeSureServerIsUp();
         //Initialize Quartz
         initQuartz(cse.getServletContext());
         //Add Quartz listener

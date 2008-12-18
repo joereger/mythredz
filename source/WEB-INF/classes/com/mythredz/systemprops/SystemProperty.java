@@ -37,6 +37,7 @@ public class SystemProperty {
     public static String PROP_FACEBOOK_APP_NAME = "PROP_FACEBOOK_APP_NAME";
     public static String PROP_FACEBOOK_API_KEY = "PROP_FACEBOOK_API_KEY";
     public static String PROP_FACEBOOK_API_SECRET = "PROP_FACEBOOK_API_SECRET";
+    public static String PROP_EMAILPOSTFIX = "PROP_EMAILPOSTFIX";
 
 
     private static void loadAllPropsAndDefaultValues(){
@@ -57,6 +58,7 @@ public class SystemProperty {
         props.put(PROP_FACEBOOK_APP_NAME, "joestest");
         props.put(PROP_FACEBOOK_API_KEY, "dece0e9c9bc48fa1078cbc5a0680cea3");
         props.put(PROP_FACEBOOK_API_SECRET, "fde4c4950c909948fe3ada5676a19d2a");
+        props.put(PROP_EMAILPOSTFIX, "mythredz.com");
     }
 
 

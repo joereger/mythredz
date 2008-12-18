@@ -31,6 +31,8 @@ public class SysadminSystemProps implements Serializable {
     public String facebook_app_name;
     public String facebook_api_key;
     public String facebook_api_secret;
+    public String emailpostfix;
+
 
     public SysadminSystemProps(){
 
@@ -53,6 +55,7 @@ public class SysadminSystemProps implements Serializable {
         facebook_app_name = SystemProperty.getProp(SystemProperty.PROP_FACEBOOK_APP_NAME);
         facebook_api_key = SystemProperty.getProp(SystemProperty.PROP_FACEBOOK_API_KEY);
         facebook_api_secret = SystemProperty.getProp(SystemProperty.PROP_FACEBOOK_API_SECRET);
+        emailpostfix = SystemProperty.getProp(SystemProperty.PROP_EMAILPOSTFIX);
     }
 
     public void saveProps() throws ValidationException {
@@ -72,6 +75,7 @@ public class SysadminSystemProps implements Serializable {
             SystemProperty.setProp(SystemProperty.PROP_FACEBOOK_APP_NAME, facebook_app_name);
             SystemProperty.setProp(SystemProperty.PROP_FACEBOOK_API_KEY, facebook_api_key);
             SystemProperty.setProp(SystemProperty.PROP_FACEBOOK_API_SECRET, facebook_api_secret);
+            SystemProperty.setProp(SystemProperty.PROP_EMAILPOSTFIX, emailpostfix);
             BaseUrl.refresh();
         } catch (Exception ex){
             logger.error("",ex);
@@ -193,5 +197,14 @@ public class SysadminSystemProps implements Serializable {
 
     public void setFacebook_api_secret(String facebook_api_secret) {
         this.facebook_api_secret = facebook_api_secret;
+    }
+
+
+    public String getEmailpostfix() {
+        return emailpostfix;
+    }
+
+    public void setEmailpostfix(String emailpostfix) {
+        this.emailpostfix=emailpostfix;
     }
 }

@@ -28,6 +28,7 @@ String acl = "sysadmin";
             sysadminSystemProps.setPaypalsignature(Textbox.getValueFromRequest("paypalsignature", "paypalsignature", true, DatatypeString.DATATYPEID));
             sysadminSystemProps.setSendxmpp(Textbox.getValueFromRequest("sendxmpp", "sendxmpp", true, DatatypeString.DATATYPEID));
             sysadminSystemProps.setSmtpoutboundserver(Textbox.getValueFromRequest("smtpoutboundserver", "smtpoutboundserver", true, DatatypeString.DATATYPEID));
+            sysadminSystemProps.setEmailpostfix(Textbox.getValueFromRequest("emailpostfix", "emailpostfix", true, DatatypeString.DATATYPEID));
             sysadminSystemProps.saveProps();
             Pagez.getUserSession().setMessage("Save complete.");
         } catch (ValidationException vex) {
@@ -195,6 +196,17 @@ String acl = "sysadmin";
                 </td>
                 <td valign="top">
                     <%=Textbox.getHtml("facebook_api_secret", sysadminSystemProps.getFacebook_api_secret(), 255, 35, "", "")%>
+                </td>
+            </tr>
+
+            <tr>
+                <td valign="top">
+                    <font class="formfieldnamefont">Email Postfix</font>
+                    <br/>
+                    <font class="tinyfont">in "sample@mythredz.com" the "mythredz.com" is the postfix.  defaults to "mythredz.com"</font>
+                </td>
+                <td valign="top">
+                    <%=Textbox.getHtml("emailpostfix", sysadminSystemProps.getEmailpostfix(), 255, 35, "", "")%>
                 </td>
             </tr>
 

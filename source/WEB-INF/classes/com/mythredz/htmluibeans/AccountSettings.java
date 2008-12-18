@@ -28,6 +28,7 @@ public class AccountSettings implements Serializable {
     private String firstname;
     private String lastname;
     private String nickname;
+    private boolean isemailnightlyon;
 
     
 
@@ -46,6 +47,7 @@ public class AccountSettings implements Serializable {
             firstname = user.getFirstname();
             lastname = user.getLastname();
             nickname = user.getNickname();
+            isemailnightlyon = user.getIsemailnightlyon();
         }
     }
 
@@ -145,5 +147,14 @@ public class AccountSettings implements Serializable {
 
     public void setNickname(String nickname) {
         this.nickname=nickname;
+    }
+
+
+    public boolean getIsemailnightlyon() {
+        return isemailnightlyon;
+    }
+
+    public void setIsemailnightlyon(boolean isemailnightlyon) {
+        this.isemailnightlyon=isemailnightlyon;
     }
 }

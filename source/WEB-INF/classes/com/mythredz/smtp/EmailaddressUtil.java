@@ -1,10 +1,9 @@
-package com.mythredz.emaillistener;
+package com.mythredz.smtp;
 
 import com.mythredz.dao.Emailaddress;
 import com.mythredz.dao.User;
 import com.mythredz.dao.hibernate.HibernateUtil;
 import com.mythredz.util.RandomString;
-import com.mythredz.util.Num;
 
 import java.util.Date;
 import java.util.List;
@@ -42,26 +41,21 @@ public class EmailaddressUtil {
         Logger logger = Logger.getLogger(EmailaddressUtil.class);
         try{
             if (emailaddress!=null && emailaddress.length()>0){
-//                String[] split = emailaddress.split("-");
-//                if (split!=null && split.length>=4){
-//                    String useridStr = split[2];
-//                    if (Num.isinteger(useridStr)){
-//                        int userid = Integer.parseInt(useridStr);
-//                        String random = split[3];
-//                        if (random!=null && random.length()>0){
-//
-//                        }
-//                    }
-//                }
-                //Try to find it
-                List<Emailaddress> emailaddresses = HibernateUtil.getSession().createCriteria(Emailaddress.class)
-                                                   .add(Restrictions.eq("address", emailaddress.toLowerCase()))
-                                                   .setMaxResults(1)
-                                                   .setCacheable(true)
-                                                   .list();
-                if (emailaddresses!=null && emailaddresses.size()>0 && emailaddresses.get(0)!=null){
-                    return emailaddresses.get(0);
+                String[] split = emailaddress.split("@");
+                if (split.length>=2){
+                    String emailPrefix = split[0];
+                    logger.debug("emailPrefix="+emailPrefix);
+                    //Try to find it
+                    List<Emailaddress> emailaddresses = HibernateUtil.getSession().createCriteria(Emailaddress.class)
+                                                       .add(Restrictions.eq("address", emailPrefix.trim().toLowerCase()))
+                                                       .setMaxResults(1)
+                                                       .setCacheable(true)
+                                                       .list();
+                    if (emailaddresses!=null && emailaddresses.size()>0 && emailaddresses.get(0)!=null){
+                        return emailaddresses.get(0);
+                    }
                 }
+
             }
         } catch (Exception ex){
             logger.error("", ex);

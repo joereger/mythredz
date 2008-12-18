@@ -108,6 +108,15 @@ public class Time {
         return myDateFormat.format(date.getTime()) + date.getTimeZone().getID();
 	}
 
+
+	public static String dateformatDayOfWeekAndDate(Calendar date) {
+	    DateFormat myDateFormat = new SimpleDateFormat("EEEE MMMM dd, yyyy");
+	    if (date==null){
+            date = nowInGmtCalendar();
+        }
+        return myDateFormat.format(date.getTime()) + date.getTimeZone().getID();
+	}
+
 	/**
     * Format a calendar date object to a filestamp
     */

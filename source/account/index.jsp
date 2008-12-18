@@ -231,6 +231,7 @@ if (thredsCheck==null || thredsCheck.size()<=0){
             List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                     .add(Restrictions.eq("thredid", thred.getThredid()))
                     .addOrder(Order.desc("date"))
+                    .addOrder(Order.desc("postid"))
                     .setMaxResults(25)
                     .setCacheable(true)
                     .list();

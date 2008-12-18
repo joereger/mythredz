@@ -183,11 +183,13 @@
         </trigger>
     </job>
 
+
+
     <job>
         <job-detail>
-          <name>startEmailListener</name>
+          <name>deleteOldEmailaddresses</name>
           <group>surveyJobs</group>
-          <job-class>com.mythredz.scheduledjobs.StartEmailListener</job-class>
+          <job-class>com.mythredz.scheduledjobs.DeleteOldEmailaddresses</job-class>
           <volatility>false</volatility>
           <durability>false</durability>
           <recover>false</recover>
@@ -195,14 +197,38 @@
         <trigger>
           <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
           <cron>
-            <name>startEmailListenerTrigger</name>
+            <name>dleteOldEmailaddressesTrigger</name>
             <group>surveyTriggers</group>
-            <job-name>startEmailListener</job-name>
+            <job-name>deleteOldEmailaddresses</job-name>
             <job-group>surveyJobs</job-group>
-            <!-- every x minutes -->
-            <cron-expression>0 0/5 * * * ?</cron-expression>
+            <!-- Fire at 12pm (noon) every day -->
+            <cron-expression>0 0 3 * * ?</cron-expression>
           </cron>
         </trigger>
     </job>
+
+
+    <job>
+        <job-detail>
+          <name>sendEmailReminderToUpdateStatus</name>
+          <group>surveyJobs</group>
+          <job-class>com.mythredz.scheduledjobs.SendEmailReminderToUpdateStatus</job-class>
+          <volatility>false</volatility>
+          <durability>false</durability>
+          <recover>false</recover>
+        </job-detail>
+        <trigger>
+          <!-- Sample cron triggers: http://www.opensymphony.com/quartz/wikidocs/TutorialLesson6.html -->
+          <cron>
+            <name>sendEmailReminderToUpdateStatusTrigger</name>
+            <group>surveyTriggers</group>
+            <job-name>sendEmailReminderToUpdateStatus</job-name>
+            <job-group>surveyJobs</job-group>
+            <!-- Fire at 12pm (noon) every day -->
+            <cron-expression>0 0 23 * * ?</cron-expression>
+          </cron>
+        </trigger>
+    </job>
+
 
 </quartz>

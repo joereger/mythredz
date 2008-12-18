@@ -1,75 +1,76 @@
 package com.mythredz.email;
 
-import org.apache.log4j.Logger;
 import org.apache.commons.mail.HtmlEmail;
+import org.apache.commons.mail.Email;
+import org.apache.log4j.Logger;
 
+import java.io.Serializable;
+import java.util.Enumeration;
+
+import com.mythredz.threadpool.ThreadPool;
+import com.mythredz.systemprops.SystemProperty;
+
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.mail.Address;
 import javax.mail.Header;
 import javax.mail.BodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
-import javax.activation.DataHandler;
-import java.util.Enumeration;
-import java.io.Serializable;
-
-import com.mythredz.systemprops.SystemProperty;
-import com.mythredz.threadpool.ThreadPool;
 
 /**
  * Sends automates email subscription emails
  */
-public class EmailSendThread implements Runnable, Serializable {
+public class EmailSendThreadSimple implements Runnable, Serializable {
 
-    public HtmlEmail htmlEmail;
+    public Email email;
     public static String DEFAULTFROM = "joe@joereger.com";
     private static ThreadPool tp;
 
     Logger logger = Logger.getLogger(this.getClass().getName());
 
-    public EmailSendThread() {
+    public EmailSendThreadSimple() {
 
     }
 
     public void run() {
-   
+
         try{
-            logger.debug("Start sending htmlEmail subject:"+htmlEmail.getSubject());
-            logger.debug("SystemProperty.PROP_SMTPOUTBOUNDSERVER="+SystemProperty.getProp(SystemProperty.PROP_SMTPOUTBOUNDSERVER));
-            if (htmlEmail!=null){
-                logger.debug("an htmlEmail was found... sending");
-                htmlEmail.setHostName(SystemProperty.getProp(SystemProperty.PROP_SMTPOUTBOUNDSERVER));
-                htmlEmail.send();
+            logger.debug("Start sending email subject:"+ email.getSubject());
+            logger.debug("SystemProperty.PROP_SMTPOUTBOUNDSERVER="+ SystemProperty.getProp(SystemProperty.PROP_SMTPOUTBOUNDSERVER));
+            if (email !=null){
+                logger.debug("an email was found... sending");
+                email.setHostName(SystemProperty.getProp(SystemProperty.PROP_SMTPOUTBOUNDSERVER));
+                email.send();
             } else {
                 logger.debug("not sending");
-                if (htmlEmail==null){
-                    logger.debug("htmlEmail is null");
+                if (email ==null){
+                    logger.debug("email is null");
                 } else {
                     logger.debug("no idea why it didn't send");
                 }
             }
-            logger.debug("End sending htmlEmail subject:"+htmlEmail.getSubject());
+            logger.debug("End sending email subject:"+ email.getSubject());
         } catch (Exception e){
             logger.error("top try/catch",e);
             e.printStackTrace();
         } finally {
             try{
-                if (htmlEmail!=null && htmlEmail.getMimeMessage()!=null && htmlEmail.getMimeMessage().getAllRecipients()!=null && htmlEmail.getMimeMessage().getAllRecipients().length>0){
-                    logEmailSend(htmlEmail);
+                if (email !=null && email.getMimeMessage()!=null && email.getMimeMessage().getAllRecipients()!=null && email.getMimeMessage().getAllRecipients().length>0){
+                    logEmailSend(email);
                 }
             } catch (Exception ex){logger.error("try/catch inside finally", ex);ex.printStackTrace();}
         }
     }
 
     public void startThread(){
-        if (tp==null){
-            tp = new ThreadPool(15);
+        if (tp ==null){
+            tp= new ThreadPool(15);
         }
         tp.assign(this);
     }
 
-    private void logEmailSend(HtmlEmail htmlEmail){
+    private void logEmailSend(Email emailtolog){
         try{
-            MimeMessage message = htmlEmail.getMimeMessage();
+            MimeMessage message = emailtolog.getMimeMessage();
             Address[] recipients = message.getAllRecipients();
             for (int i = 0; i < recipients.length; i++) {
                 Address recipient = recipients[i];

@@ -27,6 +27,9 @@
         <property name="isenabled" type="boolean">
             <column name="isenabled" />
         </property>
+        <property name="isemailnightlyon" type="boolean">
+            <column name="isemailnightlyon" />
+        </property>
 
         <property name="email" type="string">
             <column name="email" not-null="true" />

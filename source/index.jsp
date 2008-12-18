@@ -73,10 +73,10 @@ String acl = "public";
                 </div>
             <%} else {%>
                 <div class="rounded" style="padding: 15px; background: #e6e6e6;">
-                    <font class="smallfont">You're Logged In</font>
+                    <font class="smallfont">You're Logged In (because you rock)</font>
                     <br/><a href="/account/index.jsp"><font class="mediumfont">> Publish Stuff</font></a>
-                    <br/><a href="/user/<%=Pagez.getUserSession().getUser().getNickname()%>/"><font class="mediumfont">> See How Others See You</font></a>
-                    <br/><a href="/account/embed.jsp"><font class="mediumfont">> Embed in Your Blog</font></a>
+                    <br/><a href="/user/<%=Pagez.getUserSession().getUser().getNickname()%>/"><font class="mediumfont">> How Others See You</font></a>
+                    <br/><a href="/account/embed.jsp"><font class="mediumfont">> Embed into Your Blog</font></a>
                 </div>
             <%}%>
             <br/><br/>
@@ -84,11 +84,11 @@ String acl = "public";
                 <font class="smallfont" style="background: #ffffff;">What is myThredz?</font>
                 <br/><font class="tinyfont">A microblogging system that you can use to track, organize and publish those short updates that aren't quite worth a full blog post.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">What's unique about it?</font>
-                <br/><font class="tinyfont">The concept of Thredz.  These are themes.  You choose a Thred that you want to track... "Work" or "Family" or whatever.  You then post your updates to one of these Thredz.</font><br/>
+                <br/><font class="tinyfont">The concept of Thredz.  These are themes.  You choose a Thred that you want to track... "Work" or "Family" or "Training for My Marathon" or "Learning to Live with Cancer"... whatever's happening in your life.  You then post your updates to one of these Thredz.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">How do I publish?</font>
                 <br/><font class="tinyfont">Once you embed the widget into your blog you can publish directly on your blog... without ever leaving!  You can also publish at myThredz.com.  We also have a low-bandwidth mobile phone page you can use.  And we'd love to make it so that you can publish directly from the embed widget on your blog.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">What happens once I publish to a Thred?</font>
-                <br/><font class="tinyfont">Your updates are published to your blog.  You have myThredz embedded on your blog.  It takes up a small piece of real estate.  People can see the Thredz that you're tracking and can scroll each one for updates.  Check <a href="http://www.joereger.com">joereger.com</a> for an example.</font><br/>
+                <br/><font class="tinyfont">Your updates are published to your blog.  You have myThredz embedded on your blog.  It takes up a small piece of real estate.  People can see the Thredz that you're tracking and can scroll each one for updates.  Check <a href="http://www.joereger.com">joereger.com</a> for an example.  We'll also automatically update your Twitter status if you like.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">Why do we need this?</font>
                 <br/><font class="tinyfont">There's tremendous value in the details of life but often such details tend to overwhelm a focused blog.  Enter microblogging.  We have single-Thred microblogging systems like Twitter, etc.  But their organization of themes isn't (yet?) strong and their embeds are simplistic.  You get one publishing stream, that's it.  We wanted something that takes over a little more screen real estate than the tiny Twitter embed while illustrating the Thredz.  In this way your blog readers who don't care about your work can simply ignore the "Work" Thred (assuming you have one.)</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">What blogging systems are supported?</font>
@@ -98,7 +98,7 @@ String acl = "public";
                 <br/><font class="smallfont" style="background: #ffffff;">Does it have RSS?</font>
                 <br/><font class="tinyfont">What do you think this is... 1997?  Yes, you get an RSS feed for each of your Thredz.</font><br/>
                 <br/><font class="smallfont" style="background: #ffffff;">How much does it cost?</font>
-                <br/><font class="tinyfont">Completely free.  At this point we have no idea how/if we'll make money on it.</font><br/>
+                <br/><font class="tinyfont">Completely free.  At this point we have no idea how/if we'll make money on it.  Dear Twitter, Please master a monetization model on your VC's nickel so that we can apply it to our stuff.  We have no nickels but we'll catch you up when Web 3.0 comes around.  Sincerely, MyThredz</font><br/>
             </div>
         </td>
     </tr>

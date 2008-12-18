@@ -1,6 +1,7 @@
 <%@ page import="org.apache.log4j.Logger" %>
 <%@ page import="com.mythredz.htmlui.*" %>
 <%@ page import="com.mythredz.htmluibeans.AccountSettings" %>
+<%@ page import="com.mythredz.scheduledjobs.SendEmailReminderToUpdateStatus" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
 String pagetitle = "Account Settings";
@@ -18,12 +19,24 @@ AccountSettings accountSettings = (AccountSettings) Pagez.getBeanMgr().get("Acco
         accountSettings.setLastname(Textbox.getValueFromRequest("lastname", "Last Name", true, DatatypeString.DATATYPEID));
         accountSettings.setNickname(Textbox.getValueFromRequest("nickname", "Nickname", true, DatatypeString.DATATYPEID));
         accountSettings.setEmail(Textbox.getValueFromRequest("email", "Email", true, DatatypeString.DATATYPEID));
+        accountSettings.setIsemailnightlyon(CheckboxBoolean.getValueFromRequest("isemailnightlyon"));
         accountSettings.saveAction();
         Pagez.getUserSession().setMessage("Settings saved.");
     } catch (com.mythredz.htmlui.ValidationException vex) {
         Pagez.getUserSession().setMessage(vex.getErrorsAsSingleString());
     }
 }
+%>
+<%
+    if (request.getParameter("action") != null && request.getParameter("action").equals("sendnightlyemailnow")) {
+        try {
+            SendEmailReminderToUpdateStatus.sendForOneUser(Pagez.getUserSession().getUser());
+                    Pagez.getUserSession().setMessage("Email sent!");
+        } catch (Exception ex) {
+            logger.error("", ex);
+            Pagez.getUserSession().setMessage("Sorry, there was an error sending your email.");
+        }
+    }
 %>
 <%@ include file="/template/header.jsp" %>
 
@@ -73,6 +86,18 @@ AccountSettings accountSettings = (AccountSettings) Pagez.getBeanMgr().get("Acco
                         <%=Textbox.getHtml("email", accountSettings.getEmail(), 255, 20, "", "")%>
                         <br/>
                         <font class="tinyfont">Changing email will require re-activation</font>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td valign="top">
+                        <font class="formfieldnamefont">Nightly Email Form</font>
+                        <br/>
+                        <font class="tinyfont">Every night we'll send you an email.<br/>You'll simply hit Reply to tell us what happened.<br/>We'll update your thredz.<br/>It's easy, you'll like it.<br/><a href="/account/accountsettings.jsp?action=sendnightlyemailnow">Send one now.</a></font>
+                    </td>
+                    <td valign="top">
+                        <%=CheckboxBoolean.getHtml("isemailnightlyon", accountSettings.getIsemailnightlyon(), "", "")%>
+                        <font class="tinyfont">Yes, Email Form Me</font>
                     </td>
                 </tr>
 
