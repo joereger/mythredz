@@ -114,7 +114,7 @@ public class Time {
 	    if (date==null){
             date = nowInGmtCalendar();
         }
-        return myDateFormat.format(date.getTime()) + date.getTimeZone().getID();
+        return myDateFormat.format(date.getTime());
 	}
 
 	/**

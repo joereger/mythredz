@@ -52,6 +52,7 @@ public class EmailaddressUtil {
                                                        .setCacheable(true)
                                                        .list();
                     if (emailaddresses!=null && emailaddresses.size()>0 && emailaddresses.get(0)!=null){
+                        logger.debug("found an emailaddressid="+emailaddresses.get(0).getEmailaddressid());
                         return emailaddresses.get(0);
                     }
                 }

@@ -75,7 +75,9 @@ public class EmailApi {
         if (parseIn){
             Emailaddress emailaddress = EmailaddressUtil.getEmailaddress(to);
             if (emailaddress!=null){
-                newPost(emailaddress);
+                ProcessBodyTextOfEmail.process(body, emailaddress);
+            } else {
+                logger.debug( "emailaddress==null");
             }
         }
 
@@ -279,29 +281,7 @@ public class EmailApi {
 
 
 
-    /**
-     * New Entry method.
-     */
-     private void newPost(Emailaddress emailaddress){
-        Logger logger = Logger.getLogger(this.getClass().getName());
-        try {
 
-            //Create that sucker
-            ProcessBodyTextOfEmail.process(body, emailaddress);
-
-
-
-                //Deal with attachments
-//                if (isMultipart){
-//                    for(int i=0; i<multiPart.getCount(); i++){
-//                        findAttachments(multiPart.getBodyPart(i), 0);
-//                    }
-//                }
-        } catch (Exception e) {
-            logger.error("", e);
-        }
-
-    }
 
 //    private void findAttachments(BodyPart bodyPart, int eventid){
 //        Logger logger = Logger.getLogger(this.getClass().getName());

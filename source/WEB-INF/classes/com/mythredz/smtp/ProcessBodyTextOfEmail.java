@@ -26,6 +26,7 @@ public class ProcessBodyTextOfEmail {
 
     public static void process(String body, Emailaddress emailaddress){
         Logger logger = Logger.getLogger(ProcessBodyTextOfEmail.class);
+        logger.debug( "process() called");
         User user = User.get(emailaddress.getUserid());
         if (user.getIsenabled()){
             List<Thred> thredz = getThredsForUser(user);
@@ -58,18 +59,25 @@ public class ProcessBodyTextOfEmail {
                                 TwitterUpdate tu = new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
                                 tu.update();
                             }
+                        } else {
+                            logger.debug("updateText had 'Replace this with what happened.' in there too close to beginning");
                         }
+                    } else {
+                        logger.debug("updateText==null or ''");
                     }
                 } else {
-                    //Somebody manually changed the thredid in the email but used their own emailaddress
+                    logger.debug("Somebody manually changed the thredid in the email but used their own emailaddress");
                 }
             }
         } else {
             //User's not enabled... notify them that they should reactivate their account?
+            logger.debug("user not enabled");
         }
     }
 
     private static List<Thred> getThredsForUser(User user){
+        Logger logger = Logger.getLogger(ProcessBodyTextOfEmail.class);
+        logger.debug("getThredsForUser() called");
         List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
                 .add(Restrictions.eq("userid", user.getUserid()))
                 .setCacheable(true)
@@ -81,19 +89,24 @@ public class ProcessBodyTextOfEmail {
 
     private static String getUpdateTextForSpecificThred(String body, Thred thred){
         Logger logger = Logger.getLogger(ProcessBodyTextOfEmail.class);
+        logger.debug("getUpdateTextForSpecificThred() called");
         StringBuffer out = new StringBuffer();
         if (body!=null && !body.equals("")){
-            body.indexOf("Start ("+thred.getThredid()+")===");
-            //Pattern p = Pattern.compile("\\<\\$(.|\\n)*?\\$\\>");
-            Pattern p = Pattern.compile("Start \\("+thred.getThredid()+"\\)\\=\\=\\=\\>(.*?)\\<\\=\\=\\= End\\("+thred.getThredid()+"\\)");
+//            String a = "Start("+thred.getThredid()+")===>";
+//            String b = "End("+thred.getThredid()+")===>";
+//
+
+            Pattern p = Pattern.compile("Start\\("+thred.getThredid()+"\\)\\=\\=\\=\\>(.*?)\\<\\=\\=\\=End\\("+thred.getThredid()+"\\)");
+            logger.debug("p.toString()="+p.toString());
             Matcher m = p.matcher(body);
+            logger.debug("m.groupCount()="+m.groupCount());
             while(m.find()) {
                 String found = m.group(1);
                 logger.debug("found for thredid"+thred.getThredid()+"="+found);
-                out.append(found);
+                return found;
             }
-            //try{ m.appendTail(out); } catch (Exception e){}
         }
+        logger.debug("returning empty string");
         return out.toString();
     }
 
