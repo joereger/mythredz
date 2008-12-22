@@ -8,6 +8,7 @@ import com.mythredz.dao.hibernate.HibernateUtil;
 import com.mythredz.util.Str;
 import com.mythredz.cache.providers.CacheFactory;
 import com.mythredz.twitter.TwitterUpdate;
+import com.mythredz.helpers.AfterPostingTodo;
 import org.apache.log4j.Logger;
 import org.hibernate.criterion.Restrictions;
 
@@ -48,18 +49,8 @@ public class ProcessBodyTextOfEmail {
                                 } catch (Exception ex) {
                                     logger.error("", ex);
                                 }
-                                //Clear the Javascript Embed cache
-                                String nameInCache="embedjavascriptservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
-                                String cacheGroup="embedjavascriptcache" + "/";
-                                CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
-                                String nameInCacheVert="embedjavascriptverticalservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
-                                String cacheGroupVert="embedjavascriptcache" + "/";
-                                CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
-                                //Update twitter
-                                if (thred.getIstwitterupdateon()) {
-                                    TwitterUpdate tu = new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
-                                    tu.update();
-                                }
+                                //Update stuff after posting
+                                AfterPostingTodo.doAfterPost(user, thred, post, true, true);
                             } else {
                                 logger.debug("updateText had 'Replace this with what happened.' in there too close to beginning");
                             }

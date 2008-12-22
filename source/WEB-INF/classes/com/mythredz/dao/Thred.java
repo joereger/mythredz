@@ -19,6 +19,8 @@ public class Thred extends BasePersistentClass implements java.io.Serializable, 
      private boolean istwitterupdateon;
      private String twitterid;
      private String twitterpass;
+     private boolean ispingfmupdateon;
+     private String pingfmapikey;
 
 
 
@@ -116,5 +118,23 @@ public class Thred extends BasePersistentClass implements java.io.Serializable, 
 
     public void setTwitterid(String twitterid) {
         this.twitterid=twitterid;
+    }
+
+
+    public boolean getIspingfmupdateon() {
+        return ispingfmupdateon;
+    }
+
+    public void setIspingfmupdateon(boolean ispingfmupdateon) {
+        this.ispingfmupdateon=ispingfmupdateon;
+    }
+
+
+    public String getPingfmapikey() {
+        return pingfmapikey;
+    }
+
+    public void setPingfmapikey(String pingfmapikey) {
+        this.pingfmapikey=pingfmapikey;
     }
 }

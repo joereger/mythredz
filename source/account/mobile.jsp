@@ -14,6 +14,7 @@
 <%@ page import="com.mythredz.systemprops.SystemProperty" %>
 <%@ page import="com.mythredz.util.Str" %>
 <%@ page import="com.mythredz.twitter.TwitterUpdate" %>
+<%@ page import="com.mythredz.helpers.AfterPostingTodo" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
 String pagetitle = "";
@@ -41,18 +42,8 @@ String acl = "account";
                 } catch (Exception ex) {
                     logger.error("", ex);
                 }
-                //Clear the Javascript Embed cache
-                String nameInCache="embedjavascriptservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
-                String cacheGroup="embedjavascriptcache" + "/";
-                CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
-                //Update twitter
-                if (thred.getIstwitterupdateon()) {
-                    String posttotwitter=Pagez.getRequest().getParameter("threadid" + thred.getThredid() + "posttotwitter");
-                    if (posttotwitter != null && posttotwitter.trim().equals("1")) {
-                        TwitterUpdate tu=new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
-                        tu.update();
-                    }
-                }
+                //Update stuff after posting
+                AfterPostingTodo.doAfterPost(Pagez.getUserSession().getUser(), thred, post, Pagez.getRequest());
             }
         }
         out.print("Thredz have been saved!<br/>");
@@ -80,12 +71,18 @@ String acl = "account";
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
             Thred thred=iterator.next();
     %>
+                <%
+                    String updatePingfm = "";
+                    if (thred.getIspingfmupdateon()){
+                        updatePingfm = "<br/><input type=\"checkbox\" name=\"threadid"+thred.getThredid()+"posttopingfm\" value=\"1\" checked /> Update Ping.fm Status";
+                    }
+                %>
 
                 <%=thred.getName()%><br/>
                 <%if (thred.getIstwitterupdateon()){%>
-                    <input type="text" name="threadid-<%=thred.getThredid()%>" maxlength="140" size="20"><br/><input type="checkbox" name="threadid<%=thred.getThredid()%>posttotwitter" value="1" checked /> Update Twitter Status
+                    <input type="text" name="threadid-<%=thred.getThredid()%>" maxlength="140" size="20"><%=updatePingfm%><br/><input type="checkbox" name="threadid<%=thred.getThredid()%>posttotwitter" value="1" checked /> Update Twitter Status
                 <%} else {%>
-                    <textarea name="threadid-<%=thred.getThredid()%>" rows="1" cols="20"></textarea>
+                    <textarea name="threadid-<%=thred.getThredid()%>" rows="1" cols="20"></textarea><%=updatePingfm%>
                 <%}%>
                 <br/>
             <%

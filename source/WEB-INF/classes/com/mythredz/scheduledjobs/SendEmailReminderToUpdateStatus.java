@@ -93,7 +93,7 @@ public class SendEmailReminderToUpdateStatus implements Job {
             }
             body.append("\n");
             body.append("Notes/Help:"+"\n");
-            body.append("Type between the Start> and <End.");
+            body.append("Type between the Start> and <End."+"\n");
             body.append("Updates made with this email will use the date "+dateStr+"."+"\n");
             body.append("Don't edit the numbers in parentheses... they help us tell your thredz apart."+"\n");
             body.append("Ignore the thredz you don't want to update."+"\n");

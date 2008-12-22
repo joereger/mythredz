@@ -25,6 +25,8 @@ String acl = "account";
     thred.setIstwitterupdateon(false);
     thred.setTwitterid("");
     thred.setTwitterpass("");
+    thred.setIspingfmupdateon(false);
+    thred.setPingfmapikey("");
     if (request.getParameter("thredid") != null && Num.isinteger(request.getParameter("thredid"))) {
         thred = Thred.get(Integer.parseInt(request.getParameter("thredid")));
     }
@@ -54,9 +56,11 @@ if (threds!=null && threds.size()>=7){
     if (request.getParameter("action") != null && request.getParameter("action").equals("save")) {
     try {
         thred.setName(Textbox.getValueFromRequest("name", "Thred Name", true, DatatypeString.DATATYPEID));
+        thred.setIstwitterupdateon(CheckboxBoolean.getValueFromRequest("istwitterupdateon"));
         thred.setTwitterid(Textbox.getValueFromRequest("twitterid", "Twitter ID", false, DatatypeString.DATATYPEID));
         thred.setTwitterpass(Textbox.getValueFromRequest("twitterpass", "Twitter Password", false, DatatypeString.DATATYPEID));
-        thred.setIstwitterupdateon(CheckboxBoolean.getValueFromRequest("istwitterupdateon"));
+        thred.setIspingfmupdateon(CheckboxBoolean.getValueFromRequest("ispingfmupdateon"));
+        thred.setPingfmapikey(Textbox.getValueFromRequest("pingfmapikey", "Ping.fm API Key", false, DatatypeString.DATATYPEID));
         thred.save();
         Pagez.getUserSession().setMessage("Thred saved.");
         Pagez.sendRedirect("/account/thredzlist.jsp");
@@ -128,11 +132,26 @@ if (threds!=null && threds.size()>=7){
                         <br/>
                         <font class="formfieldnamefont">Twitter ID:</font>
                         <br/>
-                        <%=Textbox.getHtml("twitterid", thred.getTwitterid(), 20, 20, "", "")%>
+                        <%=Textbox.getHtml("twitterid", thred.getTwitterid(), 40, 20, "", "")%>
                         <br/>
                         <font class="formfieldnamefont">Twitter Password:</font>
                         <br/>
-                        <%=TextboxSecret.getHtml("twitterpass", thred.getTwitterpass(), 20, 20, "", "")%>
+                        <%=TextboxSecret.getHtml("twitterpass", thred.getTwitterpass(), 40, 20, "", "")%>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td valign="top">
+                        <font class="formfieldnamefont">Ping.fm</font>
+                    </td>
+                    <td valign="top">
+                        <%=CheckboxBoolean.getHtml("ispingfmupdateon", thred.getIspingfmupdateon(), "", "")%> <font class="formfieldnamefont">Yes, Update Ping.fm</font>
+                        <br/>
+                        <font class="tinyfont">Send updates from this Thred to Ping.fm.</font>
+                        <br/>
+                        <font class="formfieldnamefont">Ping.fm API Key:</font>
+                        <br/>
+                        <%=Textbox.getHtml("pingfmapikey", thred.getPingfmapikey(), 250, 20, "", "")%>
                     </td>
                 </tr>
 

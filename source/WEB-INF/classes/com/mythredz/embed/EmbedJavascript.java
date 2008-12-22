@@ -266,17 +266,21 @@ public class EmbedJavascript extends HttpServlet {
                         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
                             Thred thred=iterator.next();
 
-
+                            String updatePingfm = "";
+                            if (thred.getIspingfmupdateon()){
+                                updatePingfm = "<br/><input type=\"checkbox\" name=\"threadid"+thred.getThredid()+"posttopingfm\" value=\"1\" checked /><font class=\"tinyfont\"> Update Ping.fm Status</font>";
+                            }
 
                             if (thred.getIstwitterupdateon()){
                                 out.append("            <td valign=\"top\">\n" +
-                                "                <textarea name=\"threadid-"+thred.getThredid()+"\" rows=\"5\" cols=\"5\" style=\"width: 100%;\" onkeypress=\"textCounter(this,this.form.counter"+thred.getThredid()+",this.form.threadid"+thred.getThredid()+"posttotwitter,140);\"></textarea><br/><input type=\"checkbox\" name=\"threadid"+thred.getThredid()+"posttotwitter\" value=\"1\" checked /><font class=\"tinyfont\"> Update Twitter Status</font><br/><input type=\"text\" name=\"counter"+thred.getThredid()+"\" id=\"counter"+thred.getThredid()+"\" maxlength=\"3\" size=\"3\" style=\"font-size: 8px;\" value=\"140\" onblur=\"textCounter(this.form.counter"+thred.getThredid()+",this,this.form.threadid"+thred.getThredid()+"posttotwitter,140);\"><font class=\"tinyfont\"> chars left</font>\n" +
+                                "                <textarea name=\"threadid-"+thred.getThredid()+"\" rows=\"5\" cols=\"5\" style=\"width: 100%;\" onkeypress=\"textCounter(this,this.form.counter"+thred.getThredid()+",this.form.threadid"+thred.getThredid()+"posttotwitter,140);\"></textarea>"+updatePingfm+"<br/><input type=\"checkbox\" name=\"threadid"+thred.getThredid()+"posttotwitter\" value=\"1\" checked /><font class=\"tinyfont\"> Update Twitter Status</font><br/><input type=\"text\" name=\"counter"+thred.getThredid()+"\" id=\"counter"+thred.getThredid()+"\" maxlength=\"3\" size=\"3\" style=\"font-size: 8px;\" value=\"140\" onblur=\"textCounter(this.form.counter"+thred.getThredid()+",this,this.form.threadid"+thred.getThredid()+"posttotwitter,140);\"><font class=\"tinyfont\"> chars left</font>\n" +
                                 "            </td>\n");
                             } else {
                                 out.append("            <td valign=\"top\">\n" +
-                                "                <textarea name=\"threadid-"+thred.getThredid()+"\" rows=\"5\" cols=\"5\" style=\"width: 100%;\"></textarea>\n" +
+                                "                <textarea name=\"threadid-"+thred.getThredid()+"\" rows=\"5\" cols=\"5\" style=\"width: 100%;\"></textarea>"+updatePingfm+"\n" +
                                 "            </td>\n");
                             }
+
 
 
 

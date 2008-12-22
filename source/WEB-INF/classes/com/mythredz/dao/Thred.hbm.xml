@@ -27,6 +27,12 @@
         <property name="twitterpass" type="string">
             <column name="twitterpass" not-null="true" />
         </property>
+        <property name="ispingfmupdateon" type="boolean">
+            <column name="ispingfmupdateon" />
+        </property>
+        <property name="pingfmapikey" type="string">
+            <column name="pingfmapikey" not-null="true" />
+        </property>
 
     </class>
 </hibernate-mapping>

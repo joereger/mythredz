@@ -14,6 +14,7 @@
 <%@ page import="com.mythredz.systemprops.SystemProperty" %>
 <%@ page import="com.mythredz.util.Str" %>
 <%@ page import="com.mythredz.twitter.TwitterUpdate" %>
+<%@ page import="com.mythredz.helpers.AfterPostingTodo" %>
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
 String pagetitle = "";
@@ -43,21 +44,8 @@ String acl = "account";
                     } catch (Exception ex) {
                         logger.error("", ex);
                     }
-                    //Clear the Javascript Embed cache
-                    String nameInCache="embedjavascriptservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
-                    String cacheGroup="embedjavascriptcache" + "/";
-                    CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
-                    String nameInCacheVert="embedjavascriptverticalservlet-u" + Pagez.getUserSession().getUser().getUserid() + "-makeHttpsIfSSLIsOn" + false;
-                    String cacheGroupVert="embedjavascriptcache" + "/";
-                    CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
-                    //Update twitter
-                    if (thred.getIstwitterupdateon()) {
-                        String posttotwitter=Pagez.getRequest().getParameter("threadid" + thred.getThredid() + "posttotwitter");
-                        if (posttotwitter != null && posttotwitter.trim().equals("1")) {
-                            TwitterUpdate tu=new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
-                            tu.update();
-                        }
-                    }
+                    //Update stuff after posting
+                    AfterPostingTodo.doAfterPost(Pagez.getUserSession().getUser(), thred, post, Pagez.getRequest());
                 }
             }
         }
