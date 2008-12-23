@@ -66,6 +66,8 @@
                 <a href="/account/accountsettings.jsp"><font class="subnavfont" style="color: #000000;">Account Settings</font></a>
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>
                 <a href="/account/changepassword.jsp"><font class="subnavfont" style="color: #000000;">Change Password</font></a>
+                <img src="/images/clear.gif" alt="" width="10" height="1"/>
+                <a href="/account/thredzlist.jsp"><font class="subnavfont" style="color: #000000;">Add/Edit Thredz</font></a>
             <%}%>
         <%}%>
 

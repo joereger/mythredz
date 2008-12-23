@@ -50,7 +50,7 @@ public class AfterPostingTodo {
             }
             //Update Ping.fm
             if (thred.getIspingfmupdateon() && posttopingfm) {
-                PingfmUpdate pu = new PingfmUpdate(thred.getPingfmapikey(), post.getContents());
+                PingfmUpdate pu = new PingfmUpdate(thred.getPingfmapikey(), post.getContents(), thred.getThredid());
                 pu.update();
             }
         } catch (Exception ex){

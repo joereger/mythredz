@@ -137,6 +137,7 @@ if (threds!=null && threds.size()>=7){
                         <font class="formfieldnamefont">Twitter Password:</font>
                         <br/>
                         <%=TextboxSecret.getHtml("twitterpass", thred.getTwitterpass(), 40, 20, "", "")%>
+                        <br/><br/>
                     </td>
                 </tr>
 
@@ -147,11 +148,13 @@ if (threds!=null && threds.size()>=7){
                     <td valign="top">
                         <%=CheckboxBoolean.getHtml("ispingfmupdateon", thred.getIspingfmupdateon(), "", "")%> <font class="formfieldnamefont">Yes, Update Ping.fm</font>
                         <br/>
-                        <font class="tinyfont">Send updates from this Thred to Ping.fm.</font>
+                        <font class="tinyfont">Send updates from this Thred to <a href="http://ping.fm/">Ping.fm</a>.</font>
                         <br/>
-                        <font class="formfieldnamefont">Ping.fm API Key:</font>
+                        <font class="formfieldnamefont">Ping.fm App Key:</font>
                         <br/>
                         <%=Textbox.getHtml("pingfmapikey", thred.getPingfmapikey(), 250, 20, "", "")%>
+                        <br/>
+                        <font class="tinyfont">Get your Ping.fm App key <a href="http://ping.fm/key/">here</a>.</font>
                     </td>
                 </tr>
 
