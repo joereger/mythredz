@@ -81,7 +81,7 @@ public class EmbedJavascript extends HttpServlet {
             } else {
                 logger.debug("rebuilding string and putting it into cache");
                 try{
-                    dynamicPortionOfOutput = ThredzAsHtml.get(user, makeHttpsIfSSLIsOn);
+                    dynamicPortionOfOutput = ThredzAsHtml.get(user, makeHttpsIfSSLIsOn, ThredzAsHtml.ORIENTATION_HORIZ);
                     //Put bytes into cache
                     CacheFactory.getCacheProvider().put(nameInCache, cacheGroup, dynamicPortionOfOutput);
                 } catch (Exception ex){
@@ -89,7 +89,7 @@ public class EmbedJavascript extends HttpServlet {
                 }
             }
         } else {
-            dynamicPortionOfOutput = "Sorry.  Not found.  userud="+request.getParameter("u");
+            dynamicPortionOfOutput = "Sorry.  Not found.  userid="+request.getParameter("u");
             dynamicPortionOfOutput = "document.write(\""+dynamicPortionOfOutput+"\");"+"\n";
         }
         //Now add toolbar
@@ -110,39 +110,6 @@ public class EmbedJavascript extends HttpServlet {
     private String getToolbar(int userid){
         StringBuffer out = new StringBuffer();
 
-        out.append("<style>\n"+
-                ".toolbarnormal{\n" +
-                "   background : #ffffff; padding: 0px; width: 150; float: right; height: 15px; overflow : hidden; text-align: left; z-index: 0;\n" +
-                "}\n"+
-                ".toolbarhot{\n" +
-                "   background : #e6e6e6; padding: 0px; width: 100%; height: 275px; overflow : auto; text-align: left; z-index: 99; background-image: url('http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/embed-toolbar-bg.gif')\n" +
-                "}\n"+
-                ".formfieldnamefont {\n" +
-                "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
-                "    font-weight: bolder;\n" +
-                "    font-size: 12px;\n" +
-                "    color: #333333;\n" +
-                "}"+
-                ".smallfont {\n" +
-                "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
-                "    font-size: 10px;\n" +
-                "}"+
-                ".formsubmitbutton, submit {\n" +
-                "   color:#333;\n" +
-                "   font-family:'trebuchet ms',helvetica,sans-serif;\n" +
-                "   font-weight:bold;\n" +
-                "   font-size: 11px;\n" +
-                "   background-color:#cccccc;\n" +
-                "   border:2px solid;\n" +
-                "   border-top-color:#behb00;\n" +
-                "   border-left-color:#behb00;\n" +
-                "   border-right-color:#behb00;\n" +
-                "   border-bottom-color:#behb00;\n" +
-                "   margin: 0px;\n" +
-                "   cursor: pointer;\n" +
-                "   cursor: hand;\n" +
-                "}"+
-                "</style>");
 
         out.append("<script type=\"text/javascript\">\n" +
                 "        function textCounter( field, countfield, onofffield, maxlimit ) {\n" +
@@ -159,7 +126,7 @@ public class EmbedJavascript extends HttpServlet {
 
 
         out.append("\n<div class=\"toolbarnormal\"  onmouseover=\"this.className='toolbarhot';\" onmouseout=\"this.className='toolbarnormal';\">"+"\n");
-        out.append("<div style=\"text-align: right;\"><font class=\"tinyfont\" style=\"color: #cccccc;\">Publish to myThredz</font></div>");
+        out.append("<div style=\"text-align: right;\"><font class=\"mythredztinyfont\" style=\"color: #cccccc;\">Publish to myThredz</font></div>");
         out.append("<br/><br/>");
         if (Pagez.getUserSession().getIsloggedin() && Pagez.getUserSession().getUser()!=null && Pagez.getUserSession().getUser().getUserid()==userid){
             out.append(getThredzInputForm());
@@ -200,7 +167,7 @@ public class EmbedJavascript extends HttpServlet {
                     "                    <td valign=\"top\">\n" +
                     "                        "+ TextboxSecret.getHtml("password", "", 255, 20, "", "")+"\n" +
                     "                        <br/>\n" +
-                    "                        <a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/lostpassword.jsp\"><font class=\"tinyfont\" style=\"color: #000000;\">Lost your password?</font></a>\n" +
+                    "                        <a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/lostpassword.jsp\"><font class=\"mythredztinyfont\" style=\"color: #000000;\">Lost your password?</font></a>\n" +
                     "                    </td>\n" +
                     "                </tr>\n" +
                     "\n" +
@@ -268,12 +235,12 @@ public class EmbedJavascript extends HttpServlet {
 
                             String updatePingfm = "";
                             if (thred.getIspingfmupdateon()){
-                                updatePingfm = "<br/><input type=\"checkbox\" name=\"threadid"+thred.getThredid()+"posttopingfm\" value=\"1\" checked /><font class=\"tinyfont\"> Update Ping.fm Status</font>";
+                                updatePingfm = "<br/><input type=\"checkbox\" name=\"threadid"+thred.getThredid()+"posttopingfm\" value=\"1\" checked /><font class=\"mythredztinyfont\"> Update Ping.fm Status</font>";
                             }
 
                             if (thred.getIstwitterupdateon()){
                                 out.append("            <td valign=\"top\">\n" +
-                                "                <textarea name=\"threadid-"+thred.getThredid()+"\" rows=\"5\" cols=\"5\" style=\"width: 100%;\" onkeypress=\"textCounter(this,this.form.counter"+thred.getThredid()+",this.form.threadid"+thred.getThredid()+"posttotwitter,140);\"></textarea>"+updatePingfm+"<br/><input type=\"checkbox\" name=\"threadid"+thred.getThredid()+"posttotwitter\" value=\"1\" checked /><font class=\"tinyfont\"> Update Twitter Status</font><br/><input type=\"text\" name=\"counter"+thred.getThredid()+"\" id=\"counter"+thred.getThredid()+"\" maxlength=\"3\" size=\"3\" style=\"font-size: 8px;\" value=\"140\" onblur=\"textCounter(this.form.counter"+thred.getThredid()+",this,this.form.threadid"+thred.getThredid()+"posttotwitter,140);\"><font class=\"tinyfont\"> chars left</font>\n" +
+                                "                <textarea name=\"threadid-"+thred.getThredid()+"\" rows=\"5\" cols=\"5\" style=\"width: 100%;\" onkeypress=\"textCounter(this,this.form.counter"+thred.getThredid()+",this.form.threadid"+thred.getThredid()+"posttotwitter,140);\"></textarea>"+updatePingfm+"<br/><input type=\"checkbox\" name=\"threadid"+thred.getThredid()+"posttotwitter\" value=\"1\" checked /><font class=\"mythredztinyfont\"> Update Twitter Status</font><br/><input type=\"text\" name=\"counter"+thred.getThredid()+"\" id=\"counter"+thred.getThredid()+"\" maxlength=\"3\" size=\"3\" style=\"font-size: 8px;\" value=\"140\" onblur=\"textCounter(this.form.counter"+thred.getThredid()+",this,this.form.threadid"+thred.getThredid()+"posttotwitter,140);\"><font class=\"mythredztinyfont\"> chars left</font>\n" +
                                 "            </td>\n");
                             } else {
                                 out.append("            <td valign=\"top\">\n" +

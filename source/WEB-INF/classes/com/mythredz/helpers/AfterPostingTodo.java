@@ -36,13 +36,8 @@ public class AfterPostingTodo {
     public static void doAfterPost(User user, Thred thred, Post post, boolean posttotwitter, boolean posttopingfm){
         Logger logger = Logger.getLogger(AfterPostingTodo.class);
         try{
-            //Clear the Javascript Embed cache
-            String nameInCache="embedjavascriptservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
-            String cacheGroup="embedjavascriptcache" + "/";
-            CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
-            String nameInCacheVert="embedjavascriptverticalservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
-            String cacheGroupVert="embedjavascriptcache" + "/";
-            CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
+            //Clear the caches
+            clearCaches(user);
             //Update twitter
             if (thred.getIstwitterupdateon() && posttotwitter) {
                 TwitterUpdate tu = new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
@@ -56,6 +51,16 @@ public class AfterPostingTodo {
         } catch (Exception ex){
             logger.error(ex);
         }
+    }
+
+    public static void clearCaches(User user){
+        //Clear the Javascript Embed cache
+        String nameInCache="embedjavascriptservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
+        String cacheGroup="embedjavascriptcache" + "/";
+        CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
+        String nameInCacheVert="embedjavascriptverticalservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
+        String cacheGroupVert="embedjavascriptcache" + "/";
+        CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
     }
 
 

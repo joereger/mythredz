@@ -91,5 +91,8 @@
         <property name="currentexercisenum" type="int">
             <column name="currentexercisenum" not-null="true" />
         </property>
+        <property name="css" type="text">
+            <column name="css" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

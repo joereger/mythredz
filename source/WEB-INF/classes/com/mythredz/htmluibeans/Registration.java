@@ -154,6 +154,7 @@ public class Registration implements Serializable {
         user.setExerciselistid(1);
         user.setCurrentexercisenum(1);
         user.setIsemailnightlyon(true);
+        user.setCss("");
         try{
             user.save();
             userid = user.getUserid();

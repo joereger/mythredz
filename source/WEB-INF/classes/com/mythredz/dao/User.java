@@ -42,6 +42,7 @@ public class User extends BasePersistentClass implements java.io.Serializable, A
      private int exerciselistid;
      private int currentexercisenum;
      private boolean isemailnightlyon;
+     private String css;
 
 
      //Association
@@ -299,5 +300,13 @@ public class User extends BasePersistentClass implements java.io.Serializable, A
 
     public void setIsemailnightlyon(boolean isemailnightlyon) {
         this.isemailnightlyon=isemailnightlyon;
+    }
+
+    public String getCss() {
+        return css;
+    }
+
+    public void setCss(String css) {
+        this.css=css;
     }
 }

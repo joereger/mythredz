@@ -22,77 +22,143 @@ import java.util.List;
  */
 public class ThredzAsHtml {
 
-    public static String get(User user, boolean makeHttpsIfSSLIsOn){
-        Logger logger = Logger.getLogger(ThredzAsHtml.class);
+    public static int ORIENTATION_VERT = 0;
+    public static int ORIENTATION_HORIZ = 1;
+
+
+    public static String get(User user, boolean makeHttpsIfSSLIsOn, int orientation){
         StringBuffer out = new StringBuffer();
+        //CSS for embed
+        if (user.getCss()!=null && !user.getCss().equals("")){
+            out.append(user.getCss());
+        } else {
+            out.append(getDefaultCssStyle());
+        }
+        //Body of embed
+        if (orientation==ORIENTATION_HORIZ){
+            out.append(getHorizontal(user, makeHttpsIfSSLIsOn));
+        } else {
+            out.append(getVertical(user, makeHttpsIfSSLIsOn));
+        }
+        return out.toString();
+    }
 
-        int totHeight = 120;
-        
-
+    public static String getDefaultCssStyle(){
+        StringBuffer out = new StringBuffer();
+        //Main CSS for embed
         out.append("<style>\n"+
-                ".tinyfont {\n" +
+                ".mythredztinyfont {\n" +
                 "    font-family: Arial, sans-serif;\n" +
                 "    font-size: 9px;\n" +
                 "}\n" +
-                "\n" +
+                ".mythredzdatestampfont {\n" +
+                "    font-family: Arial, sans-serif;\n" +
+                "    font-size: 9px;\n" +
+                "    color: #cccccc;\n"+
+                "}\n" +
+                ".mythredzsmallfont {\n" +
+                "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
+                "    font-size: 10px;\n" +
+                "}\n"+
+                ".thredtitleheader {\n" +
+                "    width: 100%;\n" +
+                "    background: #e6e6e6;\n" +
+                "    text-align: center;\n" +
+                "    height: 26px;\n"+
+                "}\n"+
+                ".thredtitlefont {\n" +
+                "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
+                "    font-size: 12px;\n" +
+                "    font-weight: bold;\n"+
+                "    color: #666666;\n"+
+                "}\n"+
+                ".thredztable{\n"+
+                "    width: 100%;\n"+
+                "}\n"+
+                ".thredztablecell{\n"+
+                "    border: 0px;\n"+
+                "    padding: 0px;\n"+
+                "}\n"+
+                ".thredbody {\n" +
+                "    padding: 0px;\n" +
+                "    width: 100%;\n" +
+                "    margin: 0px;\n" +
+                "    border: 0px solid #ffffff;\n " +
+                "    height: 120px;\n " +
+                "    overflow: visible;\n " +
+                "    text-align: left;\n"+
+                "}\n"+
+                ".thrednormal{\n" +
+                "   padding: 0px;\n width: 100%;\n height: 120px;\n overflow: hidden;\n text-align: left;\n z-index: 1;\n" +
+                "}\n"+
+                ".thredhot{\n" +
+                "   background : #ffffff;\n padding: 0px;\n width: 100%;\n height: 250px;\n overflow:auto;\n text-align: left;\n z-index: 99;\n" +
+                "}\n"+
+                ".toolbarnormal{\n" +
+                "   padding: 0px;\n width: 150px;\n float: right;\n height: 15px;\n overflow: hidden;\n text-align: left;\n z-index: 0;\n" +
+                "}\n"+
+                ".toolbarhot{\n" +
+                "   background : #e6e6e6;\n padding: 0px;\n width: 100%;\n height: 275px;\n overflow: auto;\n text-align: left;\n z-index: 99;\n background-image: url('http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/embed-toolbar-bg.gif')\n" +
+                "}\n"+
+                ".formfieldnamefont {\n" +
+                "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
+                "    font-weight: bolder;\n" +
+                "    font-size: 12px;\n" +
+                "    color: #333333;\n" +
+                "}\n"+
                 ".smallfont {\n" +
                 "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
                 "    font-size: 10px;\n" +
                 "}\n"+
-                ".normalfont {\n" +
-                "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
-                "    font-size: 12px;\n" +
-                "}\n"+
-                ".thrednormal{\n" +
-                "   background : #ffffff; padding: 0px; width: 100%; height: "+(totHeight-0)+"px; overflow : hidden; text-align: left; z-index: 1;\n" +
-                "}\n"+
-                ".thredhot{\n" +
-                "   background : #ffffff; padding: 0px; width: 100%; height: 250px; overflow : auto; text-align: left; z-index: 99;\n" +
+                ".formsubmitbutton, submit {\n" +
+                "   color:#333;\n" +
+                "   font-family:'trebuchet ms',helvetica,sans-serif;\n" +
+                "   font-weight:bold;\n" +
+                "   font-size: 11px;\n" +
+                "   background-color:#cccccc;\n" +
+                "   border:2px solid;\n" +
+                "   border-top-color:#behb00;\n" +
+                "   border-left-color:#behb00;\n" +
+                "   border-right-color:#behb00;\n" +
+                "   border-bottom-color:#behb00;\n" +
+                "   margin: 0px;\n" +
+                "   cursor: pointer;\n" +
+                "   cursor: hand;\n" +
                 "}\n"+
                 "</style>");
+            return out.toString();
+    }
 
-        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; width: margin: 0px; 95%; border: 0px solid #ffffff; height: "+totHeight+"px; overflow: visible; text-align: left;\">"+"\n");
-
-
-
-
+    private static String getHorizontal(User user, boolean makeHttpsIfSSLIsOn){
+        Logger logger = Logger.getLogger(ThredzAsHtml.class);
+        StringBuffer out = new StringBuffer();
+        out.append("\n\n<div class=\"thredbody\">"+"\n");
         List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
             .add(Restrictions.eq("userid", user.getUserid()))
             .setCacheable(true)
             .list();
-
-
-
-
-        out.append("\n<table cellpadding=\"0\" cellspacing=\"1\" border=\"0\" width=\"100%\">");
-
+        out.append("\n<table class=\"thredztable\">");
         out.append("\n<tr>");
-
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
             Thred thred=iterator.next();
             double widthDbl=100 / threds.size();
             Double widthBigDbl=new Double(widthDbl);
             int width=widthBigDbl.intValue();
-            out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
-            out.append("\n<div style=\"width: 100%; background: #e6e6e6; text-align: center; height: 26px;\">");
-            out.append("<font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">"+thred.getName()+"</font>");
+            out.append("\n\n<td class=\"thredztablecell\" valign=\"top\" width=\""+width+"%\">");
+            out.append("\n<div class=\"thredtitleheader\">");
+            out.append("<font class=\"thredtitlefont\">"+thred.getName()+"</font>");
             out.append("</div>");
             out.append("</td>");
         }
         out.append("\n\n</tr>");
-
-
-
         out.append("\n<tr>");
-
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
             Thred thred=iterator.next();
             double widthDbl=100 / threds.size();
             Double widthBigDbl=new Double(widthDbl);
             int width=widthBigDbl.intValue();
-            out.append("\n\n<td valign=\"top\">");
+            out.append("\n\n<td class=\"thredztablecell\" valign=\"top\">");
             out.append("\n<div class=\"thrednormal\" style=\"\" onmouseover=\"this.className='thredhot';\" onmouseout=\"this.className='thrednormal';\">"+"\n");
-            //out.append("\n<br/>");
             List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                     .add(Restrictions.eq("thredid", thred.getThredid()))
                     .addOrder(Order.desc("date"))
@@ -102,101 +168,52 @@ public class ThredzAsHtml {
                     .list();
             for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
                 Post post=iterator1.next();
-                out.append("\n<font class=\"tinyfont\" style=\"color: #cccccc;\">"+Time.dateformatcompactwithtime(post.getDate())+"</font>");
-                out.append("\n<br/><font class=\"smallfont\">"+post.getContents()+"</font><br/><br/>");
+                out.append("\n<font class=\"mythredzdatestampfont\">"+Time.dateformatcompactwithtime(post.getDate())+"</font>");
+                out.append("\n<br/><font class=\"mythredzsmallfont\">"+post.getContents()+"</font><br/><br/>");
             }
-
             out.append("<div style=\"width: 100%; background: #e6e6e6; text-align: center;\">");
-            out.append("<br/><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">");
+            out.append("<br/><font class=\"thredtitlefont\">");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/user/"+user.getNickname()+"/\">");
             out.append("See All of this Thred");
             out.append("</a>");
             out.append("</font>");
             out.append("<br/>");
-            out.append("<font class=\"tinyfont\">Powered by <a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">myThredz</a></font><br/>");
-            out.append("<br/><font class=\"tinyfont\" style=\"font-weight: bold;\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss.xml?thredid="+thred.getThredid()+"\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
+            out.append("<font class=\"mythredztinyfont\">Powered by <a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">myThredz</a></font><br/>");
+            out.append("<br/><font class=\"mythredztinyfont\" style=\"font-weight: bold;\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss.xml?thredid="+thred.getThredid()+"\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
             out.append("<br/><br/>");
             out.append("</div>");
-
             out.append("\n</div>");
             out.append("\n</td>");
-
         }
         out.append("\n\n</tr>");
-
-
-
-
-
-
-
-
-
-
-
         out.append("\n</table>");
-
-
         out.append("</div>"+"\n");
-
-
         return out.toString();
     }
 
 
-    public static String getVertical(User user, boolean makeHttpsIfSSLIsOn){
+    private static String getVertical(User user, boolean makeHttpsIfSSLIsOn){
         Logger logger = Logger.getLogger(ThredzAsHtml.class);
         StringBuffer out = new StringBuffer();
-
-
-
-
-        out.append("<style>\n"+
-                ".tinyfont {\n" +
-                "    font-family: Arial, sans-serif;\n" +
-                "    font-size: 9px;\n" +
-                "}\n" +
-                "\n" +
-                ".smallfont {\n" +
-                "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
-                "    font-size: 10px;\n" +
-                "}\n"+
-                ".normalfont {\n" +
-                "    font-family: Verdana, Arial, Helvetica, sans-serif;\n" +
-                "    font-size: 12px;\n" +
-                "}\n"+
-                ".thrednormal{\n" +
-                "   background : #ffffff; padding: 0px; width: 100%; height: 100px; overflow : hidden; text-align: left; z-index: 1;\n" +
-                "}\n"+
-                ".thredhot{\n" +
-                "   background : #ffffff; padding: 0px; width: 100%; height: 250px; overflow : auto; text-align: left; z-index: 99;\n" +
-                "}\n"+
-                "</style>");
-
-        out.append("\n\n<div style=\"background : #ffffff; padding: 0px; margin: 0px; width: 95%; border: 0px solid #ffffff; text-align: left;\">"+"\n");
-
-
-        out.append("\n<table cellpadding=\"0\" cellspacing=\"1\" border=\"0\" width=\"100%\">");
-        //out.append("<tr>");
-            List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
-                .add(Restrictions.eq("userid", user.getUserid()))
-                .setCacheable(true)
-                .list();
-
-
-
+        out.append("\n\n<div class=\"thredbody\">"+"\n");
+        out.append("\n<table class=\"thredztable\">");
+        List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
+            .add(Restrictions.eq("userid", user.getUserid()))
+            .setCacheable(true)
+            .list();
         for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
             Thred thred=iterator.next();
             double widthDbl=100 / threds.size();
             Double widthBigDbl=new Double(widthDbl);
             int width=widthBigDbl.intValue();
+            width = 100;
             out.append("\n<tr>");
-            out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
-            out.append("\n<div style=\"width: 100%; background: #e6e6e6; text-align: center; height: 26px;\"><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">"+thred.getName()+"</font></div>");
+            out.append("\n\n<td class=\"thredztablecell\" valign=\"top\" width=\""+width+"%\">");
+            out.append("\n<div class=\"thredtitleheader\"><font class=\"thredtitlefont\">"+thred.getName()+"</font></div>");
             out.append("</td>");
             out.append("</tr>");
             out.append("\n<tr>");
-            out.append("\n\n<td valign=\"top\" width=\""+width+"%\">");
+            out.append("\n\n<td class=\"thredztablecell\" valign=\"top\" width=\""+width+"%\">");
             out.append("\n<div class=\"thrednormal\" style=\"\" onmouseover=\"this.className='thredhot';\" onmouseout=\"this.className='thrednormal';\">"+"\n");
             List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                     .add(Restrictions.eq("thredid", thred.getThredid()))
@@ -206,35 +223,26 @@ public class ThredzAsHtml {
                     .list();
             for (Iterator<Post> iterator1=posts.iterator(); iterator1.hasNext();) {
                 Post post=iterator1.next();
-                out.append("\n<font class=\"tinyfont\" style=\"color: #cccccc;\">"+Time.dateformatcompactwithtime(post.getDate())+"</font>");
-                out.append("\n<br/><font class=\"smallfont\">"+post.getContents()+"</font><br/><br/>");
+                out.append("\n<font class=\"mythredzdatestampfont\">"+Time.dateformatcompactwithtime(post.getDate())+"</font>");
+                out.append("\n<br/><font class=\"mythredzsmallfont\">"+post.getContents()+"</font><br/><br/>");
             }
-
             out.append("<div style=\"width: 100%; background: #e6e6e6; text-align: center;\">");
-            out.append("<br/><font class=\"normalfont\" style=\"font-weight: bold; color: #666666;\">");
+            out.append("<br/><font class=\"thredtitlefont\">");
             out.append("<a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/user/"+user.getNickname()+"/\">");
             out.append("See All of this Thred");
             out.append("</a>");
             out.append("</font>");
             out.append("<br/>");
-            out.append("<font class=\"tinyfont\">Powered by <a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">myThredz</a></font><br/>");
-            out.append("<br/><font class=\"tinyfont\" style=\"font-weight: bold;\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss.xml?thredid="+thred.getThredid()+"\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
+            out.append("<font class=\"mythredztinyfont\">Powered by <a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">myThredz</a></font><br/>");
+            out.append("<br/><font class=\"mythredztinyfont\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss.xml?thredid="+thred.getThredid()+"\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
             out.append("<br/><br/>");
             out.append("</div>");
-
-
             out.append("\n</div>");
             out.append("\n</td>");
             out.append("\n\n</tr>");
         }
-
-
         out.append("\n</table>");
-
-
         out.append("</div>"+"\n");
-
-
         return out.toString();
     }
 
