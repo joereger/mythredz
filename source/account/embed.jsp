@@ -102,6 +102,31 @@ String acl = "account";
             </div>
         </td>
     </tr>
+    <tr>
+        <td valign="top">
+            <div class="rounded" style="padding: 15px; margin: 5px; background: #cccccc;">
+            <font class="mediumfont">You can also embed only the most recent update from single thredz:</font>
+            <br/>
+            <%
+                List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
+                        .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
+                        .setCacheable(true)
+                        .list();
+
+            %>
+            <%if (threds==null || threds.size()==0){%>
+                <font class="normalfont">You don't have any thredz yet.</font>
+            <%} else {%>
+                <%
+                    ArrayList<GridCol> cols=new ArrayList<GridCol>();
+                    cols.add(new GridCol("Thred", "<$name$>", false, "", "mediumfont"));
+                    cols.add(new GridCol("Embed Code", "&lt;script type=\"text/javascript\" src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/embed/singlemostrecent/?u="+Pagez.getUserSession().getUser().getUserid()+"&t=<$thredid$>\">&lt;/script>", true, "", "tinyfont"));
+                %>
+                <%=Grid.render(threds, cols, 50, "/account/embed.jsp", "page")%>
+            <%}%>
+            </div>
+        </td>
+    </tr>
 
 </table>
 

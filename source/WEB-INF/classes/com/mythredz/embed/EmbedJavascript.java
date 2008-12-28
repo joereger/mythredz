@@ -73,7 +73,7 @@ public class EmbedJavascript extends HttpServlet {
         String dynamicPortionOfOutput = "";
         if (user!=null && user.getUserid()>0){
             String nameInCache = "embedjavascriptservlet-u"+user.getUserid()+"-makeHttpsIfSSLIsOn"+makeHttpsIfSSLIsOn;
-            String cacheGroup = "embedjavascriptcache"+"/";
+            String cacheGroup = "usercache"+user.getUserid()+"/";
             Object fromCache = CacheFactory.getCacheProvider().get(nameInCache, cacheGroup);
             if (fromCache!=null && cache){
                 logger.debug("returning string from cache");

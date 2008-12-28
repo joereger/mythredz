@@ -125,6 +125,12 @@ public class ThredzAsHtml {
                 "   cursor: pointer;\n" +
                 "   cursor: hand;\n" +
                 "}\n"+
+                ".thredsinglenormal{}\n"+
+                ".thredsinglehot{}\n"+
+                ".mythredzdatestampsingle{}\n"+
+                ".mythredzdatestampfontsingle{}\n"+
+                ".mythredzcontentsingle{}\n"+
+                ".mythredzsmallfontsingle{}\n"+
                 "</style>");
             return out.toString();
     }

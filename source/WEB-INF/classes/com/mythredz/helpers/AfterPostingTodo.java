@@ -55,12 +55,18 @@ public class AfterPostingTodo {
 
     public static void clearCaches(User user){
         //Clear the Javascript Embed cache
-        String nameInCache="embedjavascriptservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
-        String cacheGroup="embedjavascriptcache" + "/";
-        CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
-        String nameInCacheVert="embedjavascriptverticalservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
-        String cacheGroupVert="embedjavascriptcache" + "/";
-        CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
+//        String nameInCache="embedjavascriptservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
+//        String cacheGroup="embedjavascriptcache" + "/";
+//        CacheFactory.getCacheProvider().flush(nameInCache, cacheGroup);
+//        String nameInCacheVert="embedjavascriptverticalservlet-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false;
+//        String cacheGroupVert="embedjavascriptcache" + "/";
+//        CacheFactory.getCacheProvider().flush(nameInCacheVert, cacheGroupVert);
+//        String nameInCacheSingle="embedsinglemostrecent-u" + user.getUserid() + "-makeHttpsIfSSLIsOn" + false+"-thredid"+thred.getThredid();
+//        String cacheGroupSingle="embedsinglemostrecent" + "/";
+//        CacheFactory.getCacheProvider().flush(nameInCacheSingle, cacheGroupSingle);
+
+        String cacheGroup = "usercache"+user.getUserid()+"/";
+        CacheFactory.getCacheProvider().flush(cacheGroup);
     }
 
 
