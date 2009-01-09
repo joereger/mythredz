@@ -29,6 +29,11 @@ String acl = "account";
             thred.setCreatedate(new java.util.Date());
             thred.setName(request.getParameter("thred1"));
             thred.setUserid(Pagez.getUserSession().getUser().getUserid());
+            thred.setIstwitterupdateon(false);
+            thred.setTwitterid("");
+            thred.setTwitterpass("");
+            thred.setIspingfmupdateon(false);
+            thred.setPingfmapikey("");
             try{thred.save();}catch(Exception ex){logger.error("", ex);}
         }
 
@@ -37,6 +42,11 @@ String acl = "account";
             thred.setCreatedate(new java.util.Date());
             thred.setName(request.getParameter("thred2"));
             thred.setUserid(Pagez.getUserSession().getUser().getUserid());
+            thred.setIstwitterupdateon(false);
+            thred.setTwitterid("");
+            thred.setTwitterpass("");
+            thred.setIspingfmupdateon(false);
+            thred.setPingfmapikey("");
             try{thred.save();}catch(Exception ex){logger.error("", ex);}
         }
 
@@ -45,6 +55,11 @@ String acl = "account";
             thred.setCreatedate(new java.util.Date());
             thred.setName(request.getParameter("thred3"));
             thred.setUserid(Pagez.getUserSession().getUser().getUserid());
+            thred.setIstwitterupdateon(false);
+            thred.setTwitterid("");
+            thred.setTwitterpass("");
+            thred.setIspingfmupdateon(false);
+            thred.setPingfmapikey("");
             try{thred.save();}catch(Exception ex){logger.error("", ex);}
         }
 

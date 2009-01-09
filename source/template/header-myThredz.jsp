@@ -80,6 +80,8 @@
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>                               
                 <a href="/account/embed.jsp"><font class="subnavfont" style="color: #000000;">Embed in Your Blog</font></a>
                 <img src="/images/clear.gif" alt="" width="10" height="1"/>
+                <%if (Pagez.getUserSession().getIsloggedin()){%><a href="/user/<%=Pagez.getUserSession().getUser().getNickname()%>/"><font class="subnavfont" style="color: #000000;">Profile</font></a><%}%>
+                <img src="/images/clear.gif" alt="" width="10" height="1"/>
                 <a href="/account/mobile.jsp"><font class="subnavfont" style="color: #000000;">Mobile Device Screen</font></a>
             <%}%>
         <%}%>
