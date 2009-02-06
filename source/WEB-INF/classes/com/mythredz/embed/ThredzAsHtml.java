@@ -185,7 +185,7 @@ public class ThredzAsHtml {
             out.append("</font>");
             out.append("<br/>");
             out.append("<font class=\"mythredztinyfont\">Powered by <a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">myThredz</a></font><br/>");
-            out.append("<br/><font class=\"mythredztinyfont\" style=\"font-weight: bold;\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss.xml?thredid="+thred.getThredid()+"\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
+            out.append("<br/><font class=\"mythredztinyfont\" style=\"font-weight: bold;\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss/"+thred.getThredid()+"/rss.xml\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
             out.append("<br/><br/>");
             out.append("</div>");
             out.append("\n</div>");
@@ -240,7 +240,7 @@ public class ThredzAsHtml {
             out.append("</font>");
             out.append("<br/>");
             out.append("<font class=\"mythredztinyfont\">Powered by <a href=\"http://"+ SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/registration.jsp\">myThredz</a></font><br/>");
-            out.append("<br/><font class=\"mythredztinyfont\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss.xml?thredid="+thred.getThredid()+"\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
+            out.append("<br/><font class=\"mythredztinyfont\">Subscribe to this Thred<br/><a href=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/thredrss/"+thred.getThredid()+"/rss.xml\"><img src=\"http://"+SystemProperty.getProp(SystemProperty.PROP_BASEURL)+"/images/rss-20a.gif\" width=\"80\" height=\"15\" alt=\"Subscribe to Thred\" border=0\"\"></a></font>");
             out.append("<br/><br/>");
             out.append("</div>");
             out.append("\n</div>");

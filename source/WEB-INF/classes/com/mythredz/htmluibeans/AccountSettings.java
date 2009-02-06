@@ -80,6 +80,7 @@ public class AccountSettings implements Serializable {
 
             user.setFirstname(firstname);
             user.setLastname(lastname);
+            user.setIsemailnightlyon(isemailnightlyon);
             try{
                 user.save();
                 userid = user.getUserid();

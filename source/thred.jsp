@@ -16,32 +16,8 @@
 <%@ page import="com.mythredz.util.Time" %>
 <%@ page import="com.mythredz.dao.User" %>
 <%@ page import="com.mythredz.systemprops.SystemProperty" %>
+<%@ page import="com.mythredz.util.Num" %>
 
-<%
-    User user=null;
-    List<User> users = HibernateUtil.getSession().createCriteria(User.class)
-                                       .add(Restrictions.eq("nickname", request.getParameter("nickname")))
-                                       .setCacheable(true)
-                                       .setMaxResults(1)
-                                       .list();
-    if (users!=null && users.size()>0){
-        user = users.get(0);
-    }
-%>
-
-<%
-if (user==null){
-    Pagez.sendRedirect("/index.jsp");
-    return;    
-}
-%>
-
-<%
-boolean isLoggedInUsersProfile = false;
-if (Pagez.getUserSession().getIsloggedin() && Pagez.getUserSession().getUser().getUserid()==user.getUserid()){
-    isLoggedInUsersProfile = true;
-}
-%>
 
 <%
 Logger logger = Logger.getLogger(this.getClass().getName());
@@ -50,50 +26,48 @@ String navtab = "home";
 String acl = "public";
 %>
 <%@ include file="/template/auth.jsp" %>
-
-
+<%
+    Thred thred = null;
+    if (Num.isinteger(request.getParameter("thredid"))) {
+        thred = Thred.get(Integer.parseInt(request.getParameter("thredid")));
+    }
+%>
+<%
+if (thred==null || thred.getThredid()==0){
+    Pagez.sendRedirect("/index.jsp");
+    return;
+}
+%>
+<%
+User user = User.get(thred.getUserid());
+if (!user.getIsenabled()){
+    Pagez.sendRedirect("/index.jsp");
+    return;
+}
+%>
 <%@ include file="/template/header.jsp" %>
 
 
 
 
-<font class="largefont" style="background: #e6e6e6;"><%=user.getNickname()%></font>
+<font class="largefont" style="background: #e6e6e6;"><%=user.getNickname()%>: <%=thred.getName()%></font>
 <br/><font class="tinyfont">http://<%=SystemProperty.getProp(SystemProperty.PROP_BASEURL)%>/user/<%=user.getNickname()%>/</font>
 
 <br/><br/>
 
 
-
     <table cellpadding="0" cellspacing="5" border="0" width="100%">
     <tr>
-        <%
-        List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
-                .add(Restrictions.eq("userid", user.getUserid()))
-                .setCacheable(true)
-                .list();
-        for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
-            Thred thred=iterator.next();
-            double widthDbl=100 / threds.size();
-            Double widthBigDbl=new Double(widthDbl);
-            int width=widthBigDbl.intValue();
-            %>
-            <td valign="top" width="<%=width%>%">
-                <font class="normalfont" style="font-weight: bold; background: #ffffff;"><%=thred.getName()%> <a href="http://<%=SystemProperty.getProp(SystemProperty.PROP_BASEURL)%>/thred/<%=thred.getThredid()%>">#</a></font>
+            <td valign="top" width="100%">
+                <font class="normalfont" style="font-weight: bold; background: #ffffff;"><%=thred.getName()%></font>
                 <br/><font class="tinyfont" style="font-weight: bold; background: #ffffff;"><a href="http://<%=SystemProperty.getProp(SystemProperty.PROP_BASEURL)%>/thredrss/<%=thred.getThredid()%>/rss.xml">RSS</a></font>
                 <br/><br/>
             </td>
-            <%
-
-        }
-        %>
     </tr>
 
 
     <tr>
-    <%
-        for (Iterator<Thred> iterator=threds.iterator(); iterator.hasNext();) {
-            Thred thred=iterator.next();
-    %><td valign="top"><%
+    <td valign="top"><%
         List<Post> posts=HibernateUtil.getSession().createCriteria(Post.class)
                 .add(Restrictions.eq("thredid", thred.getThredid()))
                 .addOrder(Order.desc("date"))
@@ -104,10 +78,7 @@ String acl = "public";
             Post post=iterator1.next();
             %><font class="tinyfont" style="color: #cccccc; background: #999999;"><%=Time.dateformatcompactwithtime(post.getDate())%></font><br/><font class="smallfont"><%=post.getContents()%></font><br/><br/><%
         }
-        %></td><%
-
-        }
-    %>
+        %></td>
     </tr>
     </table>
 

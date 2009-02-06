@@ -112,6 +112,24 @@
         <url-pattern>/user/*</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>ThredUrlServlet</servlet-name>
+        <servlet-class>com.mythredz.helpers.ThredUrlServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ThredUrlServlet</servlet-name>
+        <url-pattern>/thred/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ThredRssServlet</servlet-name>
+        <servlet-class>com.mythredz.helpers.ThredRssServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ThredRssServlet</servlet-name>
+        <url-pattern>/thredrss/*</url-pattern>
+    </servlet-mapping>
+
 
     <servlet>
         <servlet-name>BlogRss</servlet-name>
