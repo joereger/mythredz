@@ -69,14 +69,14 @@ public class ApplicationStartup implements ServletContextListener {
             logger.info("InstanceProperties.haveValidConfig()=false");
         }
         //Load SystemProps
-        SystemProperty.refreshAllProps();
+        try{SystemProperty.refreshAllProps();}catch(Exception ex){logger.error("",ex);}
         //Refresh SystemStats
         SystemStats ss = new SystemStats();
         try{ss.execute(null);}catch(Exception ex){logger.error("",ex);}
         //Start SMTP Listener
-        InboundSmtpStartup.makeSureServerIsUp();
+        try{InboundSmtpStartup.makeSureServerIsUp();}catch(Exception ex){logger.error("",ex);}
         //Initialize Quartz
-        initQuartz(cse.getServletContext());
+        try{initQuartz(cse.getServletContext());}catch(Exception ex){logger.error("",ex);}
         //Add Quartz listener
         try{
             SchedulerFactory schedFact = new StdSchedulerFactory();
