@@ -41,14 +41,16 @@ if (thred.getUserid()!=Pagez.getUserSession().getUser().getUserid()){
 %>
 
 <%
-List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
-                .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
-                .setCacheable(true)
-                .list();
-if (threds!=null && threds.size()>=7){
-    Pagez.getUserSession().setMessage("Sorry, you can only have up to seven threds.");
-    Pagez.sendRedirect("/account/thredzlist.jsp");
-    return;
+if (thred.getThredid()==0){
+    List<Thred> threds=HibernateUtil.getSession().createCriteria(Thred.class)
+                    .add(Restrictions.eq("userid", Pagez.getUserSession().getUser().getUserid()))
+                    .setCacheable(true)
+                    .list();
+    if (threds!=null && threds.size()>=7){
+        Pagez.getUserSession().setMessage("Sorry, you can only have up to seven threds.");
+        Pagez.sendRedirect("/account/thredzlist.jsp");
+        return;
+    }
 }
 %>
 
@@ -115,7 +117,7 @@ if (threds!=null && threds.size()>=7){
                         <font class="formfieldnamefont">Thred Name</font>
                     </td>
                     <td valign="top">
-                        <%=Textbox.getHtml("name", thred.getName(), 20, 20, "", "")%>
+                        <%=Textbox.getHtml("name", thred.getName(), 20, 20, "", "font-size:45px;")%>
                         <br/><br/><br/>
                     </td>
                 </tr>
