@@ -1,3 +1,4 @@
+<%@ page import="com.mythredz.dao.Thred" %>
 <%@ page import="com.mythredz.dao.User" %>
 <%@ page import="com.mythredz.dao.hibernate.HibernateUtil" %>
 <%@ page import="com.mythredz.dbgrid.Grid" %>
@@ -84,30 +85,51 @@ String acl = "public";
             </tr>
             </table>
 
-            <!-- List of Profiles -->
 
-            <%
-                List<User> users = HibernateUtil.getSession().createCriteria(User.class)
-                        .addOrder(Order.desc("userid"))
-                        .setCacheable(true)
-                        .setMaxResults(100)
-                        .list();
-
-            %>
-
-            <br/><br/>
-            <%if (users ==null || users.size()==0){%>
-                <font class="normalfont">No Users yet.</font>
-            <%} else {%>
-                <%
-                    ArrayList<GridCol> cols=new ArrayList<GridCol>();
-                    cols.add(new GridCol("Profiles", "<a href=\"/user/<$nickname$>\"><$nickname$></a>", true, "", "tinyfont"));
-                %>
-                <%=Grid.render(users, cols, 50, "/index.jsp", "page")%>
-            <%}%>
-
-
-            <!-- List of Profiles End -->
+            <table cellpadding="10" cellspacing="0" border="0" width="100%">
+            <tr>
+                <td valign="top" width="50%">
+                    <!-- List of Profiles -->
+                    <%
+                        List<User> users = HibernateUtil.getSession().createCriteria(User.class)
+                                .addOrder(Order.desc("userid"))
+                                .setCacheable(true)
+                                .setMaxResults(100)
+                                .list();
+                    %>
+                    <%if (users ==null || users.size()==0){%>
+                        <font class="normalfont">No Users yet.</font>
+                    <%} else {%>
+                        <%
+                            ArrayList<GridCol> cols=new ArrayList<GridCol>();
+                            cols.add(new GridCol("People", "<a href=\"/user/<$nickname$>\"><$nickname$></a>", true, "", "tinyfont"));
+                        %>
+                        <%=Grid.render(users, cols, 100, "/index.jsp", "userpage")%>
+                    <%}%>
+                    <!-- List of Profiles End -->
+                    </td>
+                    <td valign="top" width="50%">
+                    <!-- List of Profiles -->
+                    <%
+                        List<Thred> threds = HibernateUtil.getSession().createCriteria(Thred.class)
+                                .addOrder(Order.desc("thredid"))
+                                .setCacheable(true)
+                                .setMaxResults(100)
+                                .list();
+                    %>
+                    <%if (threds ==null || threds.size()==0){%>
+                        <font class="normalfont">No Thredz yet.</font>
+                    <%} else {%>
+                        <%
+                            ArrayList<GridCol> cols=new ArrayList<GridCol>();
+                            cols.add(new GridCol("Thredz", "<a href=\"/thred/<$thredid$>\"><$name$></a>", true, "", "tinyfont"));
+                        %>
+                        <%=Grid.render(threds, cols, 100, "/index.jsp", "thredpage")%>
+                    <%}%>
+                    <!-- List of Profiles End -->
+                    </td>
+                </tr>
+            </table>
 
         </td>
         <td valign="top" width="50%">
