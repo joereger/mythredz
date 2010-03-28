@@ -1,25 +1,13 @@
 package com.mythredz.twitter;
 
 
-import org.apache.log4j.Logger;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.UsernamePasswordCredentials;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.auth.AuthScope;
-import org.apache.commons.httpclient.methods.GetMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.jivesoftware.smack.XMPPConnection;
-import org.jivesoftware.smack.GoogleTalkConnection;
-import org.jivesoftware.smack.XMPPException;
 import com.mythredz.threadpool.ThreadPool;
-import com.mythredz.systemprops.SystemProperty;
-import com.mythredz.util.Time;
 import com.mythredz.util.Str;
-
-import java.util.Calendar;
-
-import twitter4j.Twitter;
+import org.apache.log4j.Logger;
 import twitter4j.Status;
+import twitter4j.Twitter;
+import twitter4j.TwitterFactory;
+import twitter4j.http.AccessToken;
 
 /**
  * User: Joe Reger Jr
@@ -30,15 +18,15 @@ public class TwitterUpdate implements Runnable {
 
 
     private static ThreadPool tp;
-    private String twitterid = "";
-    private String twitterpass = "";
+    private String twitteraccesstoken = "";
+    private String twitteraccesstokensecret = "";
     private String updatetext = "";
 
 
 
-    public TwitterUpdate(String twitterid,  String twitterpass, String updatetext){
-        this.twitterid = twitterid;
-        this.twitterpass = twitterpass;
+    public TwitterUpdate(String twitteraccesstoken,  String twitteraccesstokensecret, String updatetext){
+        this.twitteraccesstoken = twitteraccesstoken;
+        this.twitteraccesstokensecret = twitteraccesstokensecret;
         this.updatetext = updatetext;
     }
 
@@ -51,9 +39,12 @@ public class TwitterUpdate implements Runnable {
         //http://groups.google.com/group/twitter4j/browse_thread/thread/fc148459cf0fcda8
 
         try{
-            Twitter twitter=new Twitter(twitterid, twitterpass);
-            twitter.setSource("mythredz");
-            Status status=twitter.update(Str.truncateString(updatetext, 140));
+            TwitterFactory twitterFactory = new TwitterFactory();
+            Twitter twitter = twitterFactory.getInstance();
+            AccessToken accessToken = new AccessToken(twitteraccesstoken, twitteraccesstokensecret);
+            twitter.setOAuthAccessToken(accessToken);
+
+            Status status=twitter.updateStatus(Str.truncateString(updatetext, 140));
             logger.debug("Twitter status updated to: "+status);
         } catch (Exception ex){
             logger.error("", ex);

@@ -40,7 +40,7 @@ public class AfterPostingTodo {
             clearCaches(user);
             //Update twitter
             if (thred.getIstwitterupdateon() && posttotwitter) {
-                TwitterUpdate tu = new TwitterUpdate(thred.getTwitterid(), thred.getTwitterpass(), Str.truncateString(post.getContents(), 140));
+                TwitterUpdate tu = new TwitterUpdate(thred.getTwitteraccesstoken(), thred.getTwitteraccesstokensecret(), Str.truncateString(post.getContents(), 140));
                 tu.update();
             }
             //Update Ping.fm

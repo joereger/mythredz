@@ -58,6 +58,37 @@
     </filter-mapping>
 
 
+
+
+
+    <servlet>
+        <servlet-name>TwitterCallbackServlet</servlet-name>
+        <servlet-class>com.mythredz.twitteroauth.CallbackServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TwitterCallbackServlet</servlet-name>
+        <url-pattern>/twittercallback</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RedirToTwitterServlet</servlet-name>
+        <servlet-class>com.mythredz.twitteroauth.RedirToTwitterServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>RedirToTwitterServlet</servlet-name>
+        <url-pattern>/twitterredirector</url-pattern>
+    </servlet-mapping>
+
+
+    
+
+
+
+
+
+
+
+
     <servlet>
         <servlet-name>EmailActivationServlet</servlet-name>
         <servlet-class>com.mythredz.email.EmailActivationServlet</servlet-class>

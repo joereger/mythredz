@@ -23,8 +23,9 @@ String acl = "account";
     thred.setCreatedate(new java.util.Date());
     thred.setUserid(Pagez.getUserSession().getUser().getUserid());
     thred.setIstwitterupdateon(false);
-    thred.setTwitterid("");
-    thred.setTwitterpass("");
+    thred.setTwitterusername("");
+    thred.setTwitteraccesstoken("");
+    thred.setTwitteraccesstokensecret("");
     thred.setIspingfmupdateon(false);
     thred.setPingfmapikey("");
     if (request.getParameter("thredid") != null && Num.isinteger(request.getParameter("thredid"))) {
@@ -59,8 +60,9 @@ if (thred.getThredid()==0){
     try {
         thred.setName(Textbox.getValueFromRequest("name", "Thred Name", true, DatatypeString.DATATYPEID));
         thred.setIstwitterupdateon(CheckboxBoolean.getValueFromRequest("istwitterupdateon"));
-        thred.setTwitterid(Textbox.getValueFromRequest("twitterid", "Twitter ID", false, DatatypeString.DATATYPEID));
-        thred.setTwitterpass(Textbox.getValueFromRequest("twitterpass", "Twitter Password", false, DatatypeString.DATATYPEID));
+        thred.setTwitterusername(Textbox.getValueFromRequest("twitterusername", "Twitter Username", false, DatatypeString.DATATYPEID));
+        thred.setTwitteraccesstoken(Textbox.getValueFromRequest("twitteraccesstoken", "Twitter Access Token", false, DatatypeString.DATATYPEID));
+        thred.setTwitteraccesstokensecret(Textbox.getValueFromRequest("twitteraccesstokensecret", "Twitter Access Token", false, DatatypeString.DATATYPEID));
         thred.setIspingfmupdateon(CheckboxBoolean.getValueFromRequest("ispingfmupdateon"));
         thred.setPingfmapikey(Textbox.getValueFromRequest("pingfmapikey", "Ping.fm API Key", false, DatatypeString.DATATYPEID));
         thred.save();
@@ -130,15 +132,13 @@ if (thred.getThredid()==0){
                     <td valign="top">
                         <%=CheckboxBoolean.getHtml("istwitterupdateon", thred.getIstwitterupdateon(), "", "")%> <font class="formfieldnamefont">Yes, Update Twitter</font>
                         <br/>
-                        <font class="tinyfont">Sending updates from this Thred to Twitter limits the input size for this Thred to 140 characters.</font>
+                        <font class="tinyfont">Sending updates from this Thred to Twitter limits the input size for this Thred to 140 characters.  Note, you must Authorize Twitter to accept updates from this application.</font>
                         <br/>
-                        <font class="formfieldnamefont">Twitter ID:</font>
-                        <br/>
-                        <%=Textbox.getHtml("twitterid", thred.getTwitterid(), 40, 20, "", "")%>
-                        <br/>
-                        <font class="formfieldnamefont">Twitter Password:</font>
-                        <br/>
-                        <%=TextboxSecret.getHtml("twitterpass", thred.getTwitterpass(), 40, 20, "", "")%>
+                        <%if (thred.getTwitteraccesstoken().length()>0 && thred.getTwitteraccesstokensecret().length()>0){%>
+                            <font class="formfieldnamefont"><a href="/twitterredirector?thredid=<%=thred.getThredid()%>">Re-Authorize Twitter</a></font>
+                        <%} else {%>
+                            <font class="formfieldnamefont"><a href="/twitterredirector?thredid=<%=thred.getThredid()%>">Authorize Twitter</a></font>
+                        <%}%>
                         <br/><br/>
                     </td>
                 </tr>

@@ -3,10 +3,9 @@ package com.mythredz.dao;
 import com.mythredz.dao.hibernate.BasePersistentClass;
 import com.mythredz.dao.hibernate.HibernateUtil;
 import com.mythredz.session.AuthControlled;
+import org.apache.log4j.Logger;
 
 import java.util.Date;
-
-import org.apache.log4j.Logger;
 
 public class Thred extends BasePersistentClass implements java.io.Serializable, AuthControlled {
 
@@ -17,10 +16,12 @@ public class Thred extends BasePersistentClass implements java.io.Serializable, 
      private String name;
      private Date createdate;
      private boolean istwitterupdateon;
-     private String twitterid;
-     private String twitterpass;
+     private String twitterusername;
+     private String twitteraccesstoken="";
+     private String twitteraccesstokensecret="";
      private boolean ispingfmupdateon;
      private String pingfmapikey;
+
 
 
 
@@ -104,22 +105,29 @@ public class Thred extends BasePersistentClass implements java.io.Serializable, 
         this.istwitterupdateon=istwitterupdateon;
     }
 
-    public String getTwitterpass() {
-        return twitterpass;
+    public String getTwitterusername() {
+        return twitterusername;
     }
 
-    public void setTwitterpass(String twitterpass) {
-        this.twitterpass=twitterpass;
+    public void setTwitterusername(String twitterusername) {
+        this.twitterusername = twitterusername;
     }
 
-    public String getTwitterid() {
-        return twitterid;
+    public String getTwitteraccesstoken() {
+        return twitteraccesstoken;
     }
 
-    public void setTwitterid(String twitterid) {
-        this.twitterid=twitterid;
+    public void setTwitteraccesstoken(String twitteraccesstoken) {
+        this.twitteraccesstoken = twitteraccesstoken;
     }
 
+    public String getTwitteraccesstokensecret() {
+        return twitteraccesstokensecret;
+    }
+
+    public void setTwitteraccesstokensecret(String twitteraccesstokensecret) {
+        this.twitteraccesstokensecret = twitteraccesstokensecret;
+    }
 
     public boolean getIspingfmupdateon() {
         return ispingfmupdateon;

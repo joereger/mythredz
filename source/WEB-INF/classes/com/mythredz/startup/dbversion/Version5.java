@@ -1,7 +1,7 @@
 package com.mythredz.startup.dbversion;
 
-import com.mythredz.startup.UpgradeDatabaseOneVersion;
 import com.mythredz.db.Db;
+import com.mythredz.startup.UpgradeDatabaseOneVersion;
 import org.apache.log4j.Logger;
 
 /**
@@ -9,7 +9,7 @@ import org.apache.log4j.Logger;
  * Date: Nov 26, 2006
  * Time: 11:57:46 AM
  */
-public class Version1 implements UpgradeDatabaseOneVersion {
+public class Version5 implements UpgradeDatabaseOneVersion {
 
     Logger logger = Logger.getLogger(this.getClass().getName());
 
@@ -24,21 +24,29 @@ public class Version1 implements UpgradeDatabaseOneVersion {
 
         //-----------------------------------
         //-----------------------------------
-        int count0 = Db.RunSQLUpdate("UPDATE thred SET istwitterupdateon=false");
+        int count1 = Db.RunSQLUpdate("UPDATE thred SET twitteraccesstoken=''");
         //-----------------------------------
         //-----------------------------------
 
         //-----------------------------------
         //-----------------------------------
-        //int count1 = Db.RunSQLUpdate("UPDATE thred SET twitterid=''");
+        int count2 = Db.RunSQLUpdate("UPDATE thred SET twitteraccesstokensecret=''");
         //-----------------------------------
         //-----------------------------------
 
         //-----------------------------------
         //-----------------------------------
-        //int count2 = Db.RunSQLUpdate("UPDATE thred SET twitterpass=''");
+        int count3 = Db.RunSQLUpdate("ALTER TABLE thred DROP twitterid");
         //-----------------------------------
         //-----------------------------------
+
+        //-----------------------------------
+        //-----------------------------------
+        int count4 = Db.RunSQLUpdate("ALTER TABLE thred DROP twitterpass");
+        //-----------------------------------
+        //-----------------------------------
+
+
 
 
         logger.debug("doPostHibernateUpgrade() finish");

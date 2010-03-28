@@ -1,15 +1,16 @@
 package com.mythredz.htmlui;
 
-import com.mythredz.facebook.FacebookUser;
 import com.mythredz.dao.User;
 import com.mythredz.dao.Userrole;
+import com.mythredz.facebook.FacebookUser;
+import org.apache.log4j.Logger;
+import twitter4j.Twitter;
+import twitter4j.http.RequestToken;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Calendar;
-
-import org.apache.log4j.Logger;
+import java.util.Iterator;
 
 /**
  * User: Joe Reger Jr
@@ -38,6 +39,8 @@ public class UserSession implements Serializable {
     private boolean isfacebookui = false;
     private String message = "";
     private Calendar createdate = Calendar.getInstance();
+    private Twitter twitter;
+    private RequestToken twitterRequestToken;
 
     public UserSession(){
         Logger logger = Logger.getLogger(this.getClass().getName());
@@ -237,5 +240,21 @@ public class UserSession implements Serializable {
 
     public void setLoggedInToBeta(boolean loggedInToBeta) {
         isLoggedInToBeta = loggedInToBeta;
+    }
+
+    public Twitter getTwitter() {
+        return twitter;
+    }
+
+    public void setTwitter(Twitter twitter) {
+        this.twitter = twitter;
+    }
+
+    public RequestToken getTwitterRequestToken() {
+        return twitterRequestToken;
+    }
+
+    public void setTwitterRequestToken(RequestToken twitterRequestToken) {
+        this.twitterRequestToken = twitterRequestToken;
     }
 }

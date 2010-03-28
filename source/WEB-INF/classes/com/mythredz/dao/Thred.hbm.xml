@@ -21,11 +21,14 @@
         <property name="istwitterupdateon" type="boolean">
             <column name="istwitterupdateon" />
         </property>
-        <property name="twitterid" type="string">
-            <column name="twitterid" not-null="true" />
+        <property name="twitterusername" type="string">
+            <column name="twitterusername" not-null="true" />
         </property>
-        <property name="twitterpass" type="string">
-            <column name="twitterpass" not-null="true" />
+        <property name="twitteraccesstoken" type="string">
+            <column name="twitteraccesstoken" not-null="true" />
+        </property>
+        <property name="twitteraccesstokensecret" type="string">
+            <column name="twitteraccesstokensecret" not-null="true" />
         </property>
         <property name="ispingfmupdateon" type="boolean">
             <column name="ispingfmupdateon" />

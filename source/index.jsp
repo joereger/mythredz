@@ -1,5 +1,12 @@
-<%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="com.mythredz.dao.User" %>
+<%@ page import="com.mythredz.dao.hibernate.HibernateUtil" %>
+<%@ page import="com.mythredz.dbgrid.Grid" %>
+<%@ page import="com.mythredz.dbgrid.GridCol" %>
 <%@ page import="com.mythredz.htmluibeans.PublicIndex" %>
+<%@ page import="org.apache.log4j.Logger" %>
+<%@ page import="org.hibernate.criterion.Order" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 
 
 <%
@@ -76,6 +83,31 @@ String acl = "public";
                 </td>
             </tr>
             </table>
+
+            <!-- List of Profiles -->
+
+            <%
+                List<User> users = HibernateUtil.getSession().createCriteria(User.class)
+                        .addOrder(Order.desc("userid"))
+                        .setCacheable(true)
+                        .setMaxResults(100)
+                        .list();
+
+            %>
+
+            <br/><br/>
+            <%if (users ==null || users.size()==0){%>
+                <font class="normalfont">No Users yet.</font>
+            <%} else {%>
+                <%
+                    ArrayList<GridCol> cols=new ArrayList<GridCol>();
+                    cols.add(new GridCol("Profiles", "<a href=\"/user/<$nickname$>\"><$nickname$></a>", true, "", "tinyfont"));
+                %>
+                <%=Grid.render(users, cols, 50, "/index.jsp", "page")%>
+            <%}%>
+
+
+            <!-- List of Profiles End -->
 
         </td>
         <td valign="top" width="50%">
