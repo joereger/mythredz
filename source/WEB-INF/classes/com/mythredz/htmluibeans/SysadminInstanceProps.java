@@ -31,6 +31,9 @@ public class SysadminInstanceProps implements Serializable {
     private String absolutepathtoexerciseimages;
     private String runEmailListenerOnThisInstance;
     private String emailListenerIP;
+    private String terracottahost01;
+    private String terracottahost02;
+    private String terracottahost03;
 
     public SysadminInstanceProps(){
 
@@ -60,6 +63,9 @@ public class SysadminInstanceProps implements Serializable {
             runEmailListenerOnThisInstance = "0";
         }
         emailListenerIP = InstanceProperties.getEmailListenerIP();
+        terracottahost01 = InstanceProperties.getTerracottahost01();
+        terracottahost02 = InstanceProperties.getTerracottahost02();
+        terracottahost03 = InstanceProperties.getTerracottahost03();
     }
 
     public void saveProps() throws ValidationException {
@@ -88,6 +94,10 @@ public class SysadminInstanceProps implements Serializable {
                 InstanceProperties.setRunEmailListenerOnThisInstance(false);
             }
             InstanceProperties.setEmailListenerIP(emailListenerIP);
+            InstanceProperties.setTerracottahost01(terracottahost01);
+            InstanceProperties.setTerracottahost02(terracottahost02);
+            InstanceProperties.setTerracottahost03(terracottahost03);
+
             try{
                 InstanceProperties.save();
                 if (InstanceProperties.haveValidConfig()){
@@ -213,5 +223,29 @@ public class SysadminInstanceProps implements Serializable {
 
     public void setEmailListenerIP(String emailListenerIP) {
         this.emailListenerIP=emailListenerIP;
+    }
+
+    public String getTerracottahost01() {
+        return terracottahost01;
+    }
+
+    public void setTerracottahost01(String terracottahost01) {
+        this.terracottahost01 = terracottahost01;
+    }
+
+    public String getTerracottahost02() {
+        return terracottahost02;
+    }
+
+    public void setTerracottahost02(String terracottahost02) {
+        this.terracottahost02 = terracottahost02;
+    }
+
+    public String getTerracottahost03() {
+        return terracottahost03;
+    }
+
+    public void setTerracottahost03(String terracottahost03) {
+        this.terracottahost03 = terracottahost03;
     }
 }

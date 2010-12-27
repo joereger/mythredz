@@ -32,6 +32,9 @@ public class InstanceProperties {
     private static String absolutepathtoexerciseimages;
     private static String runEmailListenerOnThisInstance;
     private static String emailListenerIP;
+    private static String terracottahost01;
+    private static String terracottahost02;
+    private static String terracottahost03;
 
 
 
@@ -103,6 +106,9 @@ public class InstanceProperties {
             absolutepathtoexerciseimages = properties.getProperty("absolutepathtoexerciseimages", "");
             runEmailListenerOnThisInstance = properties.getProperty("runEmailListenerOnThisInstance", "0");
             emailListenerIP = properties.getProperty("emailListenerIP", "0");
+            terracottahost01 = properties.getProperty("terracottahost01", "");
+            terracottahost02 = properties.getProperty("terracottahost02", "");
+            terracottahost03 = properties.getProperty("terracottahost03", "");
 
             haveAttemptedToLoadDefaultPropsFile = true;
             haveNewConfigToTest = true;
@@ -163,6 +169,15 @@ public class InstanceProperties {
             }
             if (emailListenerIP!=null){
                 properties.setProperty("emailListenerIP", emailListenerIP);
+            }
+            if (terracottahost01!=null){
+                properties.setProperty("terracottahost01", terracottahost01);
+            }
+            if (terracottahost02!=null){
+                properties.setProperty("terracottahost01", terracottahost02);
+            }
+            if (terracottahost03!=null){
+                properties.setProperty("terracottahost01", terracottahost03);
             }
 
             if (testConfig()){
@@ -407,4 +422,35 @@ public class InstanceProperties {
     public static void setEmailListenerIP(String emailListenerIP) {
         InstanceProperties.emailListenerIP = emailListenerIP;
     }
+
+
+    public static String getTerracottahost01() {
+        load();
+        return terracottahost01;
+    }
+
+    public static void setTerracottahost01(String terracottahost01) {
+        InstanceProperties.terracottahost01 = terracottahost01;
+    }
+
+    public static String getTerracottahost02() {
+        load();
+        return terracottahost02;
+    }
+
+    public static void setTerracottahost02(String terracottahost02) {
+        InstanceProperties.terracottahost02 = terracottahost02;
+    }
+
+    public static String getTerracottahost03() {
+        load();
+        return terracottahost03;
+    }
+
+    public static void setTerracottahost03(String terracottahost03) {
+        InstanceProperties.terracottahost03 = terracottahost03;
+    }
+
+
+
 }

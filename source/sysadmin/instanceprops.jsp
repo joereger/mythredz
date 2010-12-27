@@ -27,6 +27,9 @@ SysadminInstanceProps sysadminInstanceProps = (SysadminInstanceProps)Pagez.getBe
             sysadminInstanceProps.setRunEmailListenerOnThisInstance(Textbox.getValueFromRequest("runEmailListenerOnThisInstance", "runEmailListenerOnThisInstance", true, DatatypeString.DATATYPEID));
             sysadminInstanceProps.setEmailListenerIP(Textbox.getValueFromRequest("emailListenerIP", "emailListenerIP", true, DatatypeString.DATATYPEID));
             sysadminInstanceProps.setAbsolutepathtoexerciseimages(Textbox.getValueFromRequest("absolutepathtoexerciseimages", "absolutepathtoexerciseimages", false, DatatypeString.DATATYPEID));
+            sysadminInstanceProps.setTerracottahost01(Textbox.getValueFromRequest("terracottahost01", "terracottahost01", false, DatatypeString.DATATYPEID));
+            sysadminInstanceProps.setTerracottahost02(Textbox.getValueFromRequest("terracottahost02", "terracottahost02", false, DatatypeString.DATATYPEID));
+            sysadminInstanceProps.setTerracottahost03(Textbox.getValueFromRequest("terracottahost03", "terracottahost03", false, DatatypeString.DATATYPEID));
             sysadminInstanceProps.saveProps();
             Pagez.getUserSession().setMessage("Props saved.");
         } catch (ValidationException vex) {
@@ -167,6 +170,39 @@ SysadminInstanceProps sysadminInstanceProps = (SysadminInstanceProps)Pagez.getBe
                 </td>
                 <td valign="top">
                     <%=Textbox.getHtml("emailListenerIP", sysadminInstanceProps.getEmailListenerIP(), 255, 35, "", "")%>
+                </td>
+            </tr>
+
+            <tr>
+                <td valign="top">
+                    <font class="formfieldnamefont">terracottahost01</font>
+                    <br/>
+                    <font class="tinyfont">192.168.1.1 or localhost</font>
+                </td>
+                <td valign="top">
+                    <%=Textbox.getHtml("terracottahost01", sysadminInstanceProps.getTerracottahost01(), 255, 35, "", "")%>
+                </td>
+            </tr>
+
+            <tr>
+                <td valign="top">
+                    <font class="formfieldnamefont">terracottahost02</font>
+                    <br/>
+                    <font class="tinyfont">192.168.1.1 or localhost</font>
+                </td>
+                <td valign="top">
+                    <%=Textbox.getHtml("terracottahost02", sysadminInstanceProps.getTerracottahost02(), 255, 35, "", "")%>
+                </td>
+            </tr>
+
+            <tr>
+                <td valign="top">
+                    <font class="formfieldnamefont">terracottahost03</font>
+                    <br/>
+                    <font class="tinyfont">192.168.1.1 or localhost</font>
+                </td>
+                <td valign="top">
+                    <%=Textbox.getHtml("terracottahost03", sysadminInstanceProps.getTerracottahost03(), 255, 35, "", "")%>
                 </td>
             </tr>
 

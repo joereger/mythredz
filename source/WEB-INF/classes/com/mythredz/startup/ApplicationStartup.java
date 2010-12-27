@@ -145,33 +145,33 @@ public class ApplicationStartup implements ServletContextListener {
     }
 
     public static void shutdownCacheMBean(){
-        Logger logger = Logger.getLogger(ApplicationStartup.class);
-        try{
-            ArrayList servers = MBeanServerFactory.findMBeanServer(null);
-            for (Iterator it = servers.iterator(); it.hasNext(); ) {
-                try{
-                    MBeanServer mBeanServer = (MBeanServer)it.next();
-                    //List of beans to log
-                    Set mBeanNames = mBeanServer.queryNames(null, null);
-                    for (Iterator iterator = mBeanNames.iterator(); iterator.hasNext();) {
-                        ObjectName objectName = (ObjectName) iterator.next();
-                        //logger.debug("MBean -> Name:"+objectName.getCanonicalName()+" Domain:"+objectName.getDomain());
-                        if (objectName.getCanonicalName().indexOf("myThredz-TreeCache-Cluster")>-1){
-                            try{
-                                logger.info("Unregistering MBean: "+objectName.getCanonicalName());
-                                mBeanServer.unregisterMBean(objectName);
-                            } catch (Exception ex){
-                                logger.error("",ex);
-                            }
-                        }
-                    }
-                } catch (Exception ex){
-                    logger.error("",ex);
-                }
-            }
-        } catch (Exception ex){
-            logger.error("",ex);
-        }
+//        Logger logger = Logger.getLogger(ApplicationStartup.class);
+//        try{
+//            ArrayList servers = MBeanServerFactory.findMBeanServer(null);
+//            for (Iterator it = servers.iterator(); it.hasNext(); ) {
+//                try{
+//                    MBeanServer mBeanServer = (MBeanServer)it.next();
+//                    //List of beans to log
+//                    Set mBeanNames = mBeanServer.queryNames(null, null);
+//                    for (Iterator iterator = mBeanNames.iterator(); iterator.hasNext();) {
+//                        ObjectName objectName = (ObjectName) iterator.next();
+//                        //logger.debug("MBean -> Name:"+objectName.getCanonicalName()+" Domain:"+objectName.getDomain());
+//                        if (objectName.getCanonicalName().indexOf("myThredz-TreeCache-Cluster")>-1){
+//                            try{
+//                                logger.info("Unregistering MBean: "+objectName.getCanonicalName());
+//                                mBeanServer.unregisterMBean(objectName);
+//                            } catch (Exception ex){
+//                                logger.error("",ex);
+//                            }
+//                        }
+//                    }
+//                } catch (Exception ex){
+//                    logger.error("",ex);
+//                }
+//            }
+//        } catch (Exception ex){
+//            logger.error("",ex);
+//        }
     }
 
     public static void shutdownMBean(String name){
