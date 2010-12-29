@@ -41,9 +41,10 @@ public class EhcacheProvider implements CacheProvider {
         //logger.debug("creating new Ehcache CacheManager by loading ehcache-objects.xml");
 
         //Configure the cache
-        CacheConfiguration cacheConfig = new CacheConfiguration("myThredzObjCache", 10000);
-        cacheConfig.timeToIdleSeconds(5);
-        cacheConfig.timeToLiveSeconds(500000);
+        CacheConfiguration cacheConfig = new CacheConfiguration("myThredzObjCache", 20000);
+        cacheConfig.timeToIdleSeconds(0);
+        cacheConfig.timeToLiveSeconds(0);
+        cacheConfig.eternal(true);
         cacheConfig.memoryStoreEvictionPolicy("LRU");
         if (isTerracottaClustered()){
             cacheConfig.terracotta(new TerracottaConfiguration());
@@ -54,7 +55,17 @@ public class EhcacheProvider implements CacheProvider {
         if (isTerracottaClustered()){
             managerConfig.terracotta(new TerracottaClientConfiguration().url(InstanceProperties.getTerracottahost01()+":9510"));
         }
-        managerConfig.defaultCache(new CacheConfiguration("default", 10000));
+        CacheConfiguration defaultCacheConfig = new CacheConfiguration("default", 20000);
+        defaultCacheConfig.timeToIdleSeconds(0);
+        defaultCacheConfig.timeToLiveSeconds(0);
+        defaultCacheConfig.eternal(true);
+        defaultCacheConfig.memoryStoreEvictionPolicy("LRU");
+        if (isTerracottaClustered()){
+            defaultCacheConfig.terracotta(new TerracottaConfiguration());
+        }
+
+        //Add default and main caches to manager
+        managerConfig.defaultCache(defaultCacheConfig);
         managerConfig.cache(cacheConfig);
         cacheManager = new CacheManager(managerConfig);
 
