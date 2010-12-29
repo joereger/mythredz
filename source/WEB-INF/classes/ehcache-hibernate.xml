@@ -5,7 +5,7 @@
     <terracottaConfig>
         <tc-config>
             <servers>
-                <server host="XXXXXHOST1XXXXX" name="s1"/>
+                <server host="${tcserver01}" name="s1"/>
             </servers>
             <clients>
                 <logs>app/logs-%i</logs>

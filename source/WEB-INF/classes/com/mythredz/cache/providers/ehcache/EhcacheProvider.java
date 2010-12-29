@@ -74,7 +74,6 @@ public class EhcacheProvider implements CacheProvider {
         } else {
             logger.debug("No caches available... cachesAvailable==null or cachesAvailable.length=0");
         }
-
     }
 
     private static Cache getCache(){

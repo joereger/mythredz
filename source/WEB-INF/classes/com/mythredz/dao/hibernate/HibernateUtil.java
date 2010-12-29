@@ -65,6 +65,7 @@ public class HibernateUtil {
                     String ehcacheHibernateConfigFile = "/ehcache-hibernate.xml";
                     String ehcacheHibernateConfigFilePlusPath = WebAppRootDir.getWebAppRootPath() + "WEB-INF/classes"+ehcacheHibernateConfigFile;
                     TerracottaServerConfigFileUpdate.updateFile(ehcacheHibernateConfigFilePlusPath);
+                    //String previousValue = System.setProperty("tcserver01", "localhost"); //set host to ${tcserver01} to have it replaced with this value
                     conf.setProperty("net.sf.ehcache.configurationResourceName", ehcacheHibernateConfigFile);
 
                     //Old Second Level Cache (JGroups) Config
