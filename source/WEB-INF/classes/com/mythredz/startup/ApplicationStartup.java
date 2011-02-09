@@ -41,7 +41,7 @@ public class ApplicationStartup implements ServletContextListener {
     private static Scheduler scheduler = null;
 
     public void contextInitialized(ServletContextEvent cse) {
-       System.out.println("MyThredz: Application initialized");
+       System.out.println("MyThredz: Application initialized and prepped for EC2");
        //Shut down mbeans, if they're running
        shutdownCacheMBean();
        //Configure some dir stuff

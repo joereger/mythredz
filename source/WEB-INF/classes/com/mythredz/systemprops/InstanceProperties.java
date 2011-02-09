@@ -43,15 +43,17 @@ public class InstanceProperties {
     private static boolean haveValidConfig = false;
     private static boolean haveNewConfigToTest = false;
     private static boolean haveAttemptedToLoadDefaultPropsFile = false;
-    private static String dbPropsInternalFilename = WebAppRootDir.getWebAppRootPath() + "conf\\instance.props";
+    private static String dbPropsInternalFilename = WebAppRootDir.getWebAppRootPath() + "conf"+File.separatorChar+"instance.props";
     private static String dbPropsExternalFilename = "mythredz-"+WebAppRootDir.getUniqueContextId()+"-dbconfig.txt";
 
     public static void load(){
         Logger logger = Logger.getLogger(InstanceProperties.class);
+        logger.debug("load() called");
         if (!haveValidConfig && !haveAttemptedToLoadDefaultPropsFile){
             try {
                 boolean gotFile = false;
                 //Look in the webapps directory
+                logger.debug("looking to the internal file ("+dbPropsInternalFilename+")");
                 try{
                     File internalFile = new File(dbPropsInternalFilename);
                     if (internalFile!=null && internalFile.exists() && internalFile.canRead() && internalFile.isFile()){
@@ -69,6 +71,7 @@ public class InstanceProperties {
                 //If we don't have one in the conf directory, look to the system default dir
                 if (!gotFile){
                     try{
+                        logger.debug("looking to the external file ("+dbPropsExternalFilename+")");
                         File externalFile = new File("", dbPropsExternalFilename);
                         if (externalFile!=null && externalFile.exists() && externalFile.canRead() && externalFile.isFile()){
                             Properties properties = new Properties();
@@ -234,7 +237,19 @@ public class InstanceProperties {
     }
 
     public static boolean testConfig(){
+        Logger logger = Logger.getLogger(InstanceProperties.class);
         if (!haveValidConfig && haveNewConfigToTest){
+            logger.debug("testConfig() -> (!haveValidConfig && haveNewConfigToTest)");
+            logger.debug("dbConnectionUrl="+dbConnectionUrl);
+            logger.debug("dbUsername="+dbUsername);
+            logger.debug("dbPassword="+dbPassword);
+            logger.debug("dbDriverName="+dbDriverName);
+            logger.debug("dbMaxActive="+dbMaxActive);
+            logger.debug("dbMaxIdle="+dbMaxIdle);
+            logger.debug("dbMinIdle="+dbMinIdle);
+            logger.debug("dbMaxWait="+dbMaxWait);
+
+
             //-----------------------------------
             //-----------------------------------
             String[][] rstTest= Db.RunSQL("SELECT 1");
@@ -242,6 +257,7 @@ public class InstanceProperties {
             //-----------------------------------
             if (rstTest!=null && rstTest.length>0){
                 haveValidConfig = true;
+                logger.debug("Found valid db config haveValidConfig=true");
             }
         }
         haveNewConfigToTest = false;
