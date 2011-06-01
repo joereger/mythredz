@@ -1,6 +1,7 @@
 package com.mythredz.cache.providers;
 
 import com.mythredz.cache.providers.ehcache.EhcacheProvider;
+import com.mythredz.cache.providers.infinispan.InfinispanProvider;
 import com.mythredz.cache.providers.jboss.JbossTreeCacheAOPProvider;
 import com.mythredz.cache.providers.oscache.OsCacheProvider;
 import com.mythredz.cache.providers.oscache.OsCacheClusteredProvider;
@@ -11,13 +12,15 @@ import com.mythredz.cache.providers.oscache.OsCacheClusteredProvider;
 public class CacheFactory {
 
     public static CacheProvider getCacheProvider(){
-        return getCacheProvider("EhcacheProvider");
+        return getCacheProvider("InfinispanProvider");
     }
 
     public static CacheProvider getCacheProvider(String providername){
-        if (providername.equals("EhcacheProvider")){
+        if (providername.equals("InfinispanProvider")){
+            return new InfinispanProvider();
+        } else if (providername.equals("EhcacheProvider")){
             return new EhcacheProvider();
-        } else if (providername.equals("JbossTreeCacheAOPProvider")){
+        }else if (providername.equals("JbossTreeCacheAOPProvider")){
             return new JbossTreeCacheAOPProvider();
         } else if (providername.equals("OsCacheProvider")){
             return new OsCacheProvider();
